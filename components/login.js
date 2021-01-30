@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Form, Input, Checkbox, Divider } from 'antd'
+import { useState } from 'react'
+import { Form } from 'antd'
 import { UserApi } from '../api/UserApi'
 import jwt_decode from 'jwt-decode';
 import Link from 'next/link'

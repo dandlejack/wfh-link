@@ -32,7 +32,6 @@ export const Header = () => {
     const divHeader = document.getElementById('div-header')
     const divHeaderMain = document.getElementById('div-header-main')
     const navTopMenu = document.getElementById('nav-top-menu')
-    const screenWidth = window.screen.width
     if(!toggleMenu){
       navTopMenu.classList.add('pb-1')
       divHeader.classList.add('show-menu')

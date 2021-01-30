@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { UserApi } from '../api/UserApi'
 import jwt_decode from 'jwt-decode';
 import Cookie from 'js-cookie'
 import Link from 'next/link'

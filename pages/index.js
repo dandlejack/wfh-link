@@ -6,11 +6,9 @@ import Router from 'next/router'
 import { provinceTreeData, workSelectedHeader } from '../util/mockData'
 import { TreeSelect, Form, Input, Skeleton } from 'antd'
 import { SearchOutlined, HomeOutlined } from '@ant-design/icons';
-import { PostApi } from '../api/PostApi'
 import { BACKEND_API } from '../server.configs'
-import axios from 'axios'
-import Redirect from '../components/Redirect'
 import { useRouter } from 'next/router'
+
 const Index = ({ queryData }) => {
   const [adsData, setAdsData] = useState([])
   const [selectValue, setSelectValue] = useState([])

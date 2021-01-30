@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { message, Form, Input, Button, Upload, TreeSelect, Select, notification } from 'antd'
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { jobPositionData, provinceData, scholarData, workExperience, workType, workSelected, workSelectedHeaderWithoutAll } from '../../util/mockData'

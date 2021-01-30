@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react'
-import JobInfo from '../../components/JobInfo'
-import { useRouter } from 'next/router'
 import { PostApi } from '../../api/PostApi'
 import { Button, Divider } from 'antd'
-import { workSelectedHeader } from '../../util/mockData'
 import Head from 'next/head'
 import HiddenContent from '../../components/HiddenContent'
 export default function JobPage({ pid }) {
