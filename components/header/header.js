@@ -34,12 +34,12 @@ export const Header = () => {
     const navTopMenu = document.getElementById('nav-top-menu')
     const screenWidth = window.screen.width
     if(!toggleMenu){
-      navTopMenu.classList.add('h-full','pb-1')
+      navTopMenu.classList.add('pb-1')
       divHeader.classList.add('show-menu')
       divHeaderMain.classList.add('relative')
       setToggleMenu(true)
     }else{
-      navTopMenu.classList.remove('h-full','pb-1')
+      navTopMenu.classList.remove('pb-1')
       divHeader.classList.remove('show-menu')
       divHeaderMain.classList.remove('relative')
       setToggleMenu(false)
@@ -53,7 +53,7 @@ export const Header = () => {
           {
             user === '' ? (
               <>
-              <div className='absolute right-0 top-0 header-menu'  id='div-header-main'>
+              <div className='right-0 top-0 header-menu lg:absolute '  id='div-header-main'>
                 <div className='div-header-items' id='div-header'>
                   <Link href='/posts/newpost'>
                     <div className='freepost mr-2 header-menu-items' style={{ border: 'solid 1px #FCED83', borderRadius: 5 }}>
