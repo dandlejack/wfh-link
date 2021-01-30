@@ -6,21 +6,29 @@ export class UserApi {
   static LOGIN_SIGNUP_API_URL = `${BACKEND_API}/auth`;
 
   static async postSignup(user) {
-    const result = axios
+    try {
+      const result = axios
       .post(this.USER_API_URL + `/register`, user)
       .then(response => {
         return response;
       });
     return result;
+    }catch{
+      window.location.replace('/404error')
+      return [];
+    }    
   }
 
   static async postSignin(user) {
-    const result = axios
+      const result = axios
       .post(this.LOGIN_SIGNUP_API_URL + `/login`, user)
       .then(response => {
+        console.log(response)
         return response.data;
       });
-    return result;
+      return result;
+    
+    
   }
 
 //   static async getUsers(params: any = {}) {

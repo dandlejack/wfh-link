@@ -9,6 +9,7 @@ import Head from 'next/head'
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [errorMsg,setErrorMsg] = useState('')
     const formItemLayout = {
         labelCol: {
             xs: { span: 5 },
@@ -21,20 +22,29 @@ const Login = () => {
     };
 
     const handleLogin = () => {
-        console.log(email, password)
         const userData = {
             email: email,
             password, password
         }
-        UserApi.postSignin(userData).then(response => {
-            const jwtDecoded = jwt_decode(response.token);
-            const parseJwtDecoded = JSON.parse(JSON.stringify(jwtDecoded));
-            const expDate = new Date(parseJwtDecoded.exp * 1000);
-            Cookie.set('token', response.token, { expires: expDate });
-            Cookie.set('hrme', { _id: parseJwtDecoded._id, name: parseJwtDecoded.firstname }, { expires: expDate })            
-            window.location.replace('/')
-            return response
-        })
+        try {
+            UserApi.postSignin(userData).then(response => {
+                if(response.token){
+                    const jwtDecoded = jwt_decode(response.token);
+                    const parseJwtDecoded = JSON.parse(JSON.stringify(jwtDecoded));
+                    const expDate = new Date(parseJwtDecoded.exp * 1000);
+                    Cookie.set('token', response.token, { expires: expDate });
+                    Cookie.set('hrme', { _id: parseJwtDecoded._id, name: parseJwtDecoded.firstname }, { expires: expDate })            
+                    window.location.replace('/')
+                    return response
+                }else{
+                    setErrorMsg(response.msg)
+                }
+                
+            })
+        } catch {
+            window.location.replace('/404error')
+        }
+        
     }
 
     return <>
@@ -77,6 +87,9 @@ const Login = () => {
                         </button>
                     </div>
                 </Form>
+               {errorMsg !== ''? <div className='text-red-500 text-lg text-center mb-3'>
+                    <span>อีเมล์หรือรหัสผ่านผิดพลาด</span>
+                </div>:null}
                 <div className='flex flex-wrap'>
                     <a className='flex-1 text-gray-500 hover:text-gray-500 underline '>Forgot Password?</a>
                     <p className='flex-1 text-gray-500 text-md mx-4 my-1 sm:my-auto text-center'>or</p>

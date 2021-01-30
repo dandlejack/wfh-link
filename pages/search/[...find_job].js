@@ -8,6 +8,7 @@ import Router from 'next/router'
 import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import HiddenContent from '../../components/hiddenContent';
 export default function JobPage({ queryData, paramsData }) {
     const [hideSearchItem, setHideSearchItem] = useState(false)
     const [filterObjectState, setFilterObjectState] = useState({})
@@ -263,7 +264,7 @@ export default function JobPage({ queryData, paramsData }) {
                     </div>
                 </div>
             </nav>
-            <div className='container mx-auto min-h-screen'>
+            <div className='container mx-auto'>
                 <div className='mx-auto flex flex-row pt-2 flexSet'>
                     <div className='flex-initial mx-2'>
                         {dataSource.length > 0 && dataSource.map((data, index) => {
@@ -302,6 +303,7 @@ export default function JobPage({ queryData, paramsData }) {
                                                 </li>)
                                         })}
                                     </ul>
+                                    <HiddenContent/>
                                 </article>
                             </div>
                         })}

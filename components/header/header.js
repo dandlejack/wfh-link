@@ -88,7 +88,7 @@ export const Header = () => {
                     <Link href="/posts/newpost"><li className='hover:bg-gray-200'><span>ลงประกาศ</span></li></Link>
                     {userRole === 'admin' ? <Link href="/posts/admin"><li className='hover:bg-gray-200'><span>จัดการประกาศ Admin</span></li></Link> : <></>}
                     <li className='sp text-base'>ข้อมูลสมาชิก</li>
-                    <li className='hover:bg-gray-200'><span>ข้อมูลส่วนตัว</span></li>
+                    {/* <li className='hover:bg-gray-200'><span>ข้อมูลส่วนตัว</span></li> */}
                     <li className='hover:bg-gray-200'><span onClick={handleLogout}>ออกจากระบบ</span></li>
                   </ul>
                 </div>

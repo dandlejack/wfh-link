@@ -67,7 +67,7 @@ export default function myposts() {
         <meta property="og:site_name" content="aks124.com"></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>    
-    <div className='container mx-auto'>
+    <div className='container mx-auto h-full'>
         <div className='flex flex-wrap mx-auto p-4 lg:relative'>
             <DashboardMenu />
             <div className='work-manage-body xl:w-4/5'>

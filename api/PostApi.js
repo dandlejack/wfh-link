@@ -23,7 +23,7 @@ export class PostApi {
       // });
       return result.data;
     } catch {
-      alert('Cannot fetch data');
+      window.location.replace('/404error')
       return [];
     }
   }

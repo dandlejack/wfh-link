@@ -185,6 +185,20 @@ export default function FirstPost() {
                   scrollToFirstError
                 >
                   <Form.Item
+                    name="company_name"
+                    label="ชื่อบริษัท"
+                    rules={[{ required: true, message: 'กรุณากรอกข้อมูล' }]}
+                  >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    name="company_description"
+                    label="เกี่ยวกับบริษัท"
+                    rules={[{ required: true, message: 'กรุณากรอกข้อมูล' }]}
+                  >
+                    <TextArea autoSize={{ minRows: 2, maxRows: 10 }}></TextArea>
+                  </Form.Item>
+                  <Form.Item
                     name="post_title"
                     label="ชื่อตำแหน่งที่ต้องการรับสมัคร"
                     rules={[
@@ -425,20 +439,7 @@ export default function FirstPost() {
                       );
                     }}
                   </Form.List>
-                  <Form.Item
-                    name="company_name"
-                    label="ชื่อบริษัท"
-                    rules={[{ required: true, message: 'กรุณากรอกข้อมูล' }]}
-                  >
-                    <Input />
-                  </Form.Item>
-                  <Form.Item
-                    name="company_description"
-                    label="เกี่ยวกับบริษัท"
-                    rules={[{ required: true, message: 'กรุณากรอกข้อมูล' }]}
-                  >
-                    <TextArea autoSize={{ minRows: 2, maxRows: 10 }}></TextArea>
-                  </Form.Item>
+                  
                   <Form.Item
                     name="title_image"
                     label="ภาพหัวข้อ"

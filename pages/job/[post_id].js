@@ -5,6 +5,7 @@ import { PostApi } from '../../api/PostApi'
 import { Button, Divider } from 'antd'
 import { workSelectedHeader } from '../../util/mockData'
 import Head from 'next/head'
+import HiddenContent from '../../components/hiddenContent'
 export default function JobPage({ pid }) {
     const [postTitle, setPostTitle] = useState('')
     const [dataSource, setDataSource] = useState({
@@ -195,6 +196,7 @@ export default function JobPage({ pid }) {
                                 </div>
                             </div>
                         </div>
+                        <HiddenContent/>
                     </div>
                 </div>
             </div>
