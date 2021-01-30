@@ -37,7 +37,7 @@ const Register = () => {
         <meta property="og:description" content="รวมบาคาร่าออนไลน์ aks124 aks124.com  คาสิโนออนไลน์ บาคาร่า aks124 ผ่านมือถือ ระบบออโต้ ฝากถอน 30 วิ เล่นเกมส์ได้เงินจริง"></meta>
         <meta property="og:site_name" content="aks124.com"></meta>
     </Head>
-    <div className='container mx-auto'>
+    <div className='container mx-auto h-full'>
         <div className='max-w-lg my-16 mx-auto'>
             <div className='mx-5 p-6' style={{boxShadow:'0 0 3px #666',background:"#fff"}}>
                 {/* <input type="hidden" name="remember" value="true"/>
