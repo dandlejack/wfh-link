@@ -3,12 +3,12 @@ import { PostApi } from '../../api/PostApi'
 import { Card, Form, Input, TreeSelect, Result, Pagination } from 'antd'
 import { provinceTreeData, workSelectedHeader } from '../../util/mockData'
 import { SearchOutlined, HomeOutlined, BookOutlined } from '@ant-design/icons';
-import PostComponent from '../../components/postComponent'
+import PostComponent from '../../components/PostComponent'
 import Router from 'next/router'
 import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import HiddenContent from '../../components/hiddenContent';
+import HiddenContent from '../../components/HiddenContent';
 export default function JobPage({ queryData, paramsData }) {
     const [hideSearchItem, setHideSearchItem] = useState(false)
     const [filterObjectState, setFilterObjectState] = useState({})
