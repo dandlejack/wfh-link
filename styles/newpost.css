@@ -1,0 +1,181 @@
+.work-manage-body {
+    min-height: 400px;
+    margin-left: 250px;
+    margin-right: 250px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+.jobDetailHeader, .jobDetailContainer {
+    min-height: 400px;
+    margin-left: 200px;
+    margin-right: 200px;
+    padding-bottom: 2rem;
+    background-color: #fff;
+}
+.left-content{
+    flex:0 0 66.66%
+}
+.right-content{
+    flex:0 0 33.33%
+}
+.sub-more-detail{
+    flex:0 0 50%
+}
+.minus-btn{
+    position: 'absolute' !important;
+    left: '97%' !important;
+    top: 8 !important;
+
+}
+.job-apply-btn {
+    width: 240px;
+}
+.ads-manage-menu:hover > a {
+    color:fff;
+}
+.treeselect-index > div{
+    height: 37.81px;
+}
+.job-card {
+    padding: 24px;
+    background-color: #fff;
+    border-radius: 5px;
+    z-index: 999;
+    cursor: pointer;    
+    margin-bottom: 0.5rem;
+}
+.job-card:focus {
+    border: 2px solid rgba(4, 120, 87, 1);
+}
+.freepost > a {
+    color:#FCED83;
+}
+.freepost:hover{
+    background-color:#FCED83;    
+}
+.sticky {
+    position: fixed;
+    top:0px;
+}
+.content-card-class {
+    /* height: 100vh; */
+    width: 100%;
+    overflow: scroll;
+    margin-right: 10px;
+}
+.content-card-sticky {
+    position: fixed;
+    top:60px ;
+    z-index: 49;
+    height: 100%;
+    overflow: scroll;
+}
+.header-sticky-height {
+    height: 57px;
+}
+.hidden-search {
+    display: none;
+}
+.content-card-sticky-without-data {
+    position: fixed;
+    top:60px ;
+    z-index: 49;
+    height: 100%;
+    overflow: hidden;
+}
+
+.position-set-data {
+    overflow: hidden !important;
+    position: relative !important;
+}
+.findjob-title-image {
+    width: 100%;
+    max-height: 200px;
+    display: none;
+}
+.findjob-logo-image {
+    display: flex;
+}
+@media (min-width:280px){
+    .work-manage-body {
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 10px;
+        width: 100%;
+    }
+    .findjob-title-image {
+        display: block;
+    }
+    .findjob-logo-image {
+        display: none;
+    }
+    .jobDetailHeader, .jobDetailContainer {
+        margin-left: 0px;
+        margin-right: 0px;
+    }    
+    .jobDetailHeaderContent {
+        flex-wrap: wrap;
+    }
+    .right-content {
+        flex:0 0 100%;
+    }
+    .job-apply {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+    .job-apply > div > button {
+        width: 100%;
+    }
+    .treeselect-index > div{
+        height: 32px;
+    }
+}
+@media (min-width:480px ) and (max-width:1023px ) {
+    .flexSet {
+        justify-content: center;
+    }    
+   
+}
+
+@media (min-width:1024px) {
+    .flexSet {
+        justify-content: unset;
+    }
+    .content-card-sticky{
+        width: 550px;
+    }
+    .jobDetailHeader, .jobDetailContainer {
+        margin: auto;
+    }
+    .work-manage-body {
+        margin-left: 14px;
+        margin-right: 0px;
+        margin-top: 0px;
+        width: 74%;
+    }
+    .findjob-title-image {
+        display: none;
+    }
+    .findjob-logo-image {
+        display: flex;
+    }
+    .job-card {
+        width: 450px;
+    }
+    
+}
+@media (min-width:1280px) {
+    .content-card-sticky{
+        width: 63%;
+    }
+    .jobDetailHeader, .jobDetailContainer {
+        margin: 0px 200px;
+    }    
+}
+@media (min-width: 1536px) {
+    .content-card-class {
+        width: 1070px;
+    }
+    
+}

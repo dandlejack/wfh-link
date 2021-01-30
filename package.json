@@ -1,0 +1,30 @@
+{
+  "name": "wfhjobs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build-css": "tailwindcss build styles/tailwind.css -o public/style.css",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.3.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "antd": "^4.10.0",
+    "autoprefixer": "^10.1.0",
+    "axios": "^0.21.1",
+    "js-cookie": "^2.2.1",
+    "jwt-decode": "^3.1.2",
+    "next": "10.0.4",
+    "postcss": "^8.2.2",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
+    "tailwindcss": "^2.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.17.0"
+  }
+}
