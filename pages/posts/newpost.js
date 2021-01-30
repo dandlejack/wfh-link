@@ -141,10 +141,7 @@ export default function FirstPost() {
     notification.warning({
       message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
       description:
-        'กรุณากรอกไฮไลท์เด่นของงาน หน้าที่และความรับผิดชอบ คุณสมบัติ และสวัสดิการ อย่างน้อย 1 ข้อ ',
-      onClick: () => {
-        console.log('Notification Clicked!');
-      },
+        'กรุณากรอกไฮไลท์เด่นของงาน หน้าที่และความรับผิดชอบ คุณสมบัติ และสวัสดิการ อย่างน้อย 1 ข้อ ',      
     });
   };
   return (
@@ -303,7 +300,6 @@ export default function FirstPost() {
                                 style={{ position: 'absolute', left: '97%', top: 8 }}
                                 onClick={() => {
                                   remove(field.name);
-                                  console.log(field);
                                 }}
                               />
                             </div>
@@ -343,7 +339,6 @@ export default function FirstPost() {
                                 style={{ position: 'absolute', left: '97%', top: 8 }}
                                 onClick={() => {
                                   remove(field.name);
-                                  console.log(field);
                                 }}
                               />
                             </div>
@@ -384,7 +379,6 @@ export default function FirstPost() {
                                 style={{ position: 'absolute', left: '97%', top: 8 }}
                                 onClick={() => {
                                   remove(field.name);
-                                  console.log(field);
                                 }}
                               />
                             </div>
@@ -424,7 +418,6 @@ export default function FirstPost() {
                                 style={{ position: 'absolute', left: '97%', top: 8 }}
                                 onClick={() => {
                                   remove(field.name);
-                                  console.log(field);
                                 }}
                               />
                             </div>

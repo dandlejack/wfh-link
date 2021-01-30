@@ -41,8 +41,6 @@ const Index = ({ queryData }) => {
     if (e.company_name === undefined) {
       e.company_name = ''
     }
-    console.log(e)
-
     if (e.company_name !== '') {
       Router.push({
         pathname: `/search/${e.company_name}`,

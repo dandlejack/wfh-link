@@ -23,7 +23,6 @@ export class UserApi {
       const result = axios
       .post(this.LOGIN_SIGNUP_API_URL + `/login`, user)
       .then(response => {
-        console.log(response)
         return response.data;
       });
       return result;

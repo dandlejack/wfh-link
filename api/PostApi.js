@@ -41,7 +41,6 @@ export class PostApi {
   }
 
   static async getPostByID(id) {
-    console.log(id)
     const result = await axios.get(this.POST_API_URL + `/` + id);
     return result.data;
   }

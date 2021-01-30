@@ -88,7 +88,6 @@ export default function JobPage({ queryData, paramsData }) {
                 }
             }
         } else if (paramsData.find_job[1] === "job-location") {
-            console.log(paramsData.find_job)
             if (paramsData.find_job[paramsData.find_job.length - 1] === 'สถานที่ทำงานทั้งหมด') {
                 filterObject = {
                     all_province: paramsData.find_job[paramsData.find_job.length - 1]
@@ -127,10 +126,9 @@ export default function JobPage({ queryData, paramsData }) {
                 totalDocument: res.totalDocument,
                 totalPage: res.totalPage
             })
-        })
-            .catch(e => {
-                console.log(e);
-            });
+        }).catch(e => {
+            console.log(e);
+        });
     };
 
     const onFinish = (e) => {
@@ -168,7 +166,6 @@ export default function JobPage({ queryData, paramsData }) {
     }
 
     const handleCard = (event) => {
-        console.log(event.target.dataset.postId)
         if (event.target.dataset.postId !== undefined) {
             setID(event.target.dataset.postId)
         }
@@ -303,7 +300,7 @@ export default function JobPage({ queryData, paramsData }) {
                                                 </li>)
                                         })}
                                     </ul>
-                                    <HiddenContent/>
+                                    <HiddenContent />
                                 </article>
                             </div>
                         })}

@@ -15,7 +15,6 @@ const PostComponent = ({ id }) => {
         if (id !== '') {
             PostApi.getPostByID(id).then(result => {
                 setDataSource(result[0])
-                console.log(result)
                 const splitDate = result[0].createdDate.split('T')[0].split('-')
                 if (splitDate[1] > 0) {
                     const date = new Date(splitDate[0], splitDate[1] - 1, splitDate[2]).toDateString().split(' ')

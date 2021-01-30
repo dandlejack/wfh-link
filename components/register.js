@@ -25,7 +25,6 @@ const Register = () => {
             }else{
                 setResData(result.data)
             }
-            console.log(result)
         })
     }
     return <>    
