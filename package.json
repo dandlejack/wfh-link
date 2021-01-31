@@ -7,7 +7,7 @@
     "build": "next build",
     "build-css": "tailwindcss build styles/tailwind.css -o public/style.css",
     "start": "next start",
-    "export": "next export"
+    "export": "next build && next export"
   },
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
@@ -17,6 +17,7 @@
     "antd": "^4.10.0",
     "autoprefixer": "^10.1.0",
     "axios": "^0.21.1",
+    "express": "^4.17.1",
     "fg-loadcss": "^3.1.0",
     "http": "0.0.1-security",
     "js-cookie": "^2.2.1",
