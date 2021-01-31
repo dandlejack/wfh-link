@@ -48,7 +48,7 @@ export const Header = () => {
     <nav className='bg-green-800 pb-3.5' id='nav-top-menu'>
       <div className="inline-block w-full mt-3">
         <div className="blockSet hidden sm:block container relative sm my-0 mx-auto">
-          <Link href='/'><a className="text-white px-3 py-2 rounded-md hover:text-white text-lg font-medium">WFH JOBS</a></Link>
+          <Link href='/'><a className="text-white px-3 py-2 rounded-md hover:text-white text-lg font-medium" href='/'>WFH JOBS</a></Link>
           {
             user === '' ? (
               <>
@@ -56,12 +56,12 @@ export const Header = () => {
                 <div className='div-header-items' id='div-header'>
                   <Link href='/posts/newpost'>
                     <div className='freepost mr-2 header-menu-items' style={{ border: 'solid 1px #FCED83', borderRadius: 5 }}>
-                      <a className="text-white hover:text-black px-3 py-2 rounded-md text-lg font-medium">ลงประกาศฟรี</a>
+                      <a className="text-white hover:text-black px-3 py-2 rounded-md text-lg font-medium" href='/newpost'>ลงประกาศฟรี</a>
                     </div>
                   </Link>
                   <Link href='/login'>
                     <div className='rounded header-menu-items'>
-                      <a className=" text-white hover:underline hover:text-white px-3 py-2 rounded-md text-lg font-medium">เข้าสู่ระบบ</a>
+                      <a className=" text-white hover:underline hover:text-white px-3 py-2 rounded-md text-lg font-medium" href='login'>เข้าสู่ระบบ</a>
                     </div>
                   </Link>
                   <div className='hidden lg:inline'>
@@ -69,7 +69,7 @@ export const Header = () => {
                   </div>
                   <Link href='/register'>
                     <div className='rounded header-menu-items' >
-                      <a className=" text-white hover:underline hover:text-white px-3 py-2 rounded-md text-lg font-medium">สมัครสมาชิก</a>
+                      <a className=" text-white hover:underline hover:text-white px-3 py-2 rounded-md text-lg font-medium" href='/register'>สมัครสมาชิก</a>
                     </div>
                   </Link>
                 </div>               
