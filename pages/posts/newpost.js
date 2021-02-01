@@ -109,17 +109,23 @@ export default function FirstPost() {
   };
 
   const handleLogoChange = async (info) => {
-    if (info.file.status === 'uploading') {
-      setLoading(true)
-      return;
-    }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      const img = await getBase64(info.file.originFileObj, imageUrl =>
-        setLoading(false)
-      );
+    const imgFile = info.target.files[0]
+    const checkSizeTypeImage = beforeUpload(imgFile)
+    if(checkSizeTypeImage){
+      const img = await getBase64(imgFile,imgFileUrl=>setLogoImg(false))
       setLogoImg(arr => [...arr, img])
     }
+    // if (info.file.status === 'uploading') {
+    //   setLoading(true)
+    //   return;
+    // }
+    // if (info.file.status === 'done') {
+    //   // Get this url from response in real world.
+    //   const img = await getBase64(info.file.originFileObj, imageUrl =>
+    //     setLoading(false)
+    //   );
+    //   setLogoImg(arr => [...arr, img])
+    // }
   };
 
   const handleTreeSelect = value => {
@@ -439,13 +445,14 @@ export default function FirstPost() {
                     label="ภาพหัวข้อ"
                     rules={[{ required: true, message: 'กรุณาเลือกรูปภาพ' }]}
                   >
-                    <Upload
+                    {/* <Upload
                       maxCount={1}
                       beforeUpload={e => beforeUpload(e)}
                       onChange={e => handleChange(e)}
                     >
                       <Button >Upload (Max: 1)</Button>
-                    </Upload>
+                    </Upload> */}
+                     <input type='file' onChange={e=>handleLogoChange(e)}/>
                   </Form.Item>
                   <Form.Item
                     name="logo_image"
@@ -459,12 +466,14 @@ export default function FirstPost() {
                     >
                       <Button >Upload (Max: 1)</Button>
                     </Upload>
+                    
                   </Form.Item>
                   <Form.Item style={{ textAlign: 'center' }}>
                     <Button type="primary" htmlType="submit">
                       Post
                   </Button>
                   </Form.Item>
+
                 </Form>
               </div>
             </div>
