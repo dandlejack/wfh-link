@@ -15,6 +15,6 @@ app.prepare().then(() => {
         console.log('server ready')
     })
   }).catch((ex)=>{
-      console.log(error)
+      console.log(ex)
       process.exit(1)
   })

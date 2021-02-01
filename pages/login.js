@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Login from '../components/login'
 import Cookie from 'js-cookie'
 
-export default () => {
+export default function LoginPage() {
     const [login,setLogin] = useState(false)
     const router = useRouter()
     useEffect(()=>{

@@ -31,7 +31,6 @@ const Index = ({ queryData }) => {
     } else {
       router.push('/404error')
     }
-
   }, [queryData])
 
   const onFinish = (e) => {
