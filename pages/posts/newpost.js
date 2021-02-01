@@ -98,8 +98,8 @@ export default function FirstPost() {
     const imgFile = info.target.files[0]
     const checkSizeTypeImage = beforeUpload(imgFile)
     if (checkSizeTypeImage) {
-      const img = await getBase64(imgFile, imgFileUrl => setLogoImg(false))
-      setLogoImg(arr => [...arr, img])
+      const img = await getBase64(imgFile, imgFileUrl => setLoading(false))
+      setUploadImgList(arr => [...arr, img])
     }
     // if (info.file.status === 'uploading') {
     //   setLoading(true)
@@ -118,7 +118,7 @@ export default function FirstPost() {
     const imgFile = info.target.files[0]
     const checkSizeTypeImage = beforeUpload(imgFile)
     if (checkSizeTypeImage) {
-      const img = await getBase64(imgFile, imgFileUrl => setLogoImg(false))
+      const img = await getBase64(imgFile, imgFileUrl => setLoading(false))
       setLogoImg(arr => [...arr, img])
     }
     // if (info.file.status === 'uploading') {
