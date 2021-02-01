@@ -226,46 +226,7 @@ const Index = ({ queryData }) => {
                 })}
               </div>
             </div>
-          </div>
-          {/* <div className='cont-right sm:hidden lg:block lg:float-right lg:w-3/12 '>
-            <span>
-              รวมข้อมูลอพาร์ทเม้นท์ หอพัก ทั้งแบบ ห้องพักรายเดือน และห้องพักรายวัน จากทั่วประเทศ พร้อมระบบค้นหาที่พักเพื่อให้คุณสามารถค้นหาที่พักที่ตรงใจได้สะดวก เรามีข้อมูลที่พักหลายประเภทเช่น หอพัก อพาร์ทเม้นท์ หอพักหญิง-ชาย บ้านเช่า คอนโด รีสอร์ท แสดงในรูปแบบที่ค้นหาง่าย พร้อมแผนที่แสดงตำแหน่งหอพัก อพาร์ทเม้นท์ เพื่อสามารถเปรียบเทียบระยะทางได้อย่างสะดวก
-
-              ด้วยระบบค้นหาสถานที่ปลายทาง คุณสามารถค้นหาหอพัก อพาร์ทเม้นท์ ด้วยการระบุชื่อ มหาวิทยาลัย, สถานที่ท่องเที่ยว, สถานที่ราชการ, ถนน และอื่นๆ เพื่อค้นหาหอพัก อพาร์มเม้นท์ บริเวณนั้น พร้อมแสดงข้อมูลราคา สิ่งอำนวยความสะดวก และพิกัดแผนที่สำหรับนำทางด้วย GPS ได้อย่างครบครัน และเรายังมีระบบ Filtter เพื่อให้คุณสามารถกรองผลการค้นหา หอพัก อพาร์ทเม้นท์ ตามประเภท ราคาถูก สิ่งอำนวยความสะดวก ประเภทการเช่า ห้องพักรายเดือน หรือ ห้องพักรายเดือน
-
-              หากท่านพบปัญหาหรือต้องการแนะนำสามารถแนะนำมาได้ที่ hongpakth@gmail.com
-            </span>
-            <div className={styles.grid}>
-              <a href="https://nextjs.org/docs" className={styles.card}>
-                <h3>Documentation &rarr;</h3>
-                <p>Find in-depth information about Next.js features and API.</p>
-              </a>
-
-              <a href="https://nextjs.org/learn" className={styles.card}>
-                <h3>Learn &rarr;</h3>
-                <p>Learn about Next.js in an interactive course with quizzes!</p>
-              </a>
-
-              <a
-                href="https://github.com/vercel/next.js/tree/master/examples"
-                className={styles.card}
-              >
-                <h3>Examples &rarr;</h3>
-                <p>Discover and deploy boilerplate example Next.js projects.</p>
-              </a>
-
-              <a
-                href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                className={styles.card}
-              >
-                <h3>Deploy &rarr;</h3>
-                <p>
-                  Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-              </a>
-            </div>
-          </div> */}
-
+          </div>       
         </div>
         <div className='homepage-ads w-full h-64 mb-5 xl:max-w-screen-md bg-gray-300'>
 
@@ -275,10 +236,6 @@ const Index = ({ queryData }) => {
 
 
       </main>
-
-      {/* <footer className={styles.footer}>
-
-      </footer> */}
     </div>
   )
 }

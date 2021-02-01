@@ -61,7 +61,7 @@ export default function FirstPost() {
     e.role = parseJwtDecoded.role
     e.all_works = 'ประเภทงานทั้งหมด'
     e.all_province = 'สถานที่ทำงานทั้งหมด'
-    if (e.benefits === undefined || e.jobproperties === undefined || e.jobshighlights === undefined) {
+    if (e.benefits === undefined || e.jobproperties === undefined || e.jobshighlights === undefined || e.logo_image.length < 1 || e.title_image < 1) {
       setWarningData(true)
     } else {
       PostApi.createNewPost(e).then(res => {
@@ -95,24 +95,30 @@ export default function FirstPost() {
   }
 
   const handleChange = async (info) => {
-    if (info.file.status === 'uploading') {
-      setLoading(true)
-      return;
+    const imgFile = info.target.files[0]
+    const checkSizeTypeImage = beforeUpload(imgFile)
+    if (checkSizeTypeImage) {
+      const img = await getBase64(imgFile, imgFileUrl => setLogoImg(false))
+      setLogoImg(arr => [...arr, img])
     }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      const img = await getBase64(info.file.originFileObj, imageUrl =>
-        setLoading(false)
-      );
-      setUploadImgList(arr => [...arr, img])
-    }
+    // if (info.file.status === 'uploading') {
+    //   setLoading(true)
+    //   return;
+    // }
+    // if (info.file.status === 'done') {
+    //   // Get this url from response in real world.
+    //   const img = await getBase64(info.file.originFileObj, imageUrl =>
+    //     setLoading(false)
+    //   );
+    //   setUploadImgList(arr => [...arr, img])
+    // }
   };
 
   const handleLogoChange = async (info) => {
     const imgFile = info.target.files[0]
     const checkSizeTypeImage = beforeUpload(imgFile)
-    if(checkSizeTypeImage){
-      const img = await getBase64(imgFile,imgFileUrl=>setLogoImg(false))
+    if (checkSizeTypeImage) {
+      const img = await getBase64(imgFile, imgFileUrl => setLogoImg(false))
       setLogoImg(arr => [...arr, img])
     }
     // if (info.file.status === 'uploading') {
@@ -147,7 +153,7 @@ export default function FirstPost() {
     notification.warning({
       message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
       description:
-        'กรุณากรอกไฮไลท์เด่นของงาน หน้าที่และความรับผิดชอบ คุณสมบัติ และสวัสดิการ อย่างน้อย 1 ข้อ ',      
+        'กรุณากรอกไฮไลท์เด่นของงาน หน้าที่และความรับผิดชอบ คุณสมบัติ และสวัสดิการ อย่างน้อย 1 ข้อ ',
     });
   };
   return (
@@ -231,7 +237,7 @@ export default function FirstPost() {
                     label="ระดับตำแหน่ง"
                   >
                     <Select >
-                      {jobPositionData.map(data=> {
+                      {jobPositionData.map(data => {
                         return (<Select.Option value={data}>
                           {data}
                         </Select.Option>)
@@ -439,7 +445,7 @@ export default function FirstPost() {
                       );
                     }}
                   </Form.List>
-                  
+
                   <Form.Item
                     name="title_image"
                     label="ภาพหัวข้อ"
@@ -452,21 +458,15 @@ export default function FirstPost() {
                     >
                       <Button >Upload (Max: 1)</Button>
                     </Upload> */}
-                     <input type='file' onChange={e=>handleLogoChange(e)}/>
+                    <input type='file' onChange={e => handleChange(e)} />
                   </Form.Item>
                   <Form.Item
                     name="logo_image"
                     label="โลโก้บริษัท"
                     rules={[{ required: true, message: 'กรุณาเลือกรูปภาพ' }]}
                   >
-                    <Upload
-                      maxCount={1}
-                      beforeUpload={e => beforeUpload(e)}
-                      onChange={e => handleLogoChange(e)}
-                    >
-                      <Button >Upload (Max: 1)</Button>
-                    </Upload>
-                    
+                    <input type='file' onChange={e => handleLogoChange(e)} />
+
                   </Form.Item>
                   <Form.Item style={{ textAlign: 'center' }}>
                     <Button type="primary" htmlType="submit">
