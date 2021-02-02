@@ -3,12 +3,17 @@ import { PostApi } from '../../api/PostApi'
 import { Card, Form, Input, TreeSelect, Result, Pagination } from 'antd'
 import { provinceTreeData, workSelectedHeader } from '../../util/mockData'
 import { SearchOutlined, HomeOutlined, BookOutlined } from '@ant-design/icons';
-import PostComponent from '../../components/PostComponent'
 import Router from 'next/router'
 import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import HiddenContent from '../../components/HiddenContent';
+import dynamic from 'next/dynamic'
+const DynamicPostComponent = dynamic(()=>import('../../components/PostComponent'),{
+    ssr:false
+})
+const DynamicHiddenContent = dynamic(()=>import('../../components/HiddenContent'),{
+    ssr:false
+})
 export default function JobPage({ queryData, paramsData }) {
     const [hideSearchItem, setHideSearchItem] = useState(false)
     const [filterObjectState, setFilterObjectState] = useState({})
@@ -301,7 +306,7 @@ export default function JobPage({ queryData, paramsData }) {
                                                 </li>)
                                         })}
                                     </ul>
-                                    <HiddenContent />
+                                    <DynamicHiddenContent />
                                 </article>
                             </div>
                         })}
@@ -314,7 +319,7 @@ export default function JobPage({ queryData, paramsData }) {
                             <div id='content-card' className='content-card-class' >
                                 <Card key='job-card-key'>
                                     {id !== '' ?
-                                        <PostComponent id={id} />
+                                        <DynamicPostComponent id={id} />
                                         :
                                         <Result
                                             className='h-screen'

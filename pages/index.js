@@ -4,12 +4,17 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Router from 'next/router'
 import { provinceTreeData, workSelectedHeader } from '../util/mockData'
-import { TreeSelect, Form, Input, Skeleton } from 'antd'
+import { TreeSelect, Form, Input } from 'antd'
 import { SearchOutlined, HomeOutlined } from '@ant-design/icons';
 import { BACKEND_API } from '../server.configs'
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 
+const DynamicAds = dynamic(() => import('../components/IndexAdsComponent').then(mod => mod.IndexAdsComponent), {
+  ssr: false
+})
 const Index = ({ queryData }) => {
+
   const [adsData, setAdsData] = useState([])
   const [selectValue, setSelectValue] = useState([])
   const [selectProvinceValue, setSelectProvinceValue] = useState([])
@@ -98,12 +103,6 @@ const Index = ({ queryData }) => {
         <div className='flex w-full my-5 ' style={{ minHeight: 130 }}>
           <div className='block bg-green-700 lg:mx-40 w-full my-0 mx-auto pt-5 px-5 pb-5 rounded-sm '> {/*max-w-screen-xl*/}
             <h1 className='text-white text-lg font-medium text-center'>ค้นหางานที่คุณต้องการ</h1>
-            {/* <div className='block lg:flex lg:flex-wrap lg:justify-center w-full'>
-              <a className='w-full lg:w-5/12 float-left text-white border rounded-md p-3 mr-2 mb-2 hover:text-white hover:underline'>ค้นหาจากสถานีรถไฟฟ้า</a>
-              <a className='w-full lg:w-5/12 float-left text-white border rounded-md p-3 mr-2 mb-2 hover:text-white hover:underline'>ค้นหาจากสถานศึกษา</a>
-              <a className='w-full lg:w-5/12 float-left text-white border rounded-md p-3 mr-2 mb-2 hover:text-white hover:underline'>ค้นตามจังหวัด</a>
-              <a className='w-full lg:w-5/12 float-left text-white border rounded-md p-3 mr-2 mb-2 hover:text-white hover:underline'>ค้นหาจากแผนที่</a>
-            </div> */}
             <div className='block lg:flex w-full justify-center'>
               <Form
                 layout="inline"
@@ -163,52 +162,7 @@ const Index = ({ queryData }) => {
             </div>
           </div>
         </div>
-
-        <div className='flex w-full mb-5'>
-          <div className='w-2/3 lg:w-full sm:w-2/3 md:w-2/3 grid grid-cols-1 gap-1 lg:grid-cols-3 mx-auto lg:mx-40 shadow-sm lg:border lg:rounded-md border-gray-300 pb-2.5 lg:pr-3' >
-            {
-              adsData.map((d, index) => {
-                if (d !== "") {
-                  return <div key={d._id + index} className='lg:flex lg:flex-nowrap border rounded-md lg:border-0 sm:p-3.5 lg:pt-3.5 lg:pl-3.5 sm:mb-3.5 lg:mb-0 '>
-                    <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}>
-                      <div style={{ maxHeight: 200 }} className='mb-2'>
-                        <img  alt='SA Gaming, แทงบอลออนไลน์, บาคาร่าออนไลน์, aks124 , aks124.com' className='findjob-title-image' src={d.title_image[0].b64img} style={{ maxHeight: 200, width: '100%' }} />
-                      </div>
-                    </Link>
-                    <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}>
-                      <a style={{ maxWidth: 110, width: "100%" }} className='lg:mr-3.5 findjob-logo-image'><img alt='แทงบอลออนไลน์, บาคาร่าออนไลน์, aks124 , aks124.com'  className='flex mx-auto lg:max-h-20' src={d.logo_image[0].b64img} /></a>
-                    </Link>
-                    <div>
-                      <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id}><a>{d.post_title}</a></Link>
-                      {/* <div style={{ marginBottom: 5 }}>
-                      <ul key='ads-list'>
-                        {d.jobshighlights.map((highlightData, index2) => {
-                          return (
-                            <li id={d._id + index2} key={d._id + index2}>
-                              <div className='flex'>
-                                <div style={{ height: 20, marginTop: 9, marginRight: 10 }}>
-                                  <div style={{ backgroundColor: '#1c1c1c', width: 4, height: 4, borderRadius: '50%' }}></div>
-                                </div>
-                                <div>{highlightData.highlight}</div>
-                              </div>
-                            </li>)
-                        })}
-                      </ul>
-                    </div> */}
-                      <div>
-                        <span><strong>{d.work_type && d.work_type.join(', ')}</strong></span><br></br>
-
-                        <span><strong className='text-red-500'>{d.company_name}</strong></span>
-                      </div>
-                    </div>
-                  </div>
-                } else {
-                  return <Skeleton />
-                }
-              })
-            }
-          </div>
-        </div>
+        <DynamicAds data={adsData} />
         <div className='flex sm:w-full'>
           {/* <div className='cont-left sm:w-full sm:mx-5 sm:mb-5 lg:float-left lg:w-6/12 lg:ml-40 lg:mr-5'> */}
           <div className='cont-left sm:w-full sm:mx-5 sm:mb-5 lg:float-left lg:w-full lg:mx-40 '>
@@ -227,45 +181,6 @@ const Index = ({ queryData }) => {
               </div>
             </div>
           </div>
-          {/* <div className='cont-right sm:hidden lg:block lg:float-right lg:w-3/12 '>
-            <span>
-              รวมข้อมูลอพาร์ทเม้นท์ หอพัก ทั้งแบบ ห้องพักรายเดือน และห้องพักรายวัน จากทั่วประเทศ พร้อมระบบค้นหาที่พักเพื่อให้คุณสามารถค้นหาที่พักที่ตรงใจได้สะดวก เรามีข้อมูลที่พักหลายประเภทเช่น หอพัก อพาร์ทเม้นท์ หอพักหญิง-ชาย บ้านเช่า คอนโด รีสอร์ท แสดงในรูปแบบที่ค้นหาง่าย พร้อมแผนที่แสดงตำแหน่งหอพัก อพาร์ทเม้นท์ เพื่อสามารถเปรียบเทียบระยะทางได้อย่างสะดวก
-
-              ด้วยระบบค้นหาสถานที่ปลายทาง คุณสามารถค้นหาหอพัก อพาร์ทเม้นท์ ด้วยการระบุชื่อ มหาวิทยาลัย, สถานที่ท่องเที่ยว, สถานที่ราชการ, ถนน และอื่นๆ เพื่อค้นหาหอพัก อพาร์มเม้นท์ บริเวณนั้น พร้อมแสดงข้อมูลราคา สิ่งอำนวยความสะดวก และพิกัดแผนที่สำหรับนำทางด้วย GPS ได้อย่างครบครัน และเรายังมีระบบ Filtter เพื่อให้คุณสามารถกรองผลการค้นหา หอพัก อพาร์ทเม้นท์ ตามประเภท ราคาถูก สิ่งอำนวยความสะดวก ประเภทการเช่า ห้องพักรายเดือน หรือ ห้องพักรายเดือน
-
-              หากท่านพบปัญหาหรือต้องการแนะนำสามารถแนะนำมาได้ที่ hongpakth@gmail.com
-            </span>
-            <div className={styles.grid}>
-              <a href="https://nextjs.org/docs" className={styles.card}>
-                <h3>Documentation &rarr;</h3>
-                <p>Find in-depth information about Next.js features and API.</p>
-              </a>
-
-              <a href="https://nextjs.org/learn" className={styles.card}>
-                <h3>Learn &rarr;</h3>
-                <p>Learn about Next.js in an interactive course with quizzes!</p>
-              </a>
-
-              <a
-                href="https://github.com/vercel/next.js/tree/master/examples"
-                className={styles.card}
-              >
-                <h3>Examples &rarr;</h3>
-                <p>Discover and deploy boilerplate example Next.js projects.</p>
-              </a>
-
-              <a
-                href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                className={styles.card}
-              >
-                <h3>Deploy &rarr;</h3>
-                <p>
-                  Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-              </a>
-            </div>
-          </div> */}
-
         </div>
         <div className='homepage-ads w-full h-64 mb-5 xl:max-w-screen-md bg-gray-300'>
 
@@ -283,21 +198,40 @@ const Index = ({ queryData }) => {
   )
 }
 
-Index.getInitialProps = async function () {
+// Index.getInitialProps = async function () {
+//   try {
+//     const res = await fetch(BACKEND_API + '/jobspost/findAds', {
+//       method: 'GET'
+//     })
+//     const data = await res.json()
+//     return {
+//       queryData: data
+//     }
+//   } catch (error) {
+//     return {
+//       queryData: null
+//     }
+//   }
+// }
+
+export async function getStaticProps(context) {
   try {
     const res = await fetch(BACKEND_API + '/jobspost/findAds', {
       method: 'GET'
     })
     const data = await res.json()
     return {
-      queryData: data
+      props:{
+        queryData: data
+      }
     }
   } catch (error) {
     return {
-      queryData: null
+      props:{
+        queryData: null
+      }
     }
   }
-
 }
 
 

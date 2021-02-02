@@ -226,7 +226,7 @@ export default function FirstPost() {
                   >
                     <Select>
                       {scholarData.map(data => {
-                        return (<Select.Option value={data}>
+                        return (<Select.Option value={data} key={data}>
                           {data}
                         </Select.Option>)
                       })}
@@ -238,7 +238,7 @@ export default function FirstPost() {
                   >
                     <Select >
                       {jobPositionData.map(data => {
-                        return (<Select.Option value={data}>
+                        return (<Select.Option value={data} key={data}>
                           {data}
                         </Select.Option>)
                       })}
@@ -250,7 +250,7 @@ export default function FirstPost() {
                   >
                     <Select>
                       {workExperience.map(data => {
-                        return (<Select.Option value={data}>
+                        return (<Select.Option value={data} key={data}>
                           {data}
                         </Select.Option>)
                       })}
@@ -274,7 +274,7 @@ export default function FirstPost() {
                   >
                     <Select mode="multiple" showSearch >
                       {workType.map(data => {
-                        return <Select.Option value={data}>{data}</Select.Option>
+                        return <Select.Option value={data} key={data}>{data}</Select.Option>
                       })}
                     </Select>
                   </Form.Item>
@@ -284,7 +284,7 @@ export default function FirstPost() {
                   >
                     <Select mode="multiple" showSearch  >
                       {provinceData.map(data => {
-                        return <Select.Option value={data}>{data}</Select.Option>
+                        return <Select.Option value={data} key={data}>{data}</Select.Option>
                       })}
                     </Select>
                   </Form.Item>

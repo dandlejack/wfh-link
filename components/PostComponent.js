@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Divider, Button } from 'antd'
 import { PostApi } from '../api/PostApi'
-import HiddenContent from './HiddenContent'
-
+const DynamicHiddenContent = dynamic(()=>import('./HiddenContent'),{
+    ssr:false
+})
 const PostComponent = ({ id }) => {
-    const [postTitle, setPostTitle] = useState('')
     const [dataSource, setDataSource] = useState({
         post_title: '',
         company_name: '',
@@ -187,7 +187,7 @@ const PostComponent = ({ id }) => {
                         </div>
                     </div>
                 </div>
-                <HiddenContent/>
+                <DynamicHiddenContent/>
             </div>
         </div>
     )

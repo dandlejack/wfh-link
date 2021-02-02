@@ -3,16 +3,16 @@ import '../styles/header.css'
 import '../styles/newpost.css'
 import "../styles/tailwind-style.css";
 import 'antd/dist/antd.css';
-import { Footer } from '../components/footer';
-import { Header } from '../components/header/header';
 import dynamic from 'next/dynamic'
-// export const DynamicHeader = dynamic( () => import('../components/header/header') )
-// const DynamicFooter = dynamic(()=>import('../components/footer'))
+
+const DynamicHeader = dynamic(()=>import('../components/header/header').then(mod=>mod.Header))
+const DynamicFooter = dynamic(()=>import('../components/footer').then(mod=>mod.Footer))
+
 function MyApp({ Component, pageProps }) {
   return <>
-  <Header />
+  <DynamicHeader />
     <Component {...pageProps} />
-  <Footer/>
+  <DynamicFooter/>
   </>
 }
 

@@ -48,7 +48,7 @@ export const Header = () => {
     <nav className='bg-green-800 pb-3.5' id='nav-top-menu'>
       <div className="inline-block w-full mt-3">
         <div className="blockSet hidden sm:block container relative sm my-0 mx-auto">
-          <Link href='/'><a className="text-white px-3 py-2 rounded-md hover:text-white text-lg font-medium" href='/'>WFH JOBS</a></Link>
+          <Link href='/'><span className="text-white px-3 py-2 rounded-md hover:text-white text-lg font-medium cursor-pointer">WFH JOBS</span></Link>
           {
             user === '' ? (
               <>
@@ -74,7 +74,7 @@ export const Header = () => {
                   </Link>
                 </div>               
               </div>
-              <a class="bar-a" onClick={showMenu}>
+              <a className="bar-a" onClick={showMenu}>
                   <FontAwesomeIcon className='bar-icon' icon={faBars} />
                 </a>
               </>
