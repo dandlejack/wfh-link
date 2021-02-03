@@ -42,8 +42,8 @@ export default function FirstPost() {
   const getCookie = Cookie.get("hrme")
   const [loading, setLoading] = useState(false)
   const [userId, setUserId] = useState(getCookie)
-  const [uploadImgList, setUploadImgList] = useState([])
-  const [logoImg, setLogoImg] = useState([])
+  const [uploadImgList, setUploadImgList] = useState({})
+  const [logoImgTest, setLogoImgTest] = useState({})
   const [treeSelectValue, setTreeSelectValue] = useState([])
 
   const [warningData, setWarningData] = useState(false)
@@ -51,19 +51,28 @@ export default function FirstPost() {
   const router = useRouter()
 
 
-  const onFinish = (e) => {
+  const onFinish = async (e) => {
+    let formData = new FormData();
+    formData.append('photos[]', uploadImgList, uploadImgList.name);
+    formData.append('photos[]', logoImgTest, logoImgTest.name);
+
     const getCookie = Cookie.get("token")
     const jwtDecoded = jwt_decode(getCookie);
     const parseJwtDecoded = JSON.parse(JSON.stringify(jwtDecoded));
-    e.title_image = uploadImgList
+    const imgUrl = await PostApi.uploadImages(formData).then(res => {
+      return res
+    })
+    
     e.user_id = parseJwtDecoded._id
-    e.logo_image = logoImg
+    e.title_image = imgUrl.titleImage
+    e.logo_image = imgUrl.logo
     e.role = parseJwtDecoded.role
     e.all_works = 'ประเภทงานทั้งหมด'
     e.all_province = 'สถานที่ทำงานทั้งหมด'
+    
     if (e.benefits === undefined || e.jobproperties === undefined || e.jobshighlights === undefined || e.logo_image.length < 1 || e.title_image < 1) {
       setWarningData(true)
-    } else {
+    } else {      
       PostApi.createNewPost(e).then(res => {
         if (res === "Post Successful") {
           window.location.reload()
@@ -98,8 +107,8 @@ export default function FirstPost() {
     const imgFile = info.target.files[0]
     const checkSizeTypeImage = beforeUpload(imgFile)
     if (checkSizeTypeImage) {
-      const img = await getBase64(imgFile, imgFileUrl => setLoading(false))
-      setUploadImgList(arr => [...arr, img])
+      // setUploadImgList(arr => [...arr, img])
+      setUploadImgList(imgFile)
     }
     // if (info.file.status === 'uploading') {
     //   setLoading(true)
@@ -118,8 +127,9 @@ export default function FirstPost() {
     const imgFile = info.target.files[0]
     const checkSizeTypeImage = beforeUpload(imgFile)
     if (checkSizeTypeImage) {
-      const img = await getBase64(imgFile, imgFileUrl => setLoading(false))
-      setLogoImg(arr => [...arr, img])
+      // setLogoImg(arr => [...arr, img])
+      setLogoImgTest(imgFile)
+
     }
     // if (info.file.status === 'uploading') {
     //   setLoading(true)

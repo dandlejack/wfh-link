@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export class PostApi {
   static POST_API_URL = `${BACKEND_API}/jobspost`;
-
+  static UPLOAD_API_URL = `${BACKEND_API}/photos`
   static async createNewPost(data) {
     const result = axios
       .post(this.POST_API_URL , data)
@@ -11,6 +11,16 @@ export class PostApi {
         return response.data;
       });
     return result;
+  }
+
+  static async uploadImages(image){    
+    const result = await axios.post(this.UPLOAD_API_URL+'/uploads',image)
+    .then(res=>{
+      console.log(res.data)
+      return res.data
+    })
+    console.log(result)
+    return result
   }
 
   static async getAllPosts(params) {

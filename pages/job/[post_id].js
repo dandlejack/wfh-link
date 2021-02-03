@@ -45,12 +45,12 @@ export default function JobPage({ pid }) {
                 <div className='mx-auto'>
                     <div className='jobDetailHeader mb-5'>
                         <div className='box'>
-                            <img alt='SA Gaming, แทงบอลออนไลน์, บาคาร่าออนไลน์, aks124 , aks124.com' src={dataSource.title_image && dataSource.title_image[0].b64img} className='w-full' style={{ maxHeight: 390 }} />
+                            <img alt='SA Gaming, แทงบอลออนไลน์, บาคาร่าออนไลน์, aks124 , aks124.com' src={dataSource.title_image && dataSource.title_image} className='w-full' style={{ maxHeight: 390 }} />
                             <div className='jobDetailHeaderContent p-2 flex flex-row mt-6 '>
                                 <div className='left-content'>
                                     <div className='px-5'>
                                         <div style={{ maxWidth: 216 }}>
-                                            <img alt='SA Gaming, แทงบอลออนไลน์, บาคาร่าออนไลน์, aks124 , aks124.com' style={{ maxHeight: 80 }} src={dataSource.logo_image && dataSource.logo_image[0].b64img} />
+                                            <img alt='SA Gaming, แทงบอลออนไลน์, บาคาร่าออนไลน์, aks124 , aks124.com' style={{ maxHeight: 80 }} src={dataSource.logo_image && dataSource.logo_image} />
                                         </div>
                                         <div className='mt-6'>
                                             <h1 className='text-xl'>{postTitle}</h1>
