@@ -8,9 +8,11 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
+
 const DynamicPostComponent = dynamic(()=>import('../../components/PostComponent'),{
     ssr:false
 })
+
 const DynamicHiddenContent = dynamic(()=>import('../../components/HiddenContent'),{
     ssr:false
 })
@@ -29,7 +31,6 @@ export default function JobPage({ queryData, paramsData }) {
     const { SHOW_PARENT } = TreeSelect
     const [form] = Form.useForm()
     const cardRef = useRef()
-    const router = useRouter()
     useEffect(() => {
         const header = document.getElementById('search-nav')
         const contentCard = document.getElementById('content-card')
@@ -116,6 +117,11 @@ export default function JobPage({ queryData, paramsData }) {
                 totalDocument: res.totalDocument,
                 totalPage: res.totalPage
             })
+            if(res.data.length>2){
+                document.body.style.overflowY = 'scroll'
+            }else{
+                document.body.style.overflowY = 'hidden'
+            }
             setDataSource(res.data)
         })
     }, [queryData])
@@ -274,10 +280,10 @@ export default function JobPage({ queryData, paramsData }) {
                             return <div className='job-card' key={data._id + 'div'} ref={cardRef} tabIndex={-1} data-post-id={data._id} onFocus={event => handleCard(event)} >
                                 <article key={data._id + 'article'}>
                                     <div style={{ maxHeight: 200 }} className='mb-2'>
-                                        <img alt='แทงบอล บาคาร่า aks124 aks124.com' className='findjob-title-image' src={data.title_image[0].b64img} style={{ maxHeight: 200, width: '100%' }} />
+                                        <img alt='แทงบอล บาคาร่า aks124 aks124.com' className='findjob-title-image' src={data.title_image} style={{ maxHeight: 200, width: '100%' }} />
                                     </div>
                                     <div style={{ maxWidth: 112, maxHeight: 48 }} className='mb-2'>
-                                        <img alt='aks124 aks124.com มSA Gaming, แทงบอลออนไลน์, บาคาร่าออนไลน์' src={data.logo_image[0].b64img} />
+                                        <img alt='aks124 aks124.com มSA Gaming, แทงบอลออนไลน์, บาคาร่าออนไลน์' src={data.logo_image} />
                                     </div>
                                     <div className='mt-9'>
                                         <h1 className='text-base' style={{ marginBottom: 0 }}>
@@ -346,10 +352,22 @@ export default function JobPage({ queryData, paramsData }) {
             </div></>
     )
 }
-export const getServerSideProps = async ({ query, params }) => {
-    const queryData = query;
-    const paramsData = params
-    return {
-        props: { queryData, paramsData }
+
+JobPage.getInitialProps = async ({query}) => {
+    const queryData = {
+        place:query.place,
+        worksType:query.worksType
     }
-}
+    const paramsData = query.find_job    
+    return {
+        queryData,paramsData
+}}
+
+
+// export const getServerSideProps = async ({ query, params }) => {
+//     const queryData = query;
+//     const paramsData = params
+//     return {
+//         props: { queryData, paramsData }
+//     }
+// }

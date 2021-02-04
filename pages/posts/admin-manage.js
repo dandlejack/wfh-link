@@ -58,3 +58,8 @@ export default function AdminManage() {
         </div>
     </>
 }
+export async function getStaticProps() {     
+    return {
+        props:{}
+    }    
+}

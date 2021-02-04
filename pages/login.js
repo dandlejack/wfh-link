@@ -16,3 +16,8 @@ export default function LoginPage() {
     
     return login ?<></>:<Login/>
 }
+export async function getStaticProps(context) {
+    return {
+        props:{}
+    }
+}

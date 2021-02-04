@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Divider, Button } from 'antd'
 import { PostApi } from '../api/PostApi'
+import dynamic from 'next/dynamic'
 const DynamicHiddenContent = dynamic(()=>import('./HiddenContent'),{
     ssr:false
 })
@@ -190,8 +191,10 @@ const PostComponent = ({ id }) => {
         </div>
     )
 }
-PostComponent.getInitialProps = async (context) => {
 
+
+PostComponent.getInitialProps = async (context) => {
+    console.log('line197:', context)
     return context
 }
 

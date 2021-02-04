@@ -162,7 +162,7 @@ const Index = ({ queryData }) => {
             </div>
           </div>
         </div>
-        <DynamicAds data={adsData} />
+        <DynamicAds/>
         <div className='flex sm:w-full'>
           {/* <div className='cont-left sm:w-full sm:mx-5 sm:mb-5 lg:float-left lg:w-6/12 lg:ml-40 lg:mr-5'> */}
           <div className='cont-left sm:w-full sm:mx-5 sm:mb-5 lg:float-left lg:w-full lg:mx-40 '>

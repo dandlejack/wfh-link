@@ -6,7 +6,8 @@ import { mypostsTable } from '../../util/mockData'
 import { PostApi } from '../../api/PostApi'
 import Head from 'next/head'
 
-export default function myposts() {
+// const DynamicDashboardMenu = dynamic(()=>import('../../components/DashboardMenu'))
+export default function myposts({result}) {
     const [borderTable, setBorderTable] = useState(
         {
             canScroll:true,
@@ -82,4 +83,10 @@ export default function myposts() {
         </div>
     </div>
     </>
+}
+
+export async function getStaticProps() {     
+    return {
+        props:{}
+    }    
 }

@@ -1,46 +1,19 @@
 import { useState } from 'react'
-import { message, Form, Input, Button, Upload, TreeSelect, Select, notification } from 'antd'
+import { message, Form, Input, Button, TreeSelect, Select, notification } from 'antd'
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { jobPositionData, provinceData, scholarData, workExperience, workType, workSelected, workSelectedHeaderWithoutAll } from '../../util/mockData'
-import { useRouter } from 'next/router'
+import { jobPositionData, provinceData, scholarData, workExperience, workType, workSelectedHeaderWithoutAll } from '../../util/mockData'
 import { PostApi } from '../../api/PostApi'
 import jwt_decode from 'jwt-decode';
 import Redirect from '../../components/Redirect'
 import Cookie from 'js-cookie'
-import DashboardMenu from '../../components/DashboardMenu';
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
-
+const DynamicDashboardMenu = dynamic(()=>import('../../components/DashboardMenu'))
 const { TextArea } = Input
 const { SHOW_PARENT } = TreeSelect;
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 1 },
-    sm: { span: 5 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 },
-  },
-};
-
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
-
-
 
 export default function FirstPost() {
   const getCookie = Cookie.get("hrme")
-  const [loading, setLoading] = useState(false)
   const [userId, setUserId] = useState(getCookie)
   const [uploadImgList, setUploadImgList] = useState({})
   const [logoImgTest, setLogoImgTest] = useState({})
@@ -48,8 +21,6 @@ export default function FirstPost() {
 
   const [warningData, setWarningData] = useState(false)
   const [form] = Form.useForm();
-  const router = useRouter()
-
 
   const onFinish = async (e) => {
     let formData = new FormData();
@@ -79,17 +50,7 @@ export default function FirstPost() {
         }
       })
     }
-  }
-
-  const getBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const filename = file.name
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve({ filename: filename, b64img: reader.result });
-      reader.onerror = error => reject(error);
-    });
-  }
+  }  
 
   const beforeUpload = file => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -107,41 +68,16 @@ export default function FirstPost() {
     const imgFile = info.target.files[0]
     const checkSizeTypeImage = beforeUpload(imgFile)
     if (checkSizeTypeImage) {
-      // setUploadImgList(arr => [...arr, img])
       setUploadImgList(imgFile)
     }
-    // if (info.file.status === 'uploading') {
-    //   setLoading(true)
-    //   return;
-    // }
-    // if (info.file.status === 'done') {
-    //   // Get this url from response in real world.
-    //   const img = await getBase64(info.file.originFileObj, imageUrl =>
-    //     setLoading(false)
-    //   );
-    //   setUploadImgList(arr => [...arr, img])
-    // }
   };
 
   const handleLogoChange = async (info) => {
     const imgFile = info.target.files[0]
     const checkSizeTypeImage = beforeUpload(imgFile)
     if (checkSizeTypeImage) {
-      // setLogoImg(arr => [...arr, img])
       setLogoImgTest(imgFile)
-
     }
-    // if (info.file.status === 'uploading') {
-    //   setLoading(true)
-    //   return;
-    // }
-    // if (info.file.status === 'done') {
-    //   // Get this url from response in real world.
-    //   const img = await getBase64(info.file.originFileObj, imageUrl =>
-    //     setLoading(false)
-    //   );
-    //   setLogoImg(arr => [...arr, img])
-    // }
   };
 
   const handleTreeSelect = value => {
@@ -181,7 +117,7 @@ export default function FirstPost() {
       </Head>
       { userId === undefined ? <Redirect to='/login' /> : <div className='container mx-auto'>
         <div className='flex flex-wrap mx-auto p-4 lg:relative'>
-          <DashboardMenu />
+          <DynamicDashboardMenu />
           <div className='work-manage-body'>
             <div className='box border rounded p-2'>
               <div>
@@ -355,9 +291,6 @@ export default function FirstPost() {
                               >
                                 <Input placeholder="กรุณากรอกข้อมูล" />
                               </Form.Item>
-
-                              {/* This is the Dynamic bed Adder */}
-
                               <MinusCircleOutlined
                                 style={{ position: 'absolute', left: '97%', top: 8 }}
                                 onClick={() => {
@@ -366,7 +299,6 @@ export default function FirstPost() {
                               />
                             </div>
                           ))}
-
                           <Form.Item>
                             <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
                               Add field
@@ -434,9 +366,6 @@ export default function FirstPost() {
                               >
                                 <Input placeholder="กรุณากรอกข้อมูล" />
                               </Form.Item>
-
-                              {/* This is the Dynamic bed Adder */}
-
                               <MinusCircleOutlined
                                 style={{ position: 'absolute', left: '97%', top: 8 }}
                                 onClick={() => {
@@ -455,7 +384,6 @@ export default function FirstPost() {
                       );
                     }}
                   </Form.List>
-
                   <Form.Item
                     name="title_image"
                     label="ภาพหัวข้อ"
@@ -483,7 +411,6 @@ export default function FirstPost() {
                       Post
                   </Button>
                   </Form.Item>
-
                 </Form>
               </div>
             </div>
@@ -493,4 +420,10 @@ export default function FirstPost() {
       }
     </>
   )
+}
+
+export async function getStaticProps(context) {
+  return {
+      props:{}
+  }
 }

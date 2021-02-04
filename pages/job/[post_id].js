@@ -3,31 +3,29 @@ import { PostApi } from '../../api/PostApi'
 import { Button, Divider } from 'antd'
 import Head from 'next/head'
 import HiddenContent from '../../components/HiddenContent'
-export default function JobPage({ pid }) {
-    const [postTitle, setPostTitle] = useState('')
+export default function JobPage({ post }) {
     const [dataSource, setDataSource] = useState({
         post_title: '',
         company_name: '',
         province: '',
     })
     const [postDate, setPostDate] = useState('')
-
+    console.log(post)
     useEffect(() => {
-        PostApi.getPostByPostID(pid).then(result => {
-            setDataSource(result[0])
-            const splitDate = result[0].createdDate.split('T')[0].split('-')
-            if (splitDate[1] > 0) {
-                const date = new Date(splitDate[0], splitDate[1] - 1, splitDate[2]).toDateString().split(' ')
-                const newDate = date[2] + ' ' + date[1] + ' ' + date[3]
-                setPostDate(newDate)
-            } else {
-                const date = new Date(splitDate[0], splitDate[1], splitDate[2]).toDateString().split(' ')
-                const newDate = date[2] + ' ' + date[1] + ' ' + date[3]
-                setPostDate(newDate)
-            }
-        })
-    }, [pid])
-    
+        setDataSource(post[0])
+
+        const splitDate = post[0].createdDate.split('T')[0].split('-')
+        if (splitDate[1] > 0) {
+            const date = new Date(splitDate[0], splitDate[1] - 1, splitDate[2]).toDateString().split(' ')
+            const newDate = date[2] + ' ' + date[1] + ' ' + date[3]
+            setPostDate(newDate)
+        } else {
+            const date = new Date(splitDate[0], splitDate[1], splitDate[2]).toDateString().split(' ')
+            const newDate = date[2] + ' ' + date[1] + ' ' + date[3]
+            setPostDate(newDate)
+        }       
+    }, [post])
+
     return (
         <>
             <Head>
@@ -53,7 +51,7 @@ export default function JobPage({ pid }) {
                                             <img alt='SA Gaming, แทงบอลออนไลน์, บาคาร่าออนไลน์, aks124 , aks124.com' style={{ maxHeight: 80 }} src={dataSource.logo_image && dataSource.logo_image} />
                                         </div>
                                         <div className='mt-6'>
-                                            <h1 className='text-xl'>{postTitle}</h1>
+                                            <h1 className='text-xl'>{dataSource.post_title}</h1>
                                             <span className='text-lg'>{dataSource.company_name}</span>
                                         </div>
                                         <div className='text-lg pt-3'>
@@ -202,9 +200,26 @@ export default function JobPage({ pid }) {
         </>
     )
 }
-export const getServerSideProps = async ({ params }) => {
-    const pid = params.post_id;
-    return {
-        props: { pid }
-    }
+
+export async function getStaticPaths() {
+    const res = await fetch('http://localhost:4000/jobspost/findall', {
+        method: 'get'
+    })
+    const posts = await res.json()
+    const paths = posts.data.map((post) => `/job/${post.post_id}`)
+    return { paths, fallback: false }
 }
+
+export async function getStaticProps({ params }) {
+    const res = await fetch(`http://localhost:4000/jobspost/post/${params.post_id}`, {
+        method: 'Get'
+    })
+    const post = await res.json()
+    return { props: { post } }
+}
+// export const getServerSideProps = async ({ params }) => {
+//     const pid = params.post_id;
+//     return {
+//         props: { pid }
+//     }
+// }

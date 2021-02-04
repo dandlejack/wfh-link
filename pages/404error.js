@@ -20,3 +20,8 @@ export default function Error404(){
   />
     </div>
 }
+export async function getStaticProps(context) {
+  return {
+      props:{}
+  }
+}
