@@ -4,28 +4,30 @@ import { Button, Divider } from 'antd'
 import Head from 'next/head'
 import HiddenContent from '../../components/HiddenContent'
 import { BACKEND_API } from '../../server.configs'
-export default function JobPage({ post }) {
+export default function JobPageID({ query }) {
     const [dataSource, setDataSource] = useState({
         post_title: '',
         company_name: '',
         province: '',
     })
     const [postDate, setPostDate] = useState('')
-    console.log(post)
     useEffect(() => {
-        setDataSource(post[0])
-
-        const splitDate = post[0].createdDate.split('T')[0].split('-')
-        if (splitDate[1] > 0) {
-            const date = new Date(splitDate[0], splitDate[1] - 1, splitDate[2]).toDateString().split(' ')
-            const newDate = date[2] + ' ' + date[1] + ' ' + date[3]
-            setPostDate(newDate)
-        } else {
-            const date = new Date(splitDate[0], splitDate[1], splitDate[2]).toDateString().split(' ')
-            const newDate = date[2] + ' ' + date[1] + ' ' + date[3]
-            setPostDate(newDate)
-        }       
-    }, [post])
+        PostApi.getPostByPostID(query.post_id)
+            .then(res => {
+                setDataSource(res[0])
+                const splitDate = res[0].createdDate.split('T')[0].split('-')
+                if (splitDate[1] > 0) {
+                    const date = new Date(splitDate[0], splitDate[1] - 1, splitDate[2]).toDateString().split(' ')
+                    const newDate = date[2] + ' ' + date[1] + ' ' + date[3]
+                    setPostDate(newDate)
+                } else {
+                    const date = new Date(splitDate[0], splitDate[1], splitDate[2]).toDateString().split(' ')
+                    const newDate = date[2] + ' ' + date[1] + ' ' + date[3]
+                    setPostDate(newDate)
+                }
+                return res
+            })
+    }, [query])
 
     return (
         <>
@@ -202,25 +204,26 @@ export default function JobPage({ post }) {
     )
 }
 
-export async function getStaticPaths() {
-    const res = await fetch(`${BACKEND_API}/jobspost/findall`, {
-        method: 'get'
-    })
-    const posts = await res.json()
-    const paths = posts.data.map((post) => `/job/${post.post_id}`)
-    return { paths, fallback: false }
+JobPageID.getInitialProps = async ({ query }) => {
+    return {
+        query
+    }
 }
 
-export async function getStaticProps({ params }) {
-    const res = await fetch(`${BACKEND_API}/jobspost/post/${params.post_id}`, {
-        method: 'Get'
-    })
-    const post = await res.json()
-    return { props: { post } }
-}
-// export const getServerSideProps = async ({ params }) => {
-//     const pid = params.post_id;
-//     return {
-//         props: { pid }
-//     }
+
+// export async function getStaticPaths() {
+//     const res = await fetch(`${BACKEND_API}/jobspost/findall`, {
+//         method: 'get'
+//     })
+//     const posts = await res.json()
+//     const paths = posts.data.map((post) => `/job/${post.post_id}`)
+//     return { paths, fallback: false }
+// }
+
+// export async function getStaticProps({ params }) {
+//     const res = await fetch(`${BACKEND_API}/jobspost/post/${params.post_id}`, {
+//         method: 'Get'
+//     })
+//     const post = await res.json()
+//     return { props: { post } }
 // }

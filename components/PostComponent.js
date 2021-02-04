@@ -194,7 +194,6 @@ const PostComponent = ({ id }) => {
 
 
 PostComponent.getInitialProps = async (context) => {
-    console.log('line197:', context)
     return context
 }
 
