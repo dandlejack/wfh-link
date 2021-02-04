@@ -3,6 +3,7 @@ import { PostApi } from '../../api/PostApi'
 import { Button, Divider } from 'antd'
 import Head from 'next/head'
 import HiddenContent from '../../components/HiddenContent'
+import { BACKEND_API } from '../../server.configs'
 export default function JobPage({ post }) {
     const [dataSource, setDataSource] = useState({
         post_title: '',
