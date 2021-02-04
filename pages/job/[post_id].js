@@ -202,7 +202,7 @@ export default function JobPage({ post }) {
 }
 
 export async function getStaticPaths() {
-    const res = await fetch('http://localhost:4000/jobspost/findall', {
+    const res = await fetch(`${BACKEND_API}/jobspost/findall`, {
         method: 'get'
     })
     const posts = await res.json()
@@ -211,7 +211,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    const res = await fetch(`http://localhost:4000/jobspost/post/${params.post_id}`, {
+    const res = await fetch(`${BACKEND_API}/jobspost/post/${params.post_id}`, {
         method: 'Get'
     })
     const post = await res.json()
