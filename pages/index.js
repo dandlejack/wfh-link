@@ -101,7 +101,7 @@ const Index = ({ queryData }) => {
       </Head>
       <main className={styles.main}>
         <div className='flex w-full my-5 ' style={{ minHeight: 130 }}>
-          <div className='block bg-green-700 lg:mx-40 w-full my-0 mx-auto pt-5 px-5 pb-5 rounded-sm '> {/*max-w-screen-xl*/}
+          <div className='block bg-blue-600 lg:mx-40 w-full my-0 mx-auto pt-5 px-5 pb-5 rounded-sm '> {/*max-w-screen-xl*/}
             <h1 className='text-white text-lg font-medium text-center'>ค้นหางานที่คุณต้องการ</h1>
             <div className='block lg:flex w-full justify-center'>
               <Form
@@ -154,7 +154,7 @@ const Index = ({ queryData }) => {
                   />
                 </Form.Item>
                 <div className='flex w-full justify-center sm:justify-center sm:w-full lg:w-full lg:inline-block xl:w-36'>
-                  <button type="submit" className="w-full lg:w-full lg:h-9 group relative justify-center py-2 px-4 xl:ml-1 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400">
+                  <button type="submit" className="w-full lg:w-full lg:h-9 group relative justify-center py-2 px-4 xl:ml-1 border border-transparent text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400">
                     หางาน
                 </button>
                 </div>

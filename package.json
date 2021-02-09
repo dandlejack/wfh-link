@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "build-css": "tailwindcss build styles/tailwind.css -o public/style.css",
-    "start": "next start -H 0.0.0.0 -p $PORT",
+    "start": "next start -H 0.0.0.0 -p 3000",
     "export": "next build && next export"
   },
   "dependencies": {

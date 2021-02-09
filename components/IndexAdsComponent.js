@@ -6,27 +6,27 @@ export const IndexAdsComponent = () => {
   const [dataSource, setDataSource] = useState([])
 
   useEffect(() => {
-    const test = async() => {
-      const res =await fetch(BACKEND_API + '/jobspost/findAds', {
+    const test = async () => {
+      const res = await fetch(BACKEND_API + '/jobspost/findAds', {
         method: 'GET'
       })
       const data = await res.json()
       const getDataLength = data.data.length
       const cloneData = JSON.parse(JSON.stringify(data.data))
-        for (let i = getDataLength; i < 9; i++) {
-          cloneData.push('')
-        }
+      for (let i = getDataLength; i < 9; i++) {
+        cloneData.push('')
+      }
       setDataSource(cloneData)
     }
-    test()    
+    test()
   }, [])
 
   return <div className='flex w-full mb-5'>
-    <div className='w-2/3 lg:w-full sm:w-2/3 md:w-2/3 grid grid-cols-1 gap-1 lg:grid-cols-3 mx-auto lg:mx-40 shadow-sm lg:border lg:rounded-md border-gray-300 pb-2.5 lg:pr-3' >
+    <div className='w-11/12 lg:w-full sm:w-11/12 md:w-2/3 grid grid-cols-1 gap-1 lg:grid-cols-3 mx-auto lg:mx-40 shadow-sm lg:border lg:rounded-md border-gray-300 pb-2.5 lg:pr-3' >
       {
         dataSource.map((d, index) => {
           if (d !== "") {
-            return <div key={d._id + index} className='lg:flex lg:flex-nowrap border rounded-md lg:border-0 sm:p-3.5 lg:pt-3.5 lg:pl-3.5 sm:mb-3.5 lg:mb-0 '>
+            return <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}><div key={d._id + index} className='cursor-pointer lg:flex lg:flex-nowrap border rounded-md lg:border-0 sm:p-5 lg:pt-3.5 lg:pl-3.5 sm:mb-3.5 lg:mb-0 '>
               <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}>
                 <div style={{ maxHeight: 200 }} className='mb-2'>
                   <img alt='SA Gaming, แทงบอลออนไลน์, บาคาร่าออนไลน์, aks124 , aks124.com' className='findjob-title-image' src={d.title_image} style={{ maxHeight: 200, width: '100%' }} />
@@ -35,7 +35,7 @@ export const IndexAdsComponent = () => {
               <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}>
                 <span style={{ maxWidth: 110, width: "100%" }} className='lg:mr-3.5 findjob-logo-image'><img alt='แทงบอลออนไลน์, บาคาร่าออนไลน์, aks124 , aks124.com' className='flex mx-auto lg:max-h-20' src={d.logo_image} /></span>
               </Link>
-              <div>
+              <div className='pl-2.5 lg:pl-0'>
                 <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id}><span>{d.post_title}</span></Link>
                 {/* <div style={{ marginBottom: 5 }}>
                   <ul key='ads-list'>
@@ -59,8 +59,9 @@ export const IndexAdsComponent = () => {
                 </div>
               </div>
             </div>
+            </Link>
           } else {
-            return <Skeleton />
+            return <Skeleton className='pl-3' />
           }
         })
       }

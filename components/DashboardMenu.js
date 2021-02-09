@@ -14,7 +14,7 @@ const DashboardMenu = ({role}) => {
     return <>    
     <div className='work-manage-menu w-full lg:w-60 sm:mb-1'>
       <div className="ads-manage">
-        <div className='ads-manage-header p-2 bg-green-600 text-white text-base' style={{borderRadius:'5px 5px 0px 0px'}}>
+        <div className='ads-manage-header p-2 bg-blue-600 text-white text-base' style={{borderRadius:'5px 5px 0px 0px'}}>
           <span>จัดการประกาศ</span>
         </div>
         <Link href='/posts/myposts'>
