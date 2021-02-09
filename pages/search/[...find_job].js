@@ -39,7 +39,7 @@ export default function JobPage({ queryData, paramsData }) {
         const scrollHeader = window.addEventListener("scroll", () => {
             if (window.pageYOffset > stickyHeader) {
                 header.classList.add("sticky");
-                header.classList.add("header-sticky-height");
+                header.classList.add("header-sticky-height-width");
                 contentCard.classList.add("content-card-sticky")
                 if (window.screen.width <= 1023) {
                     searchBtn.classList.add("hidden-search")
@@ -47,7 +47,7 @@ export default function JobPage({ queryData, paramsData }) {
                 }
             } else {
                 header.classList.remove("sticky")
-                header.classList.remove("header-sticky-height");
+                header.classList.remove("header-sticky-height-width");
                 contentCard.classList.remove("content-card-sticky")
                 if (window.screen.width <= 1023) {
                     searchBtn.classList.remove("hidden-search")
@@ -265,7 +265,7 @@ export default function JobPage({ queryData, paramsData }) {
                                 />
                             </Form.Item>
                             <div className='flex justify-center lg:inline-block w-full lg:w-auto sm:pb-3 pr-5 '>
-                                <button id='search-btn-id' type="submit" className="w-full lg:w-24 lg:h-9 group relative justify-center py-2 px-4 ml-1 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+                                <button id='search-btn-id' type="submit" className="w-full lg:w-24 lg:h-9 group relative justify-center py-2 px-4 ml-1 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
                                     หางาน
                                 </button>
                             </div>

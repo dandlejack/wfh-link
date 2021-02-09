@@ -68,11 +68,11 @@ export default function JobPageID({ query }) {
                                     </div>
                                 </div>
                                 <div className='right-content'>
-                                    <div className='job-apply mt-9'>
+                                    {/* <div className='job-apply mt-9'>
                                         <div>
                                             <Button type='primary' className='job-apply-btn' style={{ height: 40 }}>Apply now</Button>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

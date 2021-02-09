@@ -57,11 +57,11 @@ const PostComponent = ({ id }) => {
                             </div>
                         </div>
                         <div className='right-content'>
-                            <div className='mt-9'>
+                            {/* <div className='mt-9'>
                                 <div>
                                     <Button type='primary' style={{ width: 260, height: 40 }}>Apply now</Button>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

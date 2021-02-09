@@ -118,13 +118,13 @@ const Index = ({ queryData }) => {
               >
                 <Form.Item
                   name='company_name'
-                  className='w-full mb-2 py-2 rounded-sm mr-1 sm:w-full sm:mx-auto lg:w-full xl:w-3/12  '
+                  className='w-full mb-2 py-2 rounded-sm mr-1 sm:w-full sm:mx-auto lg:w-full xl:w-3/12 _mRs'
                 >
                   <Input placeholder='ระบุคำที่ต้องการค้นหา' prefix={<SearchOutlined />} />
                 </Form.Item>
                 <Form.Item
                   name='province'
-                  className='w-full mb-2 py-2 rounded-sm mr-1 sm:w-full sm:mx-auto lg:w-full  xl:w-3/12'
+                  className='w-full mb-2 py-2 rounded-sm mr-1 sm:w-full sm:mx-auto lg:w-full  xl:w-3/12 _mRs'
                 >
                   <TreeSelect
                     showArrow
@@ -140,7 +140,7 @@ const Index = ({ queryData }) => {
                 </Form.Item>
                 <Form.Item
                   name='work_select'
-                  className='w-full mb-2 py-2 rounded-sm mr-1 sm:w-full sm:mx-auto lg:w-full  xl:w-3/12 treeselect-index'
+                  className='w-full mb-2 py-2 rounded-sm mr-1 sm:w-full sm:mx-auto lg:w-full  xl:w-3/12 treeselect-index _mRs'
                 >
                   <TreeSelect
                     showArrow
@@ -154,7 +154,7 @@ const Index = ({ queryData }) => {
                   />
                 </Form.Item>
                 <div className='flex w-full justify-center sm:justify-center sm:w-full lg:w-full lg:inline-block xl:w-36'>
-                  <button type="submit" className="w-full lg:w-full lg:h-9 group relative justify-center py-2 px-4 xl:ml-1 border border-transparent text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400">
+                  <button type="submit" className="w-full lg:w-full lg:h-9 group relative justify-center py-2 px-4 xl:ml-1 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400">
                     หางาน
                 </button>
                 </div>

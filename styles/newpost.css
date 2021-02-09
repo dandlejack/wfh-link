@@ -58,6 +58,7 @@
     position: fixed;
     top:0px;
 }
+
 .content-card-class {
     height: 100vh;
     width: 100%;
@@ -74,8 +75,9 @@
     height: 100vh;
 }
 
-.header-sticky-height {
+.header-sticky-height-width {
     height: 57px;
+    width:100%;
 }
 .hidden-search {
     display: none;
