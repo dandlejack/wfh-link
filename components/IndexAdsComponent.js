@@ -48,7 +48,7 @@ export const IndexAdsComponent = () => {
                 <span style={{ maxWidth: 110, width: "100%" }} className='lg:mr-3.5 findjob-logo-image'>
                   {d.logo_image !== undefined || d.logo_image !== '' ?
                   <img alt='หาคนโพส.com' className='flex mx-auto lg:max-h-20' src={d.logo_image} />
-                  :<img alt='หาคนโพส.com' className='flex mx-auto lg:max-h-20' src='http://localhost:4000/photos/default_logo.png' />
+                  :<img alt='หาคนโพส.com' className='flex mx-auto lg:max-h-20' src={`${BACKEND_API}/photos/default_logo.png`} />
                   }
                   
                 </span>
