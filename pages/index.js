@@ -10,7 +10,6 @@ import { BACKEND_API } from '../server.configs'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import MarqueeComponent from '../components/MarqueeComponent'
-import {BACKEND_API} from '../server.configs'
 const banner = `${BACKEND_API}/photos/index_banner.jpg`
 const ads = `${BACKEND_API}/photos/advertiser_1.gif`
 const DynamicAds = dynamic(() => import('../components/IndexAdsComponent').then(mod => mod.IndexAdsComponent), {
