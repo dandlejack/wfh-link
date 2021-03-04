@@ -16,10 +16,8 @@ export class PostApi {
   static async uploadImages(image){    
     const result = await axios.post(this.UPLOAD_API_URL+'/uploads',image)
     .then(res=>{
-      console.log(res.data)
       return res.data
     })
-    console.log(result)
     return result
   }
 
@@ -33,7 +31,7 @@ export class PostApi {
       // });
       return result.data;
     } catch {
-      window.location.replace('/404error')
+      window.location.replace('/404')
       return [];
     }
   }

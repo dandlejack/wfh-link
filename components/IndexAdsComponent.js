@@ -5,18 +5,30 @@ import { BACKEND_API } from '../server.configs'
 export const IndexAdsComponent = () => {
   const [dataSource, setDataSource] = useState([])
 
+  // const [userRole, setUserRole] = useState('')
+  // useEffect(() => {
+  //   const getCookieData = Cookie.get('token')
+  //   if (getCookieData !== undefined) {
+  //     const jwtData = jwt_decode(getCookieData)
+  //     setUserRole(jwtData.role)
+  //   }
+  // }, [])
+
   useEffect(() => {
     const test = async () => {
       const res = await fetch(BACKEND_API + '/jobspost/findAds', {
         method: 'GET'
       })
-      const data = await res.json()
-      const getDataLength = data.data.length
-      const cloneData = JSON.parse(JSON.stringify(data.data))
-      for (let i = getDataLength; i < 9; i++) {
-        cloneData.push('')
+      if (res.status !== 500) {
+        const data = await res.json()
+        const getDataLength = data.data.length
+        const cloneData = JSON.parse(JSON.stringify(data.data))
+        for (let i = getDataLength; i < 9; i++) {
+          cloneData.push('')
+        }
+        setDataSource(cloneData)
       }
-      setDataSource(cloneData)
+
     }
     test()
   }, [])
@@ -29,11 +41,17 @@ export const IndexAdsComponent = () => {
             return <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}><div key={d._id + index} className='cursor-pointer lg:flex lg:flex-nowrap border rounded-md lg:border-0 sm:p-5 lg:pt-3.5 lg:pl-3.5 sm:mb-3.5 lg:mb-0 '>
               <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}>
                 <div style={{ maxHeight: 200 }} className='mb-2'>
-                  <img alt='SA Gaming, แทงบอลออนไลน์, บาคาร่าออนไลน์, aks124 , aks124.com' className='findjob-title-image' src={d.title_image} style={{ maxHeight: 200, width: '100%' }} />
+                  <img alt=' หาคนโพส.com' className='findjob-title-image' src={d.title_image} style={{ maxHeight: 200, width: '100%' }} />
                 </div>
               </Link>
               <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}>
-                <span style={{ maxWidth: 110, width: "100%" }} className='lg:mr-3.5 findjob-logo-image'><img alt='แทงบอลออนไลน์, บาคาร่าออนไลน์, aks124 , aks124.com' className='flex mx-auto lg:max-h-20' src={d.logo_image} /></span>
+                <span style={{ maxWidth: 110, width: "100%" }} className='lg:mr-3.5 findjob-logo-image'>
+                  {d.logo_image !== undefined || d.logo_image !== '' ?
+                  <img alt='หาคนโพส.com' className='flex mx-auto lg:max-h-20' src={d.logo_image} />
+                  :<img alt='หาคนโพส.com' className='flex mx-auto lg:max-h-20' src='http://localhost:4000/photos/default_logo.png' />
+                  }
+                  
+                </span>
               </Link>
               <div className='pl-2.5 lg:pl-0'>
                 <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id}><span>{d.post_title}</span></Link>

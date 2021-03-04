@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { PostApi } from '../../api/PostApi'
 import { Card, Form, Input, TreeSelect, Result, Pagination } from 'antd'
-import { provinceTreeData, workSelectedHeader } from '../../util/mockData'
+import { rangeOfJobs, workSelectedHeader } from '../../util/mockData'
 import { SearchOutlined, HomeOutlined, BookOutlined } from '@ant-design/icons';
 import Router from 'next/router'
 import Link from 'next/link'
@@ -72,12 +72,12 @@ export default function JobPage({ queryData, paramsData }) {
     useEffect(() => {
         let filterObject = {}
         if (queryData.place !== undefined && queryData.worksType !== undefined) {
-            if (queryData.place === 'สถานที่ทำงานทั้งหมด' && queryData.worksType === 'ประเภทงานทั้งหมด') {
+            if (queryData.place === 'ระยะเวลารับงานทั้งหมด' && queryData.worksType === 'ประเภทงานทั้งหมด') {
                 filterObject = {
                     all_province: queryData.place,
                     all_works: queryData.worksType
                 }
-            } else if (queryData.place === 'สถานที่ทำงานทั้งหมด') {
+            } else if (queryData.place === 'ระยะเวลารับงานทั้งหมด') {
                 filterObject = {
                     all_province: queryData.place,
                     work_select: queryData.worksType
@@ -93,19 +93,19 @@ export default function JobPage({ queryData, paramsData }) {
                     work_select: queryData.worksType
                 }
             }
-        } else if (paramsData.find_job[1] === "job-location") {
-            if (paramsData.find_job[paramsData.find_job.length - 1] === 'สถานที่ทำงานทั้งหมด') {
+        } else if (paramsData[1] === "job-location") {
+            if (paramsData[paramsData.length - 1] === 'ระยะเวลารับงานทั้งหมด') {
                 filterObject = {
-                    all_province: paramsData.find_job[paramsData.find_job.length - 1]
+                    all_province: paramsData[paramsData.length - 1]
                 }
             } else {
                 filterObject = {
-                    province: paramsData.find_job[paramsData.find_job.length - 1]
+                    province: paramsData[paramsData.length - 1]
                 }
             }
         } else { // กรณีที่มีชื่อบริษัทเข้ามาค้นหา
             filterObject = {
-                company_name: paramsData.find_job
+                company_name: paramsData[0]
             }
         }
         setFilterObjectState(filterObject)
@@ -146,11 +146,11 @@ export default function JobPage({ queryData, paramsData }) {
         if (e.company_name === undefined) {
             e.company_name = ''
         }
-        if (e.company_name !== '' && e.province === 'สถานที่ทำงานทั้งหมด' && e.work_select === 'ประเภทงานทั้งหมด') {
+        if (e.company_name !== '' && e.province === 'ระยะเวลารับงานทั้งหมด' && e.work_select === 'ประเภทงานทั้งหมด') {
             Router.push({
                 pathname: `/search/${e.company_name}`,
             })
-        } else if (e.province !== 'สถานที่ทำงานทั้งหมด' && e.work_select === 'ประเภทงานทั้งหมด') {
+        } else if (e.province !== 'ระยะเวลารับงานทั้งหมด' && e.work_select === 'ประเภทงานทั้งหมด') {
             Router.push({
                 pathname: `/search/FindJobs/job-location/${e.province}`,
             })
@@ -163,10 +163,10 @@ export default function JobPage({ queryData, paramsData }) {
     }
 
     const handleProvinceTreeSelect = value => {
-        const checkValueIndex = value.findIndex(val => val === 'สถานที่ทำงานทั้งหมด')
-        if (value[value.length - 1] === 'สถานที่ทำงานทั้งหมด') {
+        const checkValueIndex = value.findIndex(val => val === 'ระยะเวลารับงานทั้งหมด')
+        if (value[value.length - 1] === 'ระยะเวลารับงานทั้งหมด') {
             if (value.length > 1) {
-                value[0] = 'สถานที่ทำงานทั้งหมด'
+                value[0] = 'ระยะเวลารับงานทั้งหมด'
                 value.splice(1, value.length)
             }
         } else {
@@ -198,13 +198,13 @@ export default function JobPage({ queryData, paramsData }) {
         <>
             <Head>
                 <title>ค้นหา</title>
-                <meta name="keywords" content="aks124, aks124.com, AKS124, AKS124.com"></meta>
+                <meta name="keywords" content="หาคนโพส หาคนโพส.com โพสงาน"></meta>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                <meta name="description" content="รวมบาคาร่าออนไลน์ aks124 aks124.com  คาสิโนออนไลน์ บาคาร่า aks124 ผ่านมือถือ ระบบออโต้ ฝากถอน 30 วิ เล่นเกมส์ได้เงินจริง"></meta>
-                <meta property="og:url" content="https://aks124.com/"></meta>
-                <meta property="og:title" content="บาคาร่าออนไลน์ aks124 aks124.com สมัครบาคาร่า aks124 ทดลองเล่นฟรี"></meta>
-                <meta property="og:description" content="รวมบาคาร่าออนไลน์ aks124 aks124.com  คาสิโนออนไลน์ บาคาร่า aks124 ผ่านมือถือ ระบบออโต้ ฝากถอน 30 วิ เล่นเกมส์ได้เงินจริง"></meta>
-                <meta property="og:site_name" content="aks124.com"></meta>
+                <meta name="description" content="หาคนโพส หาคนโพส.com โพสงาน "></meta>
+                <meta property="og:url" content="https://หาคนโพส.com/"></meta>
+                <meta property="og:title" content="หาคนโพส หาคนโพส.com โพสงาน"></meta>
+                <meta property="og:description" content="หาคนโพส หาคนโพส.com โพสงาน "></meta>
+                <meta property="og:site_name" content="หาคนโพส.com"></meta>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <nav className='bg-blue-600' id='search-nav'>
@@ -215,7 +215,7 @@ export default function JobPage({ queryData, paramsData }) {
                             form={form}
                             onFinish={onFinish}
                             initialValues={{
-                                province: provinceTreeData[0].value,
+                                province: rangeOfJobs[0].value,
                                 work_select: workSelectedHeader[0].value,
                             }}
                             className='flex justify-center'
@@ -239,7 +239,7 @@ export default function JobPage({ queryData, paramsData }) {
                                     showCheckedStrategy={SHOW_PARENT}
                                     value={selectProvinceValue}
                                     treeCheckable={true}
-                                    treeData={provinceTreeData}
+                                    treeData={rangeOfJobs}
                                     onChange={e => handleProvinceTreeSelect(e)}
                                     maxTagPlaceholder={`+ ${selectProvinceValue.length - 2} Selected`}
                                     maxTagCount={2}
@@ -280,10 +280,10 @@ export default function JobPage({ queryData, paramsData }) {
                             return <div className='job-card' key={data._id + 'div'} ref={cardRef} tabIndex={-1} data-post-id={data._id} onFocus={event => handleCard(event)} >
                                 <article key={data._id + 'article'}>
                                     <div style={{ maxHeight: 200 }} className='mb-2'>
-                                        <img alt='แทงบอล บาคาร่า aks124 aks124.com' className='findjob-title-image' src={data.title_image} style={{ maxHeight: 200, width: '100%' }} />
+                                        <img alt='หาคนโพส.com' className='findjob-title-image' src={data.title_image} style={{ maxHeight: 200, width: '100%' }} />
                                     </div>
                                     <div style={{ maxWidth: 112, maxHeight: 48 }} className='mb-2'>
-                                        <img alt='aks124 aks124.com มSA Gaming, แทงบอลออนไลน์, บาคาร่าออนไลน์' src={data.logo_image} />
+                                        <img alt='หาคนโพส.com' src={data.logo_image} />
                                     </div>
                                     <div className='mt-9'>
                                         <h1 className='text-base' style={{ marginBottom: 0 }}>
@@ -317,7 +317,7 @@ export default function JobPage({ queryData, paramsData }) {
                             </div>
                         })}
                         <div className='my-3 text-center'>
-                            <Pagination onChange={e => pageChange(e)} pageSize={4} current={pageData.pageNumber} total={pageData.totalDocument} />
+                            <Pagination onChange={e => pageChange(e)} pageSize={30} current={pageData.pageNumber} total={pageData.totalDocument} />
                         </div>
                     </div>
                     <div className='hidden lg:flex md:flex-1' >

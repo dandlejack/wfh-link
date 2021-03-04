@@ -14,7 +14,7 @@ export class UserApi {
       });
     return result;
     }catch{
-      window.location.replace('/404error')
+      window.location.replace('/404')
       return [];
     }    
   }

@@ -1,14 +1,15 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { message, Form, Input, Button, TreeSelect, Select, notification } from 'antd'
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { jobPositionData, provinceData, scholarData, workExperience, workType, workSelectedHeaderWithoutAll } from '../../util/mockData'
+import { jobPositionData, scholarData, workExperience, workSelectedHeaderWithoutAll, rangeOfJobsWithoutAll } from '../../util/mockData'
 import { PostApi } from '../../api/PostApi'
 import jwt_decode from 'jwt-decode';
 import Redirect from '../../components/Redirect'
 import Cookie from 'js-cookie'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-const DynamicDashboardMenu = dynamic(()=>import('../../components/DashboardMenu'))
+import { BACKEND_API } from '../../server.configs'
+const DynamicDashboardMenu = dynamic(() => import('../../components/DashboardMenu'))
 const { TextArea } = Input
 const { SHOW_PARENT } = TreeSelect;
 
@@ -22,35 +23,57 @@ export default function FirstPost() {
   const [warningData, setWarningData] = useState(false)
   const [form] = Form.useForm();
 
+  const [userRole, setUserRole] = useState('')
+  useEffect(() => {
+    const getCookieData = Cookie.get('token')
+    if (getCookieData !== undefined) {
+      const jwtData = jwt_decode(getCookieData)
+      setUserRole(jwtData.role)
+    }
+  }, [])
+
   const onFinish = async (e) => {
     let formData = new FormData();
-    formData.append('photos[]', uploadImgList, uploadImgList.name);
-    formData.append('photos[]', logoImgTest, logoImgTest.name);
-
     const getCookie = Cookie.get("token")
     const jwtDecoded = jwt_decode(getCookie);
     const parseJwtDecoded = JSON.parse(JSON.stringify(jwtDecoded));
-    const imgUrl = await PostApi.uploadImages(formData).then(res => {
-      return res
-    })
-    
+
+    if (Object.keys(logoImgTest).length > 0) {
+      formData.append('photos[]', logoImgTest, logoImgTest.name);
+      const imgUrl = await PostApi.uploadImages(formData).then(res => {
+        return res
+      })
+      e.logo_image = imgUrl.logo
+    } else {
+      e.logo_image = `${BACKEND_API}/photos/default_logo.png`
+    }
+
+    if (e.company_email === '') {
+      e.company_email = '-'
+    }
+    if (e.line_id === '') {
+      e.line_id = '-'
+    }
+    if (e.company_facebook === '') {
+      e.company_facebook = '-'
+    }
+    if (e.company_tel === '') {
+      e.company_tel = '-'
+    }
     e.user_id = parseJwtDecoded._id
-    e.title_image = imgUrl.titleImage
-    e.logo_image = imgUrl.logo
     e.role = parseJwtDecoded.role
     e.all_works = 'ประเภทงานทั้งหมด'
-    e.all_province = 'สถานที่ทำงานทั้งหมด'
-    
-    if (e.benefits === undefined || e.jobproperties === undefined || e.jobshighlights === undefined || e.logo_image.length < 1 || e.title_image < 1) {
+    e.all_province = 'ระยะเวลารับงานทั้งหมด'
+    if (e.benefits === undefined || e.jobproperties === undefined || e.jobshighlights === undefined) {
       setWarningData(true)
-    } else {      
+    } else {
       PostApi.createNewPost(e).then(res => {
         if (res === "Post Successful") {
           window.location.reload()
         }
       })
     }
-  }  
+  }
 
   const beforeUpload = file => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -106,13 +129,13 @@ export default function FirstPost() {
     <>
       <Head>
         <title>สร้างโพสต์ใหม่</title>
-        <meta name="keywords" content="aks124, aks124.com, AKS124, AKS124.com"></meta>
+        <meta name="keywords" content="หาคนโพส หาคนโพส.com โพสงาน"></meta>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content="รวมบาคาร่าออนไลน์ aks124 aks124.com  คาสิโนออนไลน์ บาคาร่า aks124 ผ่านมือถือ ระบบออโต้ ฝากถอน 30 วิ เล่นเกมส์ได้เงินจริง"></meta>
-        <meta property="og:url" content="https://aks124.com/"></meta>
-        <meta property="og:title" content="บาคาร่าออนไลน์ aks124 aks124.com สมัครบาคาร่า aks124 ทดลองเล่นฟรี"></meta>
-        <meta property="og:description" content="รวมบาคาร่าออนไลน์ aks124 aks124.com  คาสิโนออนไลน์ บาคาร่า aks124 ผ่านมือถือ ระบบออโต้ ฝากถอน 30 วิ เล่นเกมส์ได้เงินจริง"></meta>
-        <meta property="og:site_name" content="aks124.com"></meta>
+        <meta name="description" content="หาคนโพส หาคนโพส.com โพสงาน "></meta>
+        <meta property="og:url" content="https://หาคนโพส.com/"></meta>
+        <meta property="og:title" content="หาคนโพส หาคนโพส.com โพสงาน"></meta>
+        <meta property="og:description" content="หาคนโพส หาคนโพส.com โพสงาน "></meta>
+        <meta property="og:site_name" content="หาคนโพส.com"></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       { userId === undefined ? <Redirect to='/login' /> : <div className='container mx-auto'>
@@ -131,10 +154,9 @@ export default function FirstPost() {
                   name="jobsads"
                   onFinish={onFinish}
                   initialValues={{
-                    job_position: jobPositionData[0],
-                    work_experience: workExperience[0],
-                    work_type: [workType[2]],
-                    province: [provinceData[0]],
+                    // job_position: jobPositionData[0],
+                    // work_experience: workExperience[0],
+                    work_type: [rangeOfJobsWithoutAll[1].value],
                     scholar_degree: scholarData[0],
                     work_select: [workSelectedHeaderWithoutAll[0].value],
                   }}
@@ -178,7 +200,7 @@ export default function FirstPost() {
                       })}
                     </Select>
                   </Form.Item>
-                  <Form.Item
+                  {/* <Form.Item
                     name="job_position"
                     label="ระดับตำแหน่ง"
                   >
@@ -189,8 +211,8 @@ export default function FirstPost() {
                         </Select.Option>)
                       })}
                     </Select>
-                  </Form.Item>
-                  <Form.Item
+                  </Form.Item> */}
+                  {/* <Form.Item
                     name="work_experience"
                     label="อายุงาน"
                   >
@@ -201,7 +223,7 @@ export default function FirstPost() {
                         </Select.Option>)
                       })}
                     </Select>
-                  </Form.Item>
+                  </Form.Item> */}
                   <Form.Item
                     name="work_select"
                     label="ประเภทงาน"
@@ -219,18 +241,8 @@ export default function FirstPost() {
                     label="ประเภทการจ้างงาน"
                   >
                     <Select mode="multiple" showSearch >
-                      {workType.map(data => {
-                        return <Select.Option value={data} key={data}>{data}</Select.Option>
-                      })}
-                    </Select>
-                  </Form.Item>
-                  <Form.Item
-                    name="province"
-                    label="จังหวัด"
-                  >
-                    <Select mode="multiple" showSearch  >
-                      {provinceData.map(data => {
-                        return <Select.Option value={data} key={data}>{data}</Select.Option>
+                      {rangeOfJobsWithoutAll.map(data => {
+                        return <Select.Option value={data.value} key={data.value}>{data.value}</Select.Option>
                       })}
                     </Select>
                   </Form.Item>
@@ -384,28 +396,62 @@ export default function FirstPost() {
                       );
                     }}
                   </Form.List>
-                  <Form.Item
+                  {/*<Form.Item
                     name="title_image"
                     label="ภาพหัวข้อ"
                     rules={[{ required: true, message: 'กรุณาเลือกรูปภาพ' }]}
                   >
-                    {/* <Upload
+                     <Upload
                       maxCount={1}
                       beforeUpload={e => beforeUpload(e)}
                       onChange={e => handleChange(e)}
                     >
                       <Button >Upload (Max: 1)</Button>
-                    </Upload> */}
+                    </Upload> 
                     <input type='file' onChange={e => handleChange(e)} />
+                  </Form.Item>*/}
+                  <Form.Item
+                    name="company_email"
+                    label="Email ที่ใช้ในการติดต่อ"
+                  >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    name="line_id"
+                    label="Line ID ที่ใช้ในการติดต่อ"
+                  >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    name="company_facebook"
+                    label="Facebook ที่ใช้ในการติดต่อ"
+                  >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    name="company_tel"
+                    label="เบอร์โทรศัพท์ที่ใช้ในการติดต่อ"
+                  >
+                    <Input />
                   </Form.Item>
                   <Form.Item
                     name="logo_image"
                     label="โลโก้บริษัท"
+                  // rules={[{ required: true, message: 'กรุณาเลือกรูปภาพ' }]}
+                  >
+                    <input type='file' onChange={e => handleLogoChange(e)} />
+
+                  </Form.Item>
+                  {/* {userRole === 'admin'?
+                  <Form.Item
+                    name="qr_code"
+                    label="QR CODE"
                     rules={[{ required: true, message: 'กรุณาเลือกรูปภาพ' }]}
                   >
                     <input type='file' onChange={e => handleLogoChange(e)} />
 
                   </Form.Item>
+                  :<></>} */}
                   <Form.Item style={{ textAlign: 'center' }}>
                     <Button type="primary" htmlType="submit">
                       Post
@@ -424,6 +470,6 @@ export default function FirstPost() {
 
 export async function getStaticProps(context) {
   return {
-      props:{}
+    props: {}
   }
 }

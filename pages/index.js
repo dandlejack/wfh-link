@@ -3,40 +3,51 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Router from 'next/router'
-import { provinceTreeData, workSelectedHeader } from '../util/mockData'
+import { rangeOfJobs, workSelectedHeader, showAdsInIndex, workSelectedHeaderWithoutAll } from '../util/mockData'
 import { TreeSelect, Form, Input } from 'antd'
 import { SearchOutlined, HomeOutlined } from '@ant-design/icons';
 import { BACKEND_API } from '../server.configs'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-
+import MarqueeComponent from '../components/MarqueeComponent'
+const banner = 'http://localhost:4000/photos/index_banner.jpg'
+const ads = 'http://localhost:4000/photos/advertiser_1.gif'
 const DynamicAds = dynamic(() => import('../components/IndexAdsComponent').then(mod => mod.IndexAdsComponent), {
   ssr: false
 })
-const Index = ({ queryData }) => {
-
-  const [adsData, setAdsData] = useState([])
+const Index = ({ queryData,latestMarquee,maxMarquee }) => {
+  const [dailyTopTen, setDailyTopTen] = useState([])
+  const [maxTopTen, setMaxTopTen] = useState([])
   const [selectValue, setSelectValue] = useState([])
   const [selectProvinceValue, setSelectProvinceValue] = useState([])
   const { SHOW_PARENT } = TreeSelect
   const [form] = Form.useForm();
   const router = useRouter()
+  
   useEffect(() => {
-    if (queryData !== null) {
-      const getDataLength = queryData.data.length
-      if (queryData.data.length < 9) {
-        const cloneData = JSON.parse(JSON.stringify(queryData.data))
-        for (let i = getDataLength; i < 9; i++) {
-          cloneData.push('')
+    if (maxMarquee !== null ) {
+      const getDataLength = maxMarquee.length
+      if(getDataLength >0){
+        const pushKey = {
+          list_data : maxMarquee
         }
-        setAdsData(cloneData)
-      } else {
-        setAdsData(queryData.data)
+        setMaxTopTen(pushKey)
       }
     } else {
-      router.push('/404error')
+      router.push('/404')
+    }    
+  }, [maxMarquee])
+
+  useEffect(() => {
+    if (latestMarquee !== null ) {      
+      const getDataLength = latestMarquee.length
+      if (getDataLength > 0) {
+        setDailyTopTen(latestMarquee[0])
+      }
+    } else {
+      router.push('/404')
     }
-  }, [queryData])
+  }, [latestMarquee])
 
   const onFinish = (e) => {
 
@@ -47,7 +58,7 @@ const Index = ({ queryData }) => {
       Router.push({
         pathname: `/search/${e.company_name}`,
       })
-    } else if (e.province !== 'สถานที่ทำงานทั้งหมด' && e.work_select === 'ประเภทงานทั้งหมด') {
+    } else if (e.province !== 'ระยะเวลารับงานทั้งหมด' && e.work_select === 'ประเภทงานทั้งหมด') {
       Router.push({
         pathname: `/search/FindJobs/job-location/${e.province}`,
       })
@@ -74,10 +85,10 @@ const Index = ({ queryData }) => {
   }
 
   const handleProvinceTreeSelect = value => {
-    const checkValueIndex = value.findIndex(val => val === 'สถานที่ทำงานทั้งหมด')
-    if (value[value.length - 1] === 'สถานที่ทำงานทั้งหมด') {
+    const checkValueIndex = value.findIndex(val => val === 'ระยะเวลารับงานทั้งหมด')
+    if (value[value.length - 1] === 'ระยะเวลารับงานทั้งหมด') {
       if (value.length > 1) {
-        value[0] = 'สถานที่ทำงานทั้งหมด'
+        value[0] = 'ระยะเวลารับงานทั้งหมด'
         value.splice(1, value.length)
       }
     } else {
@@ -90,17 +101,25 @@ const Index = ({ queryData }) => {
     <div className={'container mx-auto'}>
       <Head>
         <title>WFHJOBS</title>
-        <meta name="keywords" content="aks124, aks124.com, AKS124, AKS124.com"></meta>
+        <meta name="keywords" content="หาคนโพส หาคนโพส.com โพสงาน"></meta>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content="รวมบาคาร่าออนไลน์ aks124 aks124.com  คาสิโนออนไลน์ บาคาร่า aks124 ผ่านมือถือ ระบบออโต้ ฝากถอน 30 วิ เล่นเกมส์ได้เงินจริง"></meta>
-        <meta property="og:url" content="https://aks124.com/"></meta>
-        <meta property="og:title" content="บาคาร่าออนไลน์ aks124 aks124.com สมัครบาคาร่า aks124 ทดลองเล่นฟรี"></meta>
-        <meta property="og:description" content="รวมบาคาร่าออนไลน์ aks124 aks124.com  คาสิโนออนไลน์ บาคาร่า aks124 ผ่านมือถือ ระบบออโต้ ฝากถอน 30 วิ เล่นเกมส์ได้เงินจริง"></meta>
-        <meta property="og:site_name" content="aks124.com"></meta>
+        <meta name="description" content="หาคนโพส หาคนโพส.com โพสงาน "></meta>
+        <meta property="og:url" content="https://หาคนโพส.com/"></meta>
+        <meta property="og:title" content="หาคนโพส หาคนโพส.com โพสงาน"></meta>
+        <meta property="og:description" content="หาคนโพส หาคนโพส.com โพสงาน "></meta>
+        <meta property="og:site_name" content="หาคนโพส.com"></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className='flex w-full my-5 ' style={{ minHeight: 130 }}>
+        <div className='flex w-full'>
+          <div className='block lg:mx-40 w-full my-0 mx-auto rounded-sm '>
+            <div className='block lg:flex w-full justify-center'>
+              <img src={banner} className='lg:w-full' />
+            </div>
+          </div>
+        </div>
+        <div className='flex w-full mb-5 ' style={{ minHeight: 130 }}>
+
           <div className='block bg-blue-600 lg:mx-40 w-full my-0 mx-auto pt-5 px-5 pb-5 rounded-sm '> {/*max-w-screen-xl*/}
             <h1 className='text-white text-lg font-medium text-center'>ค้นหางานที่คุณต้องการ</h1>
             <div className='block lg:flex w-full justify-center'>
@@ -110,7 +129,7 @@ const Index = ({ queryData }) => {
                 name="findads"
                 onFinish={onFinish}
                 initialValues={{
-                  province: provinceTreeData[0].value,
+                  province: rangeOfJobs[0].value,
                   work_select: workSelectedHeader[0].value,
                 }}
                 className='w-full xl:justify-center'
@@ -131,7 +150,7 @@ const Index = ({ queryData }) => {
                     showCheckedStrategy={SHOW_PARENT}
                     value={selectProvinceValue}
                     treeCheckable={true}
-                    treeData={provinceTreeData}
+                    treeData={rangeOfJobs}
                     onChange={e => handleProvinceTreeSelect(e)}
                     maxTagPlaceholder={`+ ${selectProvinceValue.length - 2} Selected`}
                     maxTagCount={2}
@@ -162,7 +181,21 @@ const Index = ({ queryData }) => {
             </div>
           </div>
         </div>
-        <DynamicAds/>
+        <DynamicAds />
+        <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:px-40 '>
+          <MarqueeComponent data={maxTopTen} title={'10อันดับรายได้สูงสุดของทั้งหมด'} consstyle='lg:mr-5 sm:mb-5 mx-5 lg:mx-0 lg:mb-0' />
+          <MarqueeComponent data={dailyTopTen} title={'10อันดับรายได้สูงสุดของวัน'} consstyle=' mx-5 lg:mx-0' />
+        </div>
+        {/* <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:px-40 '>
+          <MarqueeComponent data={['test', 'test2', 'test3', 'test4', 'test5', 'test6', 'test7', 'test8', 'test9', 'test10']} title={'ประกาศรายชื่อผู้ได้รับรางวัลคนโพสดีเด่นประจำวันนี้'} consstyle=' mx-5 lg:mx-0' />
+        </div> */}
+        {/* <div className='flex w-full'>
+          <div className='block lg:mx-40 w-full my-0 mx-auto pb-5 rounded-sm '>
+            <div className='block lg:flex w-full justify-center'>
+              <img src={socialLogo} className='lg:w-full' />
+            </div>
+          </div>
+        </div> */}
         <div className='flex sm:w-full'>
           {/* <div className='cont-left sm:w-full sm:mx-5 sm:mb-5 lg:float-left lg:w-6/12 lg:ml-40 lg:mr-5'> */}
           <div className='cont-left sm:w-full sm:mx-5 sm:mb-5 lg:float-left lg:w-full lg:mx-40 '>
@@ -171,26 +204,21 @@ const Index = ({ queryData }) => {
                 <span className='text-lg'>งานตามสายอาชีพ</span>
               </div>
               <div className='box-info p-5 flex flex-wrap text-base '>
-                {workSelectedHeader.map((data, index) => {
+                {workSelectedHeaderWithoutAll.map((data, index) => {
                   if (index % 2 === 0) {
-                    return <Link href={`/search/FindJobs?place=สถานที่ทำงานทั้งหมด&worksType=${data.value}`} key={data.value} ><div className='mr-1 mb-1 w-6/12 '><a>{data.value}</a></div></Link>
+                    return <Link href={`/search/FindJobs?place=ระยะเวลารับงานทั้งหมด&worksType=${data.value}`} key={data.value} ><div className='mr-1 mb-1 w-6/12 '><a>{data.value}</a></div></Link>
                   } else {
-                    return <Link href={`/search/FindJobs?place=สถานที่ทำงานทั้งหมด&worksType=${data.value}`} key={data.value} ><div className='mr-1 mb-1 w-5/12 '><a>{data.value}</a></div></Link>
+                    return <Link href={`/search/FindJobs?place=ระยะเวลารับงานทั้งหมด&worksType=${data.value}`} key={data.value} ><div className='mr-1 mb-1 w-5/12 '><a>{data.value}</a></div></Link>
                   }
                 })}
               </div>
             </div>
           </div>
         </div>
-        <div className='homepage-ads w-full h-64 mb-5 xl:max-w-screen-md bg-gray-300'>
-
+        <div className='homepage-ads w-full h-64 mb-5 xl:max-w-screen-md '>
+          <img src={ads} />
         </div>
-
-
-
-
       </main>
-
       {/* <footer className={styles.footer}>
 
       </footer> */}
@@ -198,37 +226,27 @@ const Index = ({ queryData }) => {
   )
 }
 
-// Index.getInitialProps = async function () {
-//   try {
-//     const res = await fetch(BACKEND_API + '/jobspost/findAds', {
-//       method: 'GET'
-//     })
-//     const data = await res.json()
-//     return {
-//       queryData: data
-//     }
-//   } catch (error) {
-//     return {
-//       queryData: null
-//     }
-//   }
-// }
-
 export async function getStaticProps(context) {
   try {
-    const res = await fetch(BACKEND_API + '/jobspost/findAds', {
+    const lastest = await fetch(BACKEND_API + '/topten/findlastest', {
       method: 'GET'
     })
-    const data = await res.json()
+    const foundMax = await fetch(BACKEND_API + '/topten/findMaxValue', {
+      method: 'GET'
+    })
+    const data = await lastest.json()
+    const data2 = await foundMax.json()
     return {
-      props:{
-        queryData: data
+      props: {
+        latestMarquee:data,
+        maxMarquee:data2
       }
     }
   } catch (error) {
     return {
-      props:{
-        queryData: null
+      props: {
+        latestMarquee: null,
+        maxMarquee:null
       }
     }
   }

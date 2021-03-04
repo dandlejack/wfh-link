@@ -4,6 +4,7 @@ import { Button, Divider } from 'antd'
 import Head from 'next/head'
 import HiddenContent from '../../components/HiddenContent'
 import { BACKEND_API } from '../../server.configs'
+const defaultBannerImage = `${BACKEND_API}/photos/default_header.jpg`
 export default function JobPageID({ query }) {
     const [dataSource, setDataSource] = useState({
         post_title: '',
@@ -33,25 +34,25 @@ export default function JobPageID({ query }) {
         <>
             <Head>
                 <title>{dataSource.post_title}</title>
-                <meta name="keywords" content="aks124, aks124.com, AKS124, AKS124.com"></meta>
+                <meta name="keywords" content="หาคนโพส หาคนโพส.com โพสงาน"></meta>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                <meta name="description" content="รวมบาคาร่าออนไลน์ aks124 aks124.com  คาสิโนออนไลน์ บาคาร่า aks124 ผ่านมือถือ ระบบออโต้ ฝากถอน 30 วิ เล่นเกมส์ได้เงินจริง"></meta>
-                <meta property="og:url" content="https://aks124.com/"></meta>
-                <meta property="og:title" content="บาคาร่าออนไลน์ aks124 aks124.com สมัครบาคาร่า aks124 ทดลองเล่นฟรี"></meta>
-                <meta property="og:description" content="รวมบาคาร่าออนไลน์ aks124 aks124.com  คาสิโนออนไลน์ บาคาร่า aks124 ผ่านมือถือ ระบบออโต้ ฝากถอน 30 วิ เล่นเกมส์ได้เงินจริง"></meta>
-                <meta property="og:site_name" content="aks124.com"></meta>
+                <meta name="description" content="หาคนโพส หาคนโพส.com โพสงาน "></meta>
+                <meta property="og:url" content="https://หาคนโพส.com/"></meta>
+                <meta property="og:title" content="หาคนโพส หาคนโพส.com โพสงาน"></meta>
+                <meta property="og:description" content="หาคนโพส หาคนโพส.com โพสงาน "></meta>
+                <meta property="og:site_name" content="หาคนโพส.com"></meta>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className='container mx-auto '>
                 <div className='mx-auto'>
                     <div className='jobDetailHeader mb-5'>
                         <div className='box'>
-                            <img alt='SA Gaming, แทงบอลออนไลน์, บาคาร่าออนไลน์, aks124 , aks124.com' src={dataSource.title_image && dataSource.title_image} className='w-full' style={{ maxHeight: 390 }} />
+                            <img alt=' หาคนโพส.com' src={defaultBannerImage} className='w-full' style={{ maxHeight: 390 }} />
                             <div className='jobDetailHeaderContent p-2 flex flex-row mt-6 '>
                                 <div className='left-content'>
                                     <div className='px-5'>
                                         <div style={{ maxWidth: 216 }}>
-                                            <img alt='SA Gaming, แทงบอลออนไลน์, บาคาร่าออนไลน์, aks124 , aks124.com' style={{ maxHeight: 80 }} src={dataSource.logo_image && dataSource.logo_image} />
+                                            <img alt='หาคนโพส.com' style={{ maxHeight: 80 }} src={dataSource.logo_image && dataSource.logo_image} />
                                         </div>
                                         <div className='mt-6'>
                                             <h1 className='text-xl'>{dataSource.post_title}</h1>
@@ -130,14 +131,14 @@ export default function JobPageID({ query }) {
                                 </div>
                             </div>
                             <div style={{ paddingTop: 1 }} className='text-base flex flex-wrap'>
-                                <div className='sub-more-detail'>
+                                {/* <div className='sub-more-detail'>
                                     <div>
                                         <span className='font-bold'>ระดับตำแหน่งงาน</span>
                                     </div>
                                     <div>
                                         <span>{dataSource.job_position}</span>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className='sub-more-detail  pt-3'>
                                     <div>
                                         <span className='font-bold'>ระดับการศึกษา</span>
@@ -146,14 +147,14 @@ export default function JobPageID({ query }) {
                                         <span>{dataSource.scholar_degree}</span>
                                     </div>
                                 </div>
-                                <div className='sub-more-detail pt-3'>
+                                {/* <div className='sub-more-detail pt-3'>
                                     <div>
                                         <span className='font-bold'>อายุงาน</span>
                                     </div>
                                     <div>
                                         <span>{dataSource.work_experience}</span>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className='sub-more-detail pt-3'>
                                     <div>
                                         <span className='font-bold'>ประเภทการจ้างงาน</span>
