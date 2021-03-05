@@ -100,7 +100,7 @@ const Index = ({ queryData,latestMarquee,maxMarquee }) => {
   return (
     <div className={'container mx-auto'}>
       <Head>
-        <title>WFHJOBS</title>
+        <title>หาคนโพส.com</title>
         <meta name="keywords" content="หาคนโพส หาคนโพส.com โพสงาน"></meta>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content="หาคนโพส หาคนโพส.com โพสงาน "></meta>

@@ -54,7 +54,7 @@ export const Header = () => {
         <div className="blockSet hidden sm:block container relative sm my-0 mx-auto">
           <Link href='/'>
             <a id='logo'>
-              WFHJOBS
+              หาคนโพส.com
             </a>
 
             {/* <span className="text-white px-3 py-2 rounded-md hover:text-white text-lg font-medium cursor-pointer">WFH JOBS</span> */}
