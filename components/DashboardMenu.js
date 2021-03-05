@@ -28,7 +28,7 @@ const DashboardMenu = ({ role }) => {
           </div>
         </Link>
 
-        {userRole === 'admin' ? <><Link href='/posts/admin-manage'>
+        {userRole === '4y0h9WnLw/TjWXpwK9EZ4D7WCZaB9s/2U/sPcnup1do=' ? <><Link href='/posts/admin-manage'>
           <div className='admin-menu  pl-4 py-2 bg-white border-b hover:bg-gray-200 cursor-pointer'>
             <div>
               <span style={{ color: '#000' }}>จัดการประกาศ Admin</span>

@@ -100,7 +100,7 @@ export const Header = () => {
                   <li className='sp text-base' >จัดการประกาศ</li>
                   <Link href="/posts/myposts"><li className='hover:bg-gray-200'><span>ประกาศของฉัน</span></li></Link>
                   <Link href="/posts/newpost"><li className='hover:bg-gray-200'><span>ลงประกาศ</span></li></Link>
-                  {userRole === 'admin' ? <Link href="/posts/admin-manage"><li className='hover:bg-gray-200'><span>จัดการประกาศ Admin</span></li></Link> : <></>}
+                  {userRole === '4y0h9WnLw/TjWXpwK9EZ4D7WCZaB9s/2U/sPcnup1do=' ? <Link href="/posts/admin-manage"><li className='hover:bg-gray-200'><span>จัดการประกาศ Admin</span></li></Link> : <></>}
                   <li className='sp text-base'>ข้อมูลสมาชิก</li>
                   {/* <li className='hover:bg-gray-200'><span>ข้อมูลส่วนตัว</span></li> */}
                   <li className='hover:bg-gray-200'><span onClick={handleLogout}>ออกจากระบบ</span></li>
@@ -123,7 +123,7 @@ export const Header = () => {
                             <a className=" text-white hover:underline hover:text-white px-3 py-2 rounded-md text-lg font-medium" href='myposts'>ประกาศของฉัน</a>
                           </div>
                         </Link>
-                        {userRole === 'admin' ?
+                        {userRole === '4y0h9WnLw/TjWXpwK9EZ4D7WCZaB9s/2U/sPcnup1do=' ?
                           <Link href="/posts/admin">
                             <div className='rounded header-menu-items'>
                               <a className=" text-white hover:underline hover:text-white px-3 py-2 rounded-md text-lg font-medium" href='admin'>จัดการประกาศ Admin</a>

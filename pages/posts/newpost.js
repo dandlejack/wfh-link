@@ -442,7 +442,7 @@ export default function FirstPost() {
                     <input type='file' onChange={e => handleLogoChange(e)} />
 
                   </Form.Item>
-                  {/* {userRole === 'admin'?
+                  {/* {userRole === '4y0h9WnLw/TjWXpwK9EZ4D7WCZaB9s/2U/sPcnup1do='?
                   <Form.Item
                     name="qr_code"
                     label="QR CODE"
