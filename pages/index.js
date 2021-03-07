@@ -10,6 +10,7 @@ import { BACKEND_API } from '../server.configs'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import MarqueeComponent from '../components/MarqueeComponent'
+import { LineAdsIndex } from '../components/LineAdsIndex'
 const banner = `${BACKEND_API}/photos/index_banner.jpg`
 const ads = `${BACKEND_API}/photos/advertiser_1.gif`
 const DynamicAds = dynamic(() => import('../components/IndexAdsComponent').then(mod => mod.IndexAdsComponent), {
@@ -20,9 +21,15 @@ const Index = ({ queryData,latestMarquee,maxMarquee }) => {
   const [maxTopTen, setMaxTopTen] = useState([])
   const [selectValue, setSelectValue] = useState([])
   const [selectProvinceValue, setSelectProvinceValue] = useState([])
+  const [displayWidth, setDisplayWidth] = useState(1024)
   const { SHOW_PARENT } = TreeSelect
   const [form] = Form.useForm();
   const router = useRouter()
+
+  useEffect(()=>{
+    setDisplayWidth(window.screen.width)
+    document.body.style.overflowY = 'scroll'    
+  },[])
   
   useEffect(() => {
     if (maxMarquee !== null ) {
@@ -50,7 +57,6 @@ const Index = ({ queryData,latestMarquee,maxMarquee }) => {
   }, [latestMarquee])
 
   const onFinish = (e) => {
-
     if (e.company_name === undefined) {
       e.company_name = ''
     }
@@ -218,6 +224,7 @@ const Index = ({ queryData,latestMarquee,maxMarquee }) => {
         <div className='homepage-ads w-full h-64 mb-5 xl:max-w-screen-md '>
           <img src={ads} />
         </div>
+        {/* {displayWidth >= 1024 ? <LineAdsIndex />:<></>} */}
       </main>
       {/* <footer className={styles.footer}>
 

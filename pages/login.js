@@ -12,6 +12,7 @@ export default function LoginPage() {
             setLogin(true)
             router.push('/')
         }
+        document.body.style.overflowY = 'hidden'
     },[router.pathname])
     
     return login ?<></>:<Login/>

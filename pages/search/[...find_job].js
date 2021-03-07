@@ -19,6 +19,7 @@ const DynamicHiddenContent = dynamic(()=>import('../../components/HiddenContent'
 export default function JobPage({ queryData, paramsData }) {
     const [hideSearchItem, setHideSearchItem] = useState(false)
     const [filterObjectState, setFilterObjectState] = useState({})
+    const router = useRouter()
     const [pageData, setPageData] = useState({
         pageNumber: 1,
         totalDocument: 1,
@@ -124,6 +125,7 @@ export default function JobPage({ queryData, paramsData }) {
             }
             setDataSource(res.data)
         })
+        console.log(router)
     }, [queryData])
 
     const pageChange = (currentPage) => {
