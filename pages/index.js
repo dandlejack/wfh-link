@@ -221,9 +221,13 @@ const Index = ({ queryData,latestMarquee,maxMarquee }) => {
             </div>
           </div>
         </div>
+        <a href={'https://line.me/ti/p/%40TEST'} target='_blank'>
+        
         <div className='homepage-ads w-full h-64 mb-5 xl:max-w-screen-md '>
-          <img src={ads} />
+            <img src={ads} />
         </div>
+        </a>
+
         {/* {displayWidth >= 1024 ? <LineAdsIndex />:<></>} */}
       </main>
       {/* <footer className={styles.footer}>

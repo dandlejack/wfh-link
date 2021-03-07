@@ -103,7 +103,7 @@ export const Header = () => {
                   {userRole === '4y0h9WnLw/TjWXpwK9EZ4D7WCZaB9s/2U/sPcnup1do=' ? <Link href="/posts/admin-manage"><li className='hover:bg-gray-200'><span>จัดการประกาศ Admin</span></li></Link> : <></>}
                   <li className='sp text-base'>ข้อมูลสมาชิก</li>
                   {/* <li className='hover:bg-gray-200'><span>ข้อมูลส่วนตัว</span></li> */}
-                  <li className='hover:bg-gray-200'><span onClick={handleLogout}>ออกจากระบบ</span></li>
+                  <li className='hover:bg-gray-200' onClick={handleLogout}><span >ออกจากระบบ</span></li>
                 </ul>
                 <a className="bar-a" onClick={showMenu}>
                   <FontAwesomeIcon className='bar-icon' icon={faBars} />

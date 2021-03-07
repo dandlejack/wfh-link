@@ -40,15 +40,15 @@ export const IndexAdsComponent = () => {
           if (d !== "") {
             return <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}><div key={d._id + index} className='cursor-pointer lg:flex lg:flex-nowrap border rounded-md lg:border-0 sm:p-5 lg:pt-3.5 lg:pl-3.5 sm:mb-3.5 lg:mb-0 '>
               <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}>
-                <div style={{ maxHeight: 200 }} className='mb-2'>
-                  <img alt=' หาคนโพส.com' className='findjob-title-image' src={d.title_image} style={{ maxHeight: 200, width: '100%' }} />
+                <div style={{ maxHeight: 200 }} key={d.title_image+index} className='mb-2'>
+                  <img alt=' หาคนโพส.com' className='findjob-title-image' key={d.title_image+index+index} src={d.title_image} style={{ maxHeight: 200, width: '100%' }} />
                 </div>
               </Link>
               <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}>
                 <span style={{ maxWidth: 110, width: "100%" }} className='lg:mr-3.5 findjob-logo-image'>
                   {d.logo_image !== undefined || d.logo_image !== '' ?
-                  <img alt='หาคนโพส.com' className='flex mx-auto lg:max-h-20' src={d.logo_image} />
-                  :<img alt='หาคนโพส.com' className='flex mx-auto lg:max-h-20' src={`${BACKEND_API}/photos/default_logo.png`} />
+                  <img alt='หาคนโพส.com' className='flex mx-auto lg:max-h-20' key={d.logo_image+index} src={d.logo_image} />
+                  :<img alt='หาคนโพส.com' className='flex mx-auto lg:max-h-20' key={d.logo_image+index} src={`${BACKEND_API}/photos/default_logo.png`} />
                   }
                   
                 </span>
@@ -79,7 +79,7 @@ export const IndexAdsComponent = () => {
             </div>
             </Link>
           } else {
-            return <Skeleton className='pl-3' />
+            return <Skeleton key={index} className='pl-3' />
           }
         })
       }

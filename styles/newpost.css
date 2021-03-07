@@ -108,7 +108,7 @@
     overflow: hidden;
     position: relative;
     background: #fefefe;
-    background-image: url('http://localhost:4000/photos/slide.gif');
+    background-image: url('http://api.หาคนโพส.com/photos/slide.gif');
     padding-left: 15px;
     padding-right: 15px;
 }

@@ -20,7 +20,33 @@ const Login = () => {
             sm: { span: 16 },
         },
     };
-
+    const handleEnter = (e) => {
+        console.log(e)
+        if(e.key === "Enter"){
+            const userData = {
+                email: email,
+                password, password
+            }
+            try {
+                UserApi.postSignin(userData).then(response => {
+                    if(response.token){
+                        const jwtDecoded = jwt_decode(response.token);
+                        const parseJwtDecoded = JSON.parse(JSON.stringify(jwtDecoded));
+                        const expDate = new Date(parseJwtDecoded.exp * 1000);
+                        Cookie.set('token', response.token, { expires: expDate });
+                        Cookie.set('hrme', { _id: parseJwtDecoded._id, name: parseJwtDecoded.firstname }, { expires: expDate })            
+                        window.location.replace('/')
+                        return response
+                    }else{
+                        setErrorMsg(response.msg)
+                    }
+                    
+                })
+            } catch {
+                window.location.replace('/404')
+            }
+        }                      
+    }
     const handleLogin = () => {
         const userData = {
             email: email,
@@ -43,8 +69,7 @@ const Login = () => {
             })
         } catch {
             window.location.replace('/404')
-        }
-        
+        }        
     }
 
     return <>
@@ -73,7 +98,7 @@ const Login = () => {
                     </div>
                     <div>
                         <label htmlFor="password" className="sr-only">Password</label>
-                        <input id="password" name="password" type="password" autoComplete="current-password" required onChange={e => setPassword(e.target.value)} className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password" />
+                        <input id="password" name="password" type="password" autoComplete="current-password" required onChange={e => setPassword(e.target.value)} className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password" onKeyDown={e=>handleEnter(e)} />
                     </div>
                 </div>
                 <Form {...formItemLayout}>
