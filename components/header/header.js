@@ -124,7 +124,7 @@ export const Header = () => {
                           </div>
                         </Link>
                         {userRole === '4y0h9WnLw/TjWXpwK9EZ4D7WCZaB9s/2U/sPcnup1do=' ?
-                          <Link href="/posts/admin">
+                          <Link href="/posts/admin-manage">
                             <div className='rounded header-menu-items'>
                               <a className=" text-white hover:underline hover:text-white px-3 py-2 rounded-md text-lg font-medium" href='admin'>จัดการประกาศ Admin</a>
                             </div>
