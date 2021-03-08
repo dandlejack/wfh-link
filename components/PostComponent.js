@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Divider, Button } from 'antd'
 import { PostApi } from '../api/PostApi'
 import dynamic from 'next/dynamic'
-const DynamicHiddenContent = dynamic(()=>import('./HiddenContent'),{
-    ssr:false
+const DynamicHiddenContent = dynamic(() => import('./HiddenContent'), {
+    ssr: false
 })
 const PostComponent = ({ id }) => {
     const [dataSource, setDataSource] = useState({
@@ -35,7 +35,7 @@ const PostComponent = ({ id }) => {
         <div >
             <div className=' mb-5'>
                 <div className='box'>
-                    <img alt='หาคนโพส.com' src={dataSource.title_image && dataSource.title_image} className='w-full' style={{ maxHeight: 390 }} />
+                    <img alt='หาคนโพส.com' src={'http://api.หาคนโพส.com/photos/default_header.jpg'} className='w-full' style={{ maxHeight: 390 }} />
                     <div className=' p-2 flex flex-row mt-6 '>
                         <div className='left-content'>
                             <div className='px-5'>
@@ -48,10 +48,19 @@ const PostComponent = ({ id }) => {
                                 </div>
                                 <div className='text-lg pt-3'>
                                     <div>
-                                        <span className='leading-normal'>{dataSource.province && dataSource.province.join(', ')}</span>
+                                        <span className='leading-normal'>{dataSource.company_tel ? 'เบอร์โทรศัพท์ : ' + dataSource.company_tel : ''}</span>
                                     </div>
-                                    <div>
-                                        <span className='mt-2'>ลงประกาศเมื่อ {postDate}</span>
+                                    <div className='mt-2'>
+                                        <span className='leading-normal'>{dataSource.line_id ? 'LINE ID : ' + dataSource.line_id : ''}</span>
+                                    </div>
+                                    <div className='mt-2'>
+                                        <span className='leading-normal'>{dataSource.company_email ? 'EMAIL : ' + dataSource.company_email : ''}</span>
+                                    </div>
+                                    <div className='mt-2'>
+                                        <span className='leading-normal'>{dataSource.company_facebook ? 'Facebook : ' + dataSource.company_facebook : ''}</span>
+                                    </div>
+                                    <div className='mt-2'>
+                                        <span>ลงประกาศเมื่อ {postDate}</span>
                                     </div>
                                 </div>
                             </div>
@@ -121,45 +130,18 @@ const PostComponent = ({ id }) => {
                     <div style={{ paddingTop: 1 }} className='text-base flex flex-wrap'>
                         <div className='sub-more-detail'>
                             <div>
-                                <span className='font-bold'>ระดับตำแหน่งงาน</span>
-                            </div>
-                            <div>
-                                <span>{dataSource.job_position}</span>
-                            </div>
-                        </div>
-                        <div className='sub-more-detail  pt-3'>
-                            <div>
                                 <span className='font-bold'>ระดับการศึกษา</span>
                             </div>
                             <div>
                                 <span>{dataSource.scholar_degree}</span>
                             </div>
                         </div>
-                        <div className='sub-more-detail pt-3'>
-                            <div>
-                                <span className='font-bold'>อายุงาน</span>
-                            </div>
-                            <div>
-                                <span>{dataSource.work_experience}</span>
-                            </div>
-                        </div>
-                        <div className='sub-more-detail pt-3'>
+                        <div className='sub-more-detail  pt-3'>
                             <div>
                                 <span className='font-bold'>ประเภทการจ้างงาน</span>
                             </div>
                             <div>
-                                {dataSource.work_type && dataSource.work_type.map(data => {
-                                    return <span key={data}>{data}</span>
-
-                                })}
-                            </div>
-                        </div>
-                        <div className='sub-more-detail pt-3'>
-                            <div>
-                                <span className='font-bold'>เว็บไซต์บริษัท</span>
-                            </div>
-                            <div>
-                                <span>{dataSource.job_position}</span>
+                                <span>{dataSource.work_type && dataSource.work_type.join(', ')}</span>
                             </div>
                         </div>
                         <div className='sub-more-detail pt-3'>
@@ -186,7 +168,7 @@ const PostComponent = ({ id }) => {
                         </div>
                     </div>
                 </div>
-                <DynamicHiddenContent/>
+                <DynamicHiddenContent />
             </div>
         </div>
     )

@@ -39,7 +39,7 @@ export default function JobPage({ queryData, paramsData }) {
         const stickyHeader = header.offsetTop
         const scrollHeader = window.addEventListener("scroll", () => {
             if (window.pageYOffset > stickyHeader) {
-                header.classList.add("sticky");
+                header.classList.add("stickys");
                 header.classList.add("header-sticky-height-width");
                 contentCard.classList.add("content-card-sticky")
                 if (window.screen.width <= 1023) {
@@ -47,7 +47,7 @@ export default function JobPage({ queryData, paramsData }) {
                     setHideSearchItem(true)
                 }
             } else {
-                header.classList.remove("sticky")
+                header.classList.remove("stickys")
                 header.classList.remove("header-sticky-height-width");
                 contentCard.classList.remove("content-card-sticky")
                 if (window.screen.width <= 1023) {
@@ -282,10 +282,10 @@ export default function JobPage({ queryData, paramsData }) {
                             return <div className='job-card' key={data._id + 'div'} ref={cardRef} tabIndex={-1} data-post-id={data._id} onFocus={event => handleCard(event)} >
                                 <article key={data._id + 'article'}>
                                     <div style={{ maxHeight: 200 }} className='mb-2'>
-                                        <img alt='หาคนโพส.com' className='findjob-title-image' src={data.title_image} style={{ maxHeight: 200, width: '100%' }} />
+                                        <img alt='หาคนโพส.com' className='findjob-title-image' src={'http://api.หาคนโพส.com/photos/default_header.jpg'} style={{ maxHeight: 200, width: '100%' }} />
                                     </div>
-                                    <div style={{ maxWidth: 112, maxHeight: 48 }} className='mb-2'>
-                                        <img alt='หาคนโพส.com' src={data.logo_image} />
+                                    <div style={{ maxWidth: 112, maxHeight: 60 }} className='mb-2'>
+                                        <img alt='หาคนโพส.com' src={data.logo_image} style={{ maxWidth: 112, maxHeight: 60 }}  />
                                     </div>
                                     <div className='mt-9'>
                                         <h1 className='text-base' style={{ marginBottom: 0 }}>

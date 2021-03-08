@@ -54,7 +54,7 @@
 .freepost:hover{
     background-color:#FCED83;    
 }
-.sticky {
+.stickys {
     position: fixed;
     top:0px;
 }
