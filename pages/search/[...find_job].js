@@ -125,7 +125,6 @@ export default function JobPage({ queryData, paramsData }) {
             }
             setDataSource(res.data)
         })
-        console.log(router)
     }, [queryData])
 
     const pageChange = (currentPage) => {

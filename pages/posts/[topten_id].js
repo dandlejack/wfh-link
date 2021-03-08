@@ -14,7 +14,6 @@ export default function TopTenDetailPage({ query }) {
                 return res
             })
     }, [query])
-    console.log(dataSource)
 
     return (
         <>             
