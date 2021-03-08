@@ -37,17 +37,15 @@ export default function FirstPost() {
     const getCookie = Cookie.get("token")
     const jwtDecoded = jwt_decode(getCookie);
     const parseJwtDecoded = JSON.parse(JSON.stringify(jwtDecoded));
-
-    if (Object.keys(logoImgTest).length > 0) {
-      formData.append('photos[]', logoImgTest, logoImgTest.name);
-      const imgUrl = await PostApi.uploadImages(formData).then(res => {
+    if (logoImgTest.name !== undefined) {
+      formData.append('photo', logoImgTest, logoImgTest.name);
+      const imgUrl = await PostApi.uploadImage(formData).then(res => {
         return res
       })
-      e.logo_image = imgUrl.logo
+      e.logo_image = imgUrl
     } else {
       e.logo_image = `${BACKEND_API}/photos/default_logo.png`
     }
-
     if (e.company_email === '') {
       e.company_email = '-'
     }

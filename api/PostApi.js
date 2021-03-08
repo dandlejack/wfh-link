@@ -21,6 +21,14 @@ export class PostApi {
     return result
   }
 
+  static async uploadImage(image){    
+    const result = await axios.post(this.UPLOAD_API_URL+'/upload',image)
+    .then(res=>{
+      return res.data
+    })
+    return result
+  }
+
   static async getAllPosts(params) {
     try {
       const result = await axios.get(this.POST_API_URL+'/findall', {
