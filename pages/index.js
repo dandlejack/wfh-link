@@ -206,7 +206,7 @@ const Index = ({ queryData,latestMarquee,maxMarquee }) => {
           {/* <div className='cont-left sm:w-full sm:mx-5 sm:mb-5 lg:float-left lg:w-6/12 lg:ml-40 lg:mr-5'> */}
           <div className='cont-left sm:w-full sm:mx-5 sm:mb-5 lg:float-left lg:w-full lg:mx-40 '>
             <div className='box-cont border rounded-sm'>
-              <div className='box-header p-1 pl-5' style={{ background: 'linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%)' }}>
+              <div className='box-header p-1 pl-5 text-white' style={{ background: 'linear-gradient(to bottom, rgba(29, 78, 216,1) 0%,rgba(37, 99, 235,1) 50%, rgba(29, 78, 216,1) 100%)' }}>
                 <span className='text-lg'>งานตามสายอาชีพ</span>
               </div>
               <div className='box-info p-5 flex flex-wrap text-base '>

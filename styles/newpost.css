@@ -107,10 +107,10 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    background: #fefefe;
-    background-image: url('http://api.หาคนโพส.com/photos/slide.gif');
+    background: #5e84f8;
     padding-left: 15px;
     padding-right: 15px;
+    color: #fff;
 }
 .marquee-style p {
     width: 100%;
