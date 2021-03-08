@@ -5,6 +5,7 @@
     height: 27px;
     text-indent: -9999px;
     position: absolute;
+    margin-left: 10px;
 }
 .dropdown-menu {
     visibility: hidden;

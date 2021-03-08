@@ -40,7 +40,7 @@ const Register = () => {
             <meta property="og:site_name" content="หาคนโพส.com"></meta>
         </Head>
         <div className='container mx-auto h-full'>
-            <div className='max-w-lg my-16 mx-auto'>
+            <div className='max-w-xl my-16 mx-auto'>
                 <div className='mx-5 p-6' style={{ boxShadow: '0 0 3px #666', background: "#fff" }}>
                     <div>
                         <h1 className='text-xl' style={{ textShadow: '1px 1px 1px #ccc', padding: 10 }}>สมัครสมาชิก</h1>
@@ -80,14 +80,28 @@ const Register = () => {
                         <Form.Item
                             name="firstname"
                             label='ชื่อ'
-                            rules={[{ required: true, message: 'Please input your nickname!', whitespace: true }]}
+                            rules={[{ required: true, message: 'กรุณากรอกชื่อจริง!', whitespace: true }]}
                         >
                             <Input />
                         </Form.Item>
                         <Form.Item
                             name="lastname"
                             label='นามสกุล'
-                            rules={[{ required: true, message: 'Please input your nickname!', whitespace: true }]}
+                            rules={[{ required: true, message: 'กรุณากรอกนามสกุล!', whitespace: true }]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            name="lineID"
+                            label='LINE ID'
+                            rules={[{ required: true, message: 'กรุณากรอก Line ID!', whitespace: true }]}
+                        >
+                            <Input />
+                        </Form.Item>
+                        <Form.Item
+                            name="telNumber"
+                            label='เบอร์โทรศัพท์'
+                            rules={[{ required: true, message: 'กรุณากรอกเบอร์โทรศัพท์!', whitespace: true }]}
                         >
                             <Input />
                         </Form.Item>
