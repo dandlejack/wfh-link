@@ -167,7 +167,8 @@
         display: block;
     }
     .findjob-logo-image {
-        display: none;
+        width: 57px;
+        margin-left: 10px;
     }
     .jobDetailHeader, .jobDetailContainer {
         margin-left: 0px;

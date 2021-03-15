@@ -45,8 +45,9 @@ export const IndexAdsComponent = () => {
                     <img alt=' หาคนโพส.com' className='findjob-title-image' key={d.title_image + index + index} src={'http://api.หาคนโพส.com/photos/default_header.jpg'} style={{ maxHeight: 200, width: '100%' }} />
                   </div>
                 </Link>
+                {console.log(d.logo_image)}
                 <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}>
-                  <span style={{ maxWidth: 110, width: "100%" }} className='lg:mr-3.5 findjob-logo-image'>
+                  <span style={{ maxWidth: 110 }} className='xl:w-full lg:mr-3.5 findjob-logo-image'>
                     {d.logo_image !== undefined || d.logo_image !== '' ?
                       <img alt='หาคนโพส.com' className='flex mx-auto lg:max-h-20' key={d.logo_image + index} src={d.logo_image} />
                       : <img alt='หาคนโพส.com' className='flex mx-auto lg:max-h-20' key={d.logo_image + index} src={`${BACKEND_API}/photos/default_logo.png`} />
