@@ -127,7 +127,7 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
         </div>
         <div className='flex w-full mb-5 xl:max-h-14 xl:h-14 lg:pl-5 lg:pr-5 xl:pl-0 xl:pr-0' >
           <div className='block bg-blue-600 xl:mx-40 w-full my-0 mx-auto px-5 pb-4 rounded-sm '> {/*max-w-screen-xl*/}
-            <div className='block lg:flex w-full justify-center mt-3'>
+            <div className='block lg:flex w-full justify-center mt-1'>
               <Form
                 layout="inline"
                 form={form}
@@ -171,7 +171,7 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
                     maxTagCount={2}
                   />
                 </Form.Item>
-                <div className='flex w-full justify-center sm:justify-center sm:w-full lg:w-full lg:inline-block xl:w-36'>
+                <div className='flex w-full justify-center sm:justify-center sm:w-full lg:w-full lg:inline-block xl:w-36 xl:mt-2'>
                   <button type="submit" className="w-full lg:w-full lg:h-9 group relative justify-center py-2 px-4 xl:ml-1 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400">
                     หางาน
                 </button>
