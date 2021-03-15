@@ -56,7 +56,7 @@ export const IndexAdsComponent = () => {
               <div className='pl-2.5 lg:pl-0'>
                 <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id}><span>{d.post_title}</span></Link>          
                 <div>
-                  <span><strong>{d.province && d.province.join(', ')}</strong></span><br></br>
+                  <span><strong>{d.work_type && d.work_type.join(', ')}</strong></span><br></br>
 
                   <span><strong className='text-red-500'>{d.company_name}</strong></span>
                 </div>

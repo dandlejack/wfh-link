@@ -5,7 +5,7 @@ const MarqueeComponent = (props) => {
 
     useEffect(() => {
         const getMarqueeData = async () => {
-            if (props.title === '10อันดับรายได้สูงสุดของวัน') {
+            if (props.title === '10บริษัทที่เปิดรับสมัครพนักงาน') {
                 const lastest = await fetch(BACKEND_API + '/jobspost/findCompanyRequired', {
                     method: 'GET'
                 })
@@ -23,6 +23,7 @@ const MarqueeComponent = (props) => {
                 const data = await lastest.json()
                 const getDataLength = data.length
                 if (getDataLength > 0) {
+                    const t = JSON.parse(JSON.stringify(data))
                     const editTelNumber = data.map(data=>{
                         const newTelNum = data.telNumber.slice(0,6)+hiddenString
                         return {firstname:data.firstname,telNumber:newTelNum}
@@ -53,5 +54,4 @@ const MarqueeComponent = (props) => {
         </div>
     )
 }
-//style={{ background: 'linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%)' }}
 export default MarqueeComponent

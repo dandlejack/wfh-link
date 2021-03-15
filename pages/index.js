@@ -193,7 +193,7 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
         <DynamicAds />
         <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:pl-5 lg:pr-5 xl:px-40 '>
           <MarqueeComponent data={maxTopTen} title={'ยินดีต้องรับสมาชิกใหม่'} consstyle='lg:mr-5 sm:mb-5 mx-5 lg:mx-0 lg:mb-0' />
-          <MarqueeComponent data={dailyTopTen} title={'10อันดับรายได้สูงสุดของวัน'} consstyle=' mx-5 lg:mx-0' />
+          <MarqueeComponent data={dailyTopTen} title={'10บริษัทที่เปิดรับสมัครพนักงาน'} consstyle=' mx-5 lg:mx-0' />
         </div>
         {/* <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:px-40 '>
           <MarqueeComponent data={['test', 'test2', 'test3', 'test4', 'test5', 'test6', 'test7', 'test8', 'test9', 'test10']} title={'ประกาศรายชื่อผู้ได้รับรางวัลคนโพสดีเด่นประจำวันนี้'} consstyle=' mx-5 lg:mx-0' />
@@ -224,7 +224,7 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
             </div>
           </div>
         </div>
-        <a href={'https://line.me/ti/p/%40TEST'} target='_blank'>
+        <a href={'https://line.me/ti/p/%40Richpostit'} target='_blank'>
           <div className='homepage-ads w-full h-64 mb-5 xl:max-w-screen-md lg:pl-5 lg:pr-5 xl:pl-0 xl:pr-0 '>
             <img src={ads} />
           </div>
