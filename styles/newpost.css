@@ -107,7 +107,7 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    background: #5e84f8;
+    /* background: #5e84f8; */
     padding-left: 15px;
     padding-right: 15px;
     color: #fff;
@@ -124,9 +124,25 @@
     -webkit-animation: scroll-up 6s linear infinite;
     animation: scroll-up 6s linear infinite;
 }
+.marquee-bg-left {
+    background-color: #e7b62d;
+}
+.marquee-bg-right {
+    background-color: #b03321;
+}
 .ant-carousel {
     width: 768px;
     margin-right: 24px;
+}
+.blink-text {
+    color:red;
+    font-size:18px;
+    animation: blink-color 1s linear infinite
+}
+@keyframes blink-color {
+    50% {
+        opacity: 0;
+    }
 }
 @keyframes scroll-up {
     0% {

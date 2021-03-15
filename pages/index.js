@@ -142,7 +142,7 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
               >
                 <Form.Item
                   name='province'
-                  className='w-full mb-2 py-2 rounded-sm mr-1 sm:w-full sm:mx-auto lg:w-full  xl:w-3/12 _mRs'
+                  className='w-full mb-2 py-2 rounded-sm mr-1 sm:w-full sm:mx-auto lg:w-full  xl:w-3/12 xl:ml-0 _mRs'
                 >
                   <TreeSelect
                     showArrow
@@ -158,7 +158,7 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
                 </Form.Item>
                 <Form.Item
                   name='work_select'
-                  className='w-full mb-2 py-2 rounded-sm mr-1 sm:w-full sm:mx-auto lg:w-full xl:w-3/12 treeselect-index _mRs'
+                  className='w-full mb-2 py-2 rounded-sm mr-1 sm:w-full sm:mx-auto lg:w-full xl:w-3/12  xl:ml-0 treeselect-index _mRs'
                 >
                   <TreeSelect
                     showArrow
@@ -192,8 +192,8 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
         </div>
         <DynamicAds />
         <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:pl-5 lg:pr-5 xl:px-40 '>
-          <MarqueeComponent data={maxTopTen} title={'ยินดีต้องรับสมาชิกใหม่'} consstyle='lg:mr-5 sm:mb-5 mx-5 lg:mx-0 lg:mb-0' />
-          <MarqueeComponent data={dailyTopTen} title={'10บริษัทที่เปิดรับสมัครพนักงาน'} consstyle=' mx-5 lg:mx-0' />
+          <MarqueeComponent data={maxTopTen} title={'ยินดีต้องรับสมาชิกใหม่'} consstyle='lg:mr-5 sm:mb-5 mx-5 lg:mx-0 lg:mb-0 bg-green-600' contentStyle='bg-green-400'/>
+          <MarqueeComponent data={dailyTopTen} title={'10บริษัทที่เปิดรับสมัครพนักงาน'} consstyle=' mx-5 lg:mx-0 bg-red-600'contentStyle='bg-red-400' />
         </div>
         {/* <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:px-40 '>
           <MarqueeComponent data={['test', 'test2', 'test3', 'test4', 'test5', 'test6', 'test7', 'test8', 'test9', 'test10']} title={'ประกาศรายชื่อผู้ได้รับรางวัลคนโพสดีเด่นประจำวันนี้'} consstyle=' mx-5 lg:mx-0' />
