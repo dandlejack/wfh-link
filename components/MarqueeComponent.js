@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { UserApi } from '../api/UserApi'
 import { BACKEND_API } from '../server.configs'
 const MarqueeComponent = (props) => {
     const [datas, setData] = useState([])
@@ -14,17 +13,17 @@ const MarqueeComponent = (props) => {
                 const pushKey = {
                     list_data: data
                 }
-                console.log(pushKey)
                 setData(pushKey)
             }
             if (props.title === 'ยินดีต้องรับสมาชิกใหม่') {
                 const hiddenString = 'XXXX'
-                const lastest = await UserApi.findUsersAds().then(res=>{
-                    return res
+                const lastest = await fetch(BACKEND_API + '/users/findUsersAds', {
+                    method: 'GET'
                 })
-                const getDataLength = lastest.length
+                const data = await lastest.json()
+                const getDataLength = data.length
                 if (getDataLength > 0) {
-                    const editTelNumber = lastest.map(data=>{
+                    const editTelNumber = data.map(data=>{
                         const newTelNum = data.telNumber.slice(0,6)+hiddenString
                         return {firstname:data.firstname,telNumber:newTelNum}
                     })
