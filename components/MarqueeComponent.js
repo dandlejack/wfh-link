@@ -5,7 +5,7 @@ const MarqueeComponent = (props) => {
 
     useEffect(() => {
         const getMarqueeData = async () => {
-            if (props.title === '10บริษัทที่เปิดรับสมัครพนักงาน') {
+            if (props.title === '10 บริษัทที่เปิดรับสมัครพนักงาน') {
                 const lastest = await fetch(BACKEND_API + '/jobspost/findCompanyRequired', {
                     method: 'GET'
                 })

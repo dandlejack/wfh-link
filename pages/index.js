@@ -67,7 +67,7 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
       })
     } else if (e.province !== 'ระยะเวลารับงานทั้งหมด' && e.work_select === 'ประเภทงานทั้งหมด') {
       Router.push({
-        pathname: `/search/FindJobs/job-location/${e.province}`,
+        pathname: `/search/FindJobs/work-type/${e.province}`,
       })
     } else {
       Router.push({
@@ -193,7 +193,7 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
         <DynamicAds />
         <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:pl-5 lg:pr-5 xl:px-40 '>
           <MarqueeComponent data={maxTopTen} title={'ยินดีต้องรับสมาชิกใหม่'} consstyle='lg:mr-5 mb-5 mx-5 lg:mx-0 lg:mb-0 bg-green-600' contentStyle='bg-green-400'/>
-          <MarqueeComponent data={dailyTopTen} title={'10บริษัทที่เปิดรับสมัครพนักงาน'} consstyle='mx-5 lg:mx-0 bg-red-600'contentStyle='bg-red-400' />
+          <MarqueeComponent data={dailyTopTen} title={'10 บริษัทที่เปิดรับสมัครพนักงาน'} consstyle='mx-5 lg:mx-0 bg-red-600'contentStyle='bg-red-400' />
         </div>
         {/* <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:px-40 '>
           <MarqueeComponent data={['test', 'test2', 'test3', 'test4', 'test5', 'test6', 'test7', 'test8', 'test9', 'test10']} title={'ประกาศรายชื่อผู้ได้รับรางวัลคนโพสดีเด่นประจำวันนี้'} consstyle=' mx-5 lg:mx-0' />
@@ -210,14 +210,24 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
           <div className='cont-left sm:w-full sm:mx-5 sm:mb-5 lg:float-left lg:w-full xl:mx-40 '>
             <div className='box-cont border rounded-sm'>
               <div className='box-header p-1 pl-5 text-white' style={{ background: 'linear-gradient(to bottom, rgba(29, 78, 216,1) 0%,rgba(37, 99, 235,1) 50%, rgba(29, 78, 216,1) 100%)' }}>
-                <span className='text-lg'>งานตามสายอาชีพ</span>
+                <span className='text-lg'>งานประเภทต่างๆ</span>
               </div>
               <div className='box-info p-5 flex flex-wrap text-base '>
                 {workSelectedHeaderWithoutAll.map((data, index) => {
                   if (index % 2 === 0) {
-                    return <Link href={`/search/FindJobs?place=ระยะเวลารับงานทั้งหมด&worksType=${data.value}`} key={data.value} ><div className='mr-1 mb-1 w-6/12 '><a>{data.value}</a></div></Link>
+                    if(data.value === 'งานรับเงินรายวัน' || data.value === 'งานรับเงินรายสัปดาห์' || data.value === 'งานรับเงินรายเดือน'){
+                      const sliceData = data.value.slice(10,data.value.length)                      
+                      return <Link href={`search/FindJobs/work-type/${sliceData}`} key={data.value} ><div className='mr-1 mb-1 w-6/12 '><a>{data.value}</a></div></Link>
+                    }else{
+                      return <Link href={`/search/FindJobs?place=ระยะเวลารับงานทั้งหมด&worksType=${data.value}`} key={data.value} ><div className='mr-1 mb-1 w-6/12 '><a>{data.value}</a></div></Link>
+                    }
                   } else {
-                    return <Link href={`/search/FindJobs?place=ระยะเวลารับงานทั้งหมด&worksType=${data.value}`} key={data.value} ><div className='mr-1 mb-1 w-5/12 '><a>{data.value}</a></div></Link>
+                    if(data.value === 'งานรับเงินรายวัน' || data.value === 'งานรับเงินรายสัปดาห์' || data.value === 'งานรับเงินรายเดือน'){
+                      const sliceData = data.value.slice(10,data.value.length)                      
+                      return <Link href={`search/FindJobs/work-type/${sliceData}`} key={data.value} ><div className='mr-1 mb-1 w-5/12 '><a>{data.value}</a></div></Link>
+                    }else{
+                      return <Link href={`/search/FindJobs?place=ระยะเวลารับงานทั้งหมด&worksType=${data.value}`} key={data.value} ><div className='mr-1 mb-1 w-5/12 '><a>{data.value}</a></div></Link>
+                    }
                   }
                 })}
               </div>

@@ -94,7 +94,7 @@ export default function JobPage({ queryData, paramsData }) {
                     work_select: queryData.worksType
                 }
             }
-        } else if (paramsData[1] === "job-location") {
+        } else if (paramsData[1] === "work-type") {
             if (paramsData[paramsData.length - 1] === 'ระยะเวลารับงานทั้งหมด') {
                 filterObject = {
                     all_province: paramsData[paramsData.length - 1]
@@ -153,7 +153,7 @@ export default function JobPage({ queryData, paramsData }) {
             })
         } else if (e.province !== 'ระยะเวลารับงานทั้งหมด' && e.work_select === 'ประเภทงานทั้งหมด') {
             Router.push({
-                pathname: `/search/FindJobs/job-location/${e.province}`,
+                pathname: `/search/FindJobs/work-type/${e.province}`,
             })
         } else {
             Router.push({
