@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { UserApi } from '../api/UserApi'
 import { BACKEND_API } from '../server.configs'
 const MarqueeComponent = (props) => {
     const [datas, setData] = useState([])
@@ -6,21 +7,29 @@ const MarqueeComponent = (props) => {
     useEffect(() => {
         const getMarqueeData = async () => {
             if (props.title === '10อันดับรายได้สูงสุดของวัน') {
-                const lastest = await fetch(BACKEND_API + '/topten/findlastest', {
+                const lastest = await fetch(BACKEND_API + '/jobspost/findCompanyRequired', {
                     method: 'GET'
                 })
                 const data = await lastest.json()
-                setData(data[0])
+                const pushKey = {
+                    list_data: data
+                }
+                console.log(pushKey)
+                setData(pushKey)
             }
-            if (props.title === '10อันดับรายได้สูงสุดของทั้งหมด') {
-                const lastest = await fetch(BACKEND_API + '/topten/findMaxValue', {
-                    method: 'GET'
+            if (props.title === 'ยินดีต้องรับสมาชิกใหม่') {
+                const hiddenString = 'XXXX'
+                const lastest = await UserApi.findUsersAds().then(res=>{
+                    return res
                 })
-                const data = await lastest.json()
-                const getDataLength = data.length
+                const getDataLength = lastest.length
                 if (getDataLength > 0) {
+                    const editTelNumber = lastest.map(data=>{
+                        const newTelNum = data.telNumber.slice(0,6)+hiddenString
+                        return {firstname:data.firstname,telNumber:newTelNum}
+                    })
                     const pushKey = {
-                        list_data: data
+                        list_data: editTelNumber
                     }
                     setData(pushKey)
                 }
@@ -36,8 +45,9 @@ const MarqueeComponent = (props) => {
             <div className='marquee-style'>
                 {datas.list_data !== undefined ? datas.list_data.map((data, index) => {
                     return <><p className='w-full'>
-                        <span className='text-xl'>{index + 1}.{data.lucky_name}</span>
-                        <span className='float-right text-xl '>{data.reward} ฿</span>
+                        <span className='text-xl'>{data.company_name || data.firstname}</span>
+                        {props.title === 'ยินดีต้องรับสมาชิกใหม่' ? <span className='float-right text-xl '>{data.telNumber}</span>:
+                        <span className='float-right text-xl '>{data.required_worker} ตำแหน่ง</span>}
                     </p></>
                 }) : <></>}
             </div>

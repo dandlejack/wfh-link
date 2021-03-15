@@ -4,19 +4,20 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Router from 'next/router'
 import { rangeOfJobs, workSelectedHeader, showAdsInIndex, workSelectedHeaderWithoutAll } from '../util/mockData'
-import { TreeSelect, Form, Input } from 'antd'
+import { TreeSelect, Form, Input, Carousel } from 'antd'
 import { SearchOutlined, HomeOutlined } from '@ant-design/icons';
 import { BACKEND_API } from '../server.configs'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import MarqueeComponent from '../components/MarqueeComponent'
 import { LineAdsIndex } from '../components/LineAdsIndex'
+import CarouselComponent from '../components/CarouselComponent'
 const banner = `${BACKEND_API}/photos/index_banner.jpg`
 const ads = `${BACKEND_API}/photos/advertiser_1.gif`
 const DynamicAds = dynamic(() => import('../components/IndexAdsComponent').then(mod => mod.IndexAdsComponent), {
   ssr: false
 })
-const Index = ({ queryData,latestMarquee,maxMarquee }) => {
+const Index = ({ queryData, latestMarquee, maxMarquee }) => {
   const [dailyTopTen, setDailyTopTen] = useState([])
   const [maxTopTen, setMaxTopTen] = useState([])
   const [selectValue, setSelectValue] = useState([])
@@ -26,27 +27,27 @@ const Index = ({ queryData,latestMarquee,maxMarquee }) => {
   const [form] = Form.useForm();
   const router = useRouter()
 
-  useEffect(()=>{
-    setDisplayWidth(window.screen.width)
-    document.body.style.overflowY = 'scroll'    
-  },[])
-  
   useEffect(() => {
-    if (maxMarquee !== null ) {
+    setDisplayWidth(window.screen.width)
+    document.body.style.overflowY = 'scroll'
+  }, [])
+
+  useEffect(() => {
+    if (maxMarquee !== null) {
       const getDataLength = maxMarquee.length
-      if(getDataLength >0){
+      if (getDataLength > 0) {
         const pushKey = {
-          list_data : maxMarquee
+          list_data: maxMarquee
         }
         setMaxTopTen(pushKey)
       }
     } else {
       router.push('/404')
-    }    
+    }
   }, [maxMarquee])
 
   useEffect(() => {
-    if (latestMarquee !== null ) {      
+    if (latestMarquee !== null) {
       const getDataLength = latestMarquee.length
       if (getDataLength > 0) {
         setDailyTopTen(latestMarquee[0])
@@ -118,17 +119,15 @@ const Index = ({ queryData,latestMarquee,maxMarquee }) => {
       </Head>
       <main className={styles.main}>
         <div className='flex w-full'>
-          <div className='block lg:mx-40 w-full my-0 mx-auto rounded-sm '>
+          <div className='block lg:pl-5 lg:pr-5 xl:pl-0 xl:pr-0 xl:mx-40 w-full my-0 mx-auto rounded-sm '>
             <div className='block lg:flex w-full justify-center'>
               <img src={banner} className='lg:w-full' />
             </div>
           </div>
         </div>
-        <div className='flex w-full mb-5 ' style={{ minHeight: 130 }}>
-
-          <div className='block bg-blue-600 lg:mx-40 w-full my-0 mx-auto pt-5 px-5 pb-5 rounded-sm '> {/*max-w-screen-xl*/}
-            <h1 className='text-white text-lg font-medium text-center'>ค้นหางานที่คุณต้องการ</h1>
-            <div className='block lg:flex w-full justify-center'>
+        <div className='flex w-full mb-5 xl:max-h-14 xl:h-14 lg:pl-5 lg:pr-5 xl:pl-0 xl:pr-0' >
+          <div className='block bg-blue-600 xl:mx-40 w-full my-0 mx-auto px-5 pb-4 rounded-sm '> {/*max-w-screen-xl*/}
+            <div className='block lg:flex w-full justify-center mt-3'>
               <Form
                 layout="inline"
                 form={form}
@@ -141,12 +140,6 @@ const Index = ({ queryData,latestMarquee,maxMarquee }) => {
                 className='w-full xl:justify-center'
                 scrollToFirstError
               >
-                <Form.Item
-                  name='company_name'
-                  className='w-full mb-2 py-2 rounded-sm mr-1 sm:w-full sm:mx-auto lg:w-full xl:w-3/12 _mRs'
-                >
-                  <Input placeholder='ระบุคำที่ต้องการค้นหา' prefix={<SearchOutlined />} />
-                </Form.Item>
                 <Form.Item
                   name='province'
                   className='w-full mb-2 py-2 rounded-sm mr-1 sm:w-full sm:mx-auto lg:w-full  xl:w-3/12 _mRs'
@@ -165,7 +158,7 @@ const Index = ({ queryData,latestMarquee,maxMarquee }) => {
                 </Form.Item>
                 <Form.Item
                   name='work_select'
-                  className='w-full mb-2 py-2 rounded-sm mr-1 sm:w-full sm:mx-auto lg:w-full  xl:w-3/12 treeselect-index _mRs'
+                  className='w-full mb-2 py-2 rounded-sm mr-1 sm:w-full sm:mx-auto lg:w-full xl:w-3/12 treeselect-index _mRs'
                 >
                   <TreeSelect
                     showArrow
@@ -187,9 +180,19 @@ const Index = ({ queryData,latestMarquee,maxMarquee }) => {
             </div>
           </div>
         </div>
+        <div className='flex w-full max-h-56'>
+          <div className='flex w-11/12 lg:w-full sm:w-11/12 mx-auto  pb-2.5 xl:pr-3 lg:pl-5 lg:pr-5 xl:px-40'>
+            <CarouselComponent />
+            <div >
+              <iframe className='show-video'src="https://www.youtube.com/embed/tgbNymZ7vqY">
+              </iframe>
+            </div>
+          </div>
+
+        </div>
         <DynamicAds />
-        <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:px-40 '>
-          <MarqueeComponent data={maxTopTen} title={'10อันดับรายได้สูงสุดของทั้งหมด'} consstyle='lg:mr-5 sm:mb-5 mx-5 lg:mx-0 lg:mb-0' />
+        <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:pl-5 lg:pr-5 xl:px-40 '>
+          <MarqueeComponent data={maxTopTen} title={'ยินดีต้องรับสมาชิกใหม่'} consstyle='lg:mr-5 sm:mb-5 mx-5 lg:mx-0 lg:mb-0' />
           <MarqueeComponent data={dailyTopTen} title={'10อันดับรายได้สูงสุดของวัน'} consstyle=' mx-5 lg:mx-0' />
         </div>
         {/* <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:px-40 '>
@@ -204,7 +207,7 @@ const Index = ({ queryData,latestMarquee,maxMarquee }) => {
         </div> */}
         <div className='flex sm:w-full'>
           {/* <div className='cont-left sm:w-full sm:mx-5 sm:mb-5 lg:float-left lg:w-6/12 lg:ml-40 lg:mr-5'> */}
-          <div className='cont-left sm:w-full sm:mx-5 sm:mb-5 lg:float-left lg:w-full lg:mx-40 '>
+          <div className='cont-left sm:w-full sm:mx-5 sm:mb-5 lg:float-left lg:w-full xl:mx-40 '>
             <div className='box-cont border rounded-sm'>
               <div className='box-header p-1 pl-5 text-white' style={{ background: 'linear-gradient(to bottom, rgba(29, 78, 216,1) 0%,rgba(37, 99, 235,1) 50%, rgba(29, 78, 216,1) 100%)' }}>
                 <span className='text-lg'>งานตามสายอาชีพ</span>
@@ -222,13 +225,12 @@ const Index = ({ queryData,latestMarquee,maxMarquee }) => {
           </div>
         </div>
         <a href={'https://line.me/ti/p/%40TEST'} target='_blank'>
-        
-        <div className='homepage-ads w-full h-64 mb-5 xl:max-w-screen-md '>
+          <div className='homepage-ads w-full h-64 mb-5 xl:max-w-screen-md lg:pl-5 lg:pr-5 xl:pl-0 xl:pr-0 '>
             <img src={ads} />
-        </div>
+          </div>
         </a>
 
-        {/* {displayWidth >= 1024 ? <LineAdsIndex />:<></>} */}
+        {displayWidth >= 1024 ? <LineAdsIndex />:<></>}
       </main>
       {/* <footer className={styles.footer}>
 
@@ -249,15 +251,15 @@ export async function getStaticProps(context) {
     const data2 = await foundMax.json()
     return {
       props: {
-        latestMarquee:data,
-        maxMarquee:data2
+        latestMarquee: data,
+        maxMarquee: data2
       }
     }
   } catch (error) {
     return {
       props: {
         latestMarquee: null,
-        maxMarquee:null
+        maxMarquee: null
       }
     }
   }

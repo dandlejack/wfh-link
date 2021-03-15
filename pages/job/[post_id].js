@@ -28,6 +28,7 @@ export default function JobPageID({ query }) {
                 }
                 return res
             })
+        document.body.style.overflowY = 'scroll'
     }, [query])
 
     return (
@@ -157,7 +158,7 @@ export default function JobPageID({ query }) {
                                     </div>
                                 </div>
                                 <div className='sub-more-detail pt-3'>
-                                <div>
+                                    <div>
                                         <span className='font-bold'>ประเภทงาน</span>
                                     </div>
                                     <div>

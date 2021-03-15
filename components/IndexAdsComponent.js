@@ -33,8 +33,8 @@ export const IndexAdsComponent = () => {
     test()
   }, [])
 
-  return <div className='flex w-full mb-5'>
-    <div className='w-11/12 lg:w-full sm:w-11/12 md:w-2/3 grid grid-cols-1 gap-1 lg:grid-cols-3 mx-auto lg:mx-40 shadow-sm lg:border lg:rounded-md border-gray-300 pb-2.5 lg:pr-3' >
+  return <div className='flex w-full mb-5 lg:pl-5 lg:pr-5 xl:pl-0 xl:pr-0'>
+    <div className='w-11/12 lg:w-full sm:w-11/12  grid grid-cols-1 gap-1 lg:grid-cols-3 mx-auto xl:mx-40 shadow-sm lg:border lg:rounded-md border-gray-300 pb-2.5 lg:pr-3' >
       {
         dataSource.map((d, index) => {
           if (d !== "") {
@@ -54,24 +54,9 @@ export const IndexAdsComponent = () => {
                 </span>
               </Link>
               <div className='pl-2.5 lg:pl-0'>
-                <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id}><span>{d.post_title}</span></Link>
-                {/* <div style={{ marginBottom: 5 }}>
-                  <ul key='ads-list'>
-                    {d.jobshighlights.map((highlightData, index2) => {
-                      return (
-                        <li id={d._id + index2} key={d._id + index2}>
-                          <div className='flex'>
-                            <div style={{ height: 20, marginTop: 9, marginRight: 10 }}>
-                              <div style={{ backgroundColor: '#1c1c1c', width: 4, height: 4, borderRadius: '50%' }}></div>
-                            </div>
-                            <div>{highlightData.highlight}</div>
-                          </div>
-                        </li>)
-                    })}
-                  </ul>
-                </div> */}
+                <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id}><span>{d.post_title}</span></Link>          
                 <div>
-                  <span><strong>{d.work_type && d.work_type.join(', ')}</strong></span><br></br>
+                  <span><strong>{d.province && d.province.join(', ')}</strong></span><br></br>
 
                   <span><strong className='text-red-500'>{d.company_name}</strong></span>
                 </div>

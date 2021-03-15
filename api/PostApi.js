@@ -51,6 +51,13 @@ export class PostApi {
     return result.data;
   }
 
+  static async getCompanyRequired(params) {    
+    const result = await axios.get(this.POST_API_URL + `/findCompanyRequired/`,{
+      params
+    });
+    return result.data;
+  }
+
   static async getPostByPostID(postId) {
     const result = await axios.get(this.POST_API_URL + `/post/` + postId);
     return result.data;

@@ -223,13 +223,6 @@ export default function JobPage({ queryData, paramsData }) {
                             scrollToFirstError
                         >
                             <Form.Item
-                                name='company_name'
-                                className='w-full mb-2 py-2 lg:w-3/12 rounded-sm mr-1 _mRs'
-                                rules={[{ required: false }]}
-                            >
-                                <Input placeholder='ระบุคำที่ต้องการค้นหา' prefix={<SearchOutlined />} />
-                            </Form.Item>
-                            <Form.Item
                                 name='province'
                                 className='w-full mb-2 py-2 lg:w-3/12 rounded-sm mr-1 _mRs'
                                 rules={[{ required: false }]}

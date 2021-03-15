@@ -124,7 +124,9 @@
     -webkit-animation: scroll-up 6s linear infinite;
     animation: scroll-up 6s linear infinite;
 }
-.marquee-bg {
+.ant-carousel {
+    width: 768px;
+    margin-right: 24px;
 }
 @keyframes scroll-up {
     0% {
@@ -171,6 +173,15 @@
     .treeselect-index > div{
         height: 32px;
     }
+    .carousel-set{
+        /* width: 100%; */
+    }
+    .ant-carousel {
+        width: 100%;
+    }
+    .show-video {
+        display: none;
+    }
 }
 @media (min-width:480px ) and (max-width:1023px ) {
     .flexSet {
@@ -204,7 +215,18 @@
     .job-card {
         width: 450px;
     }
-    
+    .show-video {
+        display: block;        
+        width:365px;
+        height:210px;
+    }
+    .carousel-set {
+        width: 610px;
+    }
+    .ant-carousel {
+        width: 610px;
+        margin-right: 10px !important;
+    }
 }
 @media (min-width:1280px) {
     .content-card-sticky{
@@ -213,10 +235,31 @@
     .jobDetailHeader, .jobDetailContainer {
         margin: 0px 200px;
     }    
+    .show-video {
+        width:350px;
+        height:210px;
+    }
+    .carousel-set {
+        width: 600px;
+    }
+    .ant-carousel {
+        width: 600px;
+        margin-right: 10px;
+    }
 }
 @media (min-width: 1536px) {
     .content-card-class {
         width: 1070px;
     }
-    
+    .show-video {
+        width:410px;
+        height:210px;
+    }
+    .carousel-set {
+        width: 796px;
+    }
+    .ant-carousel {
+        width: 796px;
+        margin-right: 20px;
+    }    
 }

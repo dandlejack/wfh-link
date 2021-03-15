@@ -26,8 +26,13 @@ export class UserApi {
         return response.data;
       });
       return result;
-    
-    
+  }
+
+  static async findUsersAds() {
+    const result = await axios.get(`${this.USER_API_URL}/findUsersAds`).then(res=>{
+      return res.data
+    })    
+    return result
   }
 
 //   static async getUsers(params: any = {}) {

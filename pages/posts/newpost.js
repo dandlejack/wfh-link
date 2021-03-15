@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { message, Form, Input, Button, TreeSelect, Select, notification } from 'antd'
+import { message, Form, Input, Button, TreeSelect, Select, notification, InputNumber } from 'antd'
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { jobPositionData, scholarData, workExperience, workSelectedHeaderWithoutAll, rangeOfJobsWithoutAll } from '../../util/mockData'
 import { PostApi } from '../../api/PostApi'
@@ -198,30 +198,6 @@ export default function FirstPost() {
                       })}
                     </Select>
                   </Form.Item>
-                  {/* <Form.Item
-                    name="job_position"
-                    label="ระดับตำแหน่ง"
-                  >
-                    <Select >
-                      {jobPositionData.map(data => {
-                        return (<Select.Option value={data} key={data}>
-                          {data}
-                        </Select.Option>)
-                      })}
-                    </Select>
-                  </Form.Item> */}
-                  {/* <Form.Item
-                    name="work_experience"
-                    label="อายุงาน"
-                  >
-                    <Select>
-                      {workExperience.map(data => {
-                        return (<Select.Option value={data} key={data}>
-                          {data}
-                        </Select.Option>)
-                      })}
-                    </Select>
-                  </Form.Item> */}
                   <Form.Item
                     name="work_select"
                     label="ประเภทงาน"
@@ -394,20 +370,12 @@ export default function FirstPost() {
                       );
                     }}
                   </Form.List>
-                  {/*<Form.Item
-                    name="title_image"
-                    label="ภาพหัวข้อ"
-                    rules={[{ required: true, message: 'กรุณาเลือกรูปภาพ' }]}
+                  <Form.Item
+                    name="required_worker"
+                    label="จำนวนคนงานที่ต้องการ"
                   >
-                     <Upload
-                      maxCount={1}
-                      beforeUpload={e => beforeUpload(e)}
-                      onChange={e => handleChange(e)}
-                    >
-                      <Button >Upload (Max: 1)</Button>
-                    </Upload> 
-                    <input type='file' onChange={e => handleChange(e)} />
-                  </Form.Item>*/}
+                    <InputNumber />
+                  </Form.Item>
                   <Form.Item
                     name="company_email"
                     label="Email ที่ใช้ในการติดต่อ"
