@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { PostApi } from '../../api/PostApi'
-import { Button, Divider } from 'antd'
+import { Divider } from 'antd'
 import Head from 'next/head'
-import HiddenContent from '../../components/HiddenContent'
 import { BACKEND_API } from '../../server.configs'
 const defaultBannerImage = `${BACKEND_API}/photos/default_header.jpg`
 export default function JobPageID({ query }) {
@@ -48,7 +47,7 @@ export default function JobPageID({ query }) {
                 <div className='mx-auto'>
                     <div className='jobDetailHeader mb-5'>
                         <div className='box'>
-                            <img alt=' หาคนโพส.com' src={defaultBannerImage} className='w-full' style={{ maxHeight: 390 }} />
+                            <img alt=' หาคนโพส.com' src={defaultBannerImage} className='w-full max-h-sm' />
                             <div className='jobDetailHeaderContent p-2 flex flex-row mt-6 '>
                                 <div className='left-content'>
                                     <div className='px-5'>
@@ -181,7 +180,6 @@ export default function JobPageID({ query }) {
                                 </div>
                             </div>
                         </div>
-                        <HiddenContent />
                     </div>
                 </div>
             </div>

@@ -164,7 +164,7 @@
         width: 100%;
     }
     .findjob-title-image {
-        display: block;
+        display: none;
     }
     .findjob-logo-image {
         width: 57px;

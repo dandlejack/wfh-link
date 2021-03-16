@@ -4,16 +4,7 @@ import { Skeleton } from 'antd'
 import { BACKEND_API } from '../server.configs'
 export const IndexAdsComponent = () => {
   const [dataSource, setDataSource] = useState([])
-
-  // const [userRole, setUserRole] = useState('')
-  // useEffect(() => {
-  //   const getCookieData = Cookie.get('token')
-  //   if (getCookieData !== undefined) {
-  //     const jwtData = jwt_decode(getCookieData)
-  //     setUserRole(jwtData.role)
-  //   }
-  // }, [])
-
+  
   useEffect(() => {
     const test = async () => {
       const res = await fetch(BACKEND_API + '/jobspost/findAds', {
@@ -34,7 +25,7 @@ export const IndexAdsComponent = () => {
   }, [])
 
   return <div className='flex w-full mb-5 lg:pl-5 lg:pr-5 xl:pl-0 xl:pr-0'>
-    <div className='w-11/12 lg:w-full sm:w-11/12  grid grid-cols-1 gap-1 lg:grid-cols-3 mx-auto xl:mx-40 shadow-sm lg:border lg:rounded-md border-gray-300 pb-2.5 lg:pr-3' >
+    <div className='w-11/12 lg:w-full sm:w-11/12  grid grid-cols-1 gap-1 lg:grid-cols-3 mx-auto xl:mx-40 shadow-sm lg:border lg:rounded-md lg:border-gray-300 pb-2.5 lg:pr-3' >
       {
         dataSource.map((d, index) => {
           if (d !== "") {
@@ -45,7 +36,6 @@ export const IndexAdsComponent = () => {
                     <img alt=' หาคนโพส.com' className='findjob-title-image' key={d.title_image + index + index} src={'http://api.หาคนโพส.com/photos/default_header.jpg'} style={{ maxHeight: 200, width: '100%' }} />
                   </div>
                 </Link>
-                {console.log(d.logo_image)}
                 <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}>
                   <span style={{ maxWidth: 110 }} className='xl:w-full lg:mr-3.5 findjob-logo-image'>
                     {d.logo_image !== undefined || d.logo_image !== '' ?

@@ -5,20 +5,15 @@ const contentStyle = {
     lineHeight: '210px',
     textAlign: 'center',
     background: '#364d79',    
+    width:'100%'
 };
 const CarouselComponent = props => {
     return <Carousel className='carousel-set' autoplay>
         <div>
-            <h3 style={contentStyle}>1</h3>
+         <img style={contentStyle} src='https://www.jobtopgun.com/images/banner-large.png'/>
         </div>
         <div>
-            <h3 style={contentStyle}>2</h3>
-        </div>
-        <div>
-            <h3 style={contentStyle}>3</h3>
-        </div>
-        <div>
-            <h3 style={contentStyle}>4</h3>
+            <h3><img style={contentStyle} src='https://www.jobtopgun.com/images/standalonemv-large.png'/></h3>
         </div>
     </Carousel>
 }

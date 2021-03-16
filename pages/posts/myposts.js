@@ -6,7 +6,6 @@ import { mypostsTable } from '../../util/mockData'
 import { PostApi } from '../../api/PostApi'
 import Head from 'next/head'
 
-// const DynamicDashboardMenu = dynamic(()=>import('../../components/DashboardMenu'))
 export default function myposts({result}) {
     const [borderTable, setBorderTable] = useState(
         {

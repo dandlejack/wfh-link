@@ -3,15 +3,14 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Router from 'next/router'
-import { rangeOfJobs, workSelectedHeader, showAdsInIndex, workSelectedHeaderWithoutAll } from '../util/mockData'
-import { TreeSelect, Form, Input, Carousel } from 'antd'
-import { SearchOutlined, HomeOutlined } from '@ant-design/icons';
+import { rangeOfJobs, workSelectedHeader, workSelectedHeaderWithoutAll } from '../util/mockData'
+import { TreeSelect, Form} from 'antd'
+import { HomeOutlined } from '@ant-design/icons';
 import { BACKEND_API } from '../server.configs'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
-import MarqueeComponent from '../components/MarqueeComponent'
 import { LineAdsIndex } from '../components/LineAdsIndex'
-import CarouselComponent from '../components/CarouselComponent'
+import Image from 'next/image'
 const banner = `${BACKEND_API}/photos/index_banner.jpg`
 const ads = `${BACKEND_API}/photos/advertiser_1.gif`
 const DynamicAds = dynamic(() => import('../components/IndexAdsComponent').then(mod => mod.IndexAdsComponent), {
@@ -26,7 +25,8 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
   const { SHOW_PARENT } = TreeSelect
   const [form] = Form.useForm();
   const router = useRouter()
-
+  const DynamicMarquee = dynamic(()=>import('../components/MarqueeComponent'))
+  const DynamicCarousel = dynamic(()=>import('../components/CarouselComponent'))
   useEffect(() => {
     setDisplayWidth(window.screen.width)
     document.body.style.overflowY = 'scroll'
@@ -182,18 +182,17 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
         </div>
         <div className='flex w-full max-h-56'>
           <div className='flex w-11/12 lg:w-full sm:w-11/12 mx-auto  pb-2.5 xl:pr-3 lg:pl-5 lg:pr-5 xl:px-40'>
-            <CarouselComponent />
+            <DynamicCarousel />
             <div >
-              <iframe className='show-video'src="https://www.youtube.com/embed/tgbNymZ7vqY">
+              <iframe className='show-video'src="https://www.youtube.com/embed/-cw4X_eH9q4">
               </iframe>
             </div>
           </div>
-
         </div>
         <DynamicAds />
         <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:pl-5 lg:pr-5 xl:px-40 '>
-          <MarqueeComponent data={maxTopTen} title={'ยินดีต้องรับสมาชิกใหม่'} consstyle='lg:mr-5 mb-5 mx-5 lg:mx-0 lg:mb-0 bg-green-600' contentStyle='bg-green-400'/>
-          <MarqueeComponent data={dailyTopTen} title={'10 บริษัทที่เปิดรับสมัครพนักงาน'} consstyle='mx-5 lg:mx-0 bg-red-600'contentStyle='bg-red-400' />
+          <DynamicMarquee data={maxTopTen} title={'ยินดีต้องรับสมาชิกใหม่'} consstyle='lg:mr-5 mb-5 mx-5 lg:mx-0 lg:mb-0 bg-green-600' contentStyle='bg-green-400'/>
+          <DynamicMarquee data={dailyTopTen} title={'10 บริษัทที่เปิดรับสมัครพนักงาน'} consstyle='mx-5 lg:mx-0 bg-red-600'contentStyle='bg-red-400' />
         </div>
         {/* <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:px-40 '>
           <MarqueeComponent data={['test', 'test2', 'test3', 'test4', 'test5', 'test6', 'test7', 'test8', 'test9', 'test10']} title={'ประกาศรายชื่อผู้ได้รับรางวัลคนโพสดีเด่นประจำวันนี้'} consstyle=' mx-5 lg:mx-0' />
@@ -239,12 +238,8 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
             <img src={ads} />
           </div>
         </a>
-
         {displayWidth >= 1024 ? <LineAdsIndex />:<></>}
       </main>
-      {/* <footer className={styles.footer}>
-
-      </footer> */}
     </div>
   )
 }

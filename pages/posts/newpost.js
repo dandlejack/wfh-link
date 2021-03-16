@@ -374,7 +374,7 @@ export default function FirstPost() {
                     name="required_worker"
                     label="จำนวนคนงานที่ต้องการ"
                   >
-                    <InputNumber />
+                    <InputNumber style={{width:'100%'}} />
                   </Form.Item>
                   <Form.Item
                     name="company_email"

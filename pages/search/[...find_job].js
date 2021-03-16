@@ -1,25 +1,20 @@
 import { useState, useEffect, useRef } from 'react'
 import { PostApi } from '../../api/PostApi'
-import { Card, Form, Input, TreeSelect, Result, Pagination } from 'antd'
+import { Card, Form, TreeSelect, Result, Pagination } from 'antd'
 import { rangeOfJobs, workSelectedHeader } from '../../util/mockData'
-import { SearchOutlined, HomeOutlined, BookOutlined } from '@ant-design/icons';
+import { HomeOutlined, BookOutlined } from '@ant-design/icons';
 import Router from 'next/router'
 import Link from 'next/link'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 
 const DynamicPostComponent = dynamic(()=>import('../../components/PostComponent'),{
     ssr:false
 })
 
-const DynamicHiddenContent = dynamic(()=>import('../../components/HiddenContent'),{
-    ssr:false
-})
 export default function JobPage({ queryData, paramsData }) {
     const [hideSearchItem, setHideSearchItem] = useState(false)
     const [filterObjectState, setFilterObjectState] = useState({})
-    const router = useRouter()
     const [pageData, setPageData] = useState({
         pageNumber: 1,
         totalDocument: 1,
@@ -306,7 +301,6 @@ export default function JobPage({ queryData, paramsData }) {
                                                 </li>)
                                         })}
                                     </ul>
-                                    <DynamicHiddenContent />
                                 </article>
                             </div>
                         })}

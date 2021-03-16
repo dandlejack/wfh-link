@@ -145,27 +145,6 @@ export const Header = () => {
           }
         </div>
       </div>
-    </nav>
-    {/* <nav className='bg-green-700'>
-      <div className="inline-block w-full">
-        <div className="hidden sm:block container sm my-0 mx-auto">
-          <Link href='/'><a  className="float-left text-white hover:bg-green-600 hover:text-white px-3 py-2 mt-1 rounded-md text-lg font-medium">หน้าแรก</a></Link>
-          <Link href='/posts/newpost'><a className="float-right text-white hover:bg-green-600 hover:text-white px-3 py-2 mt-1 rounded-md text-lg font-medium">ลงประกาศฟรี</a></Link>
-        
-          </div>
-      </div>
-    </nav> */}
-    {/*backup*/}
-    {/* <nav className='bg-green-700'>
-      <div className="inline-block w-full">
-        <div className="hidden sm:block container sm my-0 mx-auto">
-          <Link href='/'><a  className="float-left text-white hover:bg-green-600 hover:text-white px-3 py-2 mt-1 rounded-md text-lg font-medium">หน้าแรก</a></Link>
-         <Link href='/'><a className="float-left text-white px-3 py-2 rounded-md text-lg font-medium">ค้นหา</a></Link>
-          <Link href='/'><a className="float-left text-white px-3 py-2 rounded-md text-lg font-medium">ลงโฆษณา</a></Link>
-          <Link href='/'><a className="float-left text-white px-3 py-2 rounded-md text-lg font-medium">ติดต่อเว็บไซต์</a></Link> 
-          <Link href='/posts/newpost'><a className="float-right text-white hover:bg-green-600 hover:text-white px-3 py-2 mt-1 rounded-md text-lg font-medium">ลงประกาศฟรี</a></Link>
-          </div>
-      </div>
-    </nav>*/}
+    </nav>   
   </>
 }

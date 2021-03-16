@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { Table, Input, Button, Popconfirm, Form, InputNumber } from 'antd';
+import {  Input, Form, InputNumber } from 'antd';
 const EditableContext = React.createContext(null);
 
 export const EditableRow = ({ index, ...props }) => {

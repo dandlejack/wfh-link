@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Divider, Button } from 'antd'
+import { Divider } from 'antd'
 import { PostApi } from '../api/PostApi'
-import dynamic from 'next/dynamic'
-const DynamicHiddenContent = dynamic(() => import('./HiddenContent'), {
-    ssr: false
-})
 const PostComponent = ({ id }) => {
     const [dataSource, setDataSource] = useState({
         post_title: '',
@@ -168,7 +164,6 @@ const PostComponent = ({ id }) => {
                         </div>
                     </div>
                 </div>
-                <DynamicHiddenContent />
             </div>
         </div>
     )
