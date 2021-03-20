@@ -180,11 +180,11 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
             </div>
           </div>
         </div>
-        <div className='flex w-full max-h-56'>
+        <div className='flex w-full max-h-72'>
           <div className='flex w-11/12 lg:w-full sm:w-11/12 mx-auto  pb-2.5 xl:pr-3 lg:pl-5 lg:pr-5 xl:px-40'>
             <DynamicCarousel />
             <div >
-              <iframe className='show-video'src="https://www.youtube.com/embed/-cw4X_eH9q4">
+              <iframe className='show-video'src='https://www.youtube.com/embed/OrICmAjKOvs'>
               </iframe>
             </div>
           </div>
