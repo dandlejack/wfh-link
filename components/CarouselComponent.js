@@ -4,16 +4,16 @@ const contentStyle = {
     color: '#fff',
     lineHeight: '210px',
     textAlign: 'center',
-    background: '#364d79',    
-    width:'100%'
+    background: '#364d79',
+    width: '100%'
 };
 const CarouselComponent = props => {
     return <Carousel className='carousel-set' autoplay>
         <div>
-         <img style={contentStyle} src='https://www.jobtopgun.com/images/banner-large.png'/>
+            <img style={contentStyle} src='http://api.หาคนโพส.com/photos/slide_1.jpg' />
         </div>
         <div>
-            <h3><img style={contentStyle} src='https://www.jobtopgun.com/images/standalonemv-large.png'/></h3>
+            <h3><img style={contentStyle} src='http://api.หาคนโพส.com/photos/slide_2.jpg' /></h3>
         </div>
     </Carousel>
 }
