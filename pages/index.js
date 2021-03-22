@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Router from 'next/router'
 import { rangeOfJobs, workSelectedHeader, workSelectedHeaderWithoutAll } from '../util/mockData'
-import { TreeSelect, Form} from 'antd'
+import { TreeSelect, Form } from 'antd'
 import { HomeOutlined } from '@ant-design/icons';
 import { BACKEND_API } from '../server.configs'
 import { useRouter } from 'next/router'
@@ -24,8 +24,8 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
   const { SHOW_PARENT } = TreeSelect
   const [form] = Form.useForm();
   const router = useRouter()
-  const DynamicMarquee = dynamic(()=>import('../components/MarqueeComponent'))
-  const DynamicCarousel = dynamic(()=>import('../components/CarouselComponent'))
+  const DynamicMarquee = dynamic(() => import('../components/MarqueeComponent'))
+  const DynamicCarousel = dynamic(() => import('../components/CarouselComponent'))
   useEffect(() => {
     setDisplayWidth(window.screen.width)
     document.body.style.overflowY = 'scroll'
@@ -120,7 +120,7 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
         <div className='flex w-full'>
           <div className='block lg:pl-5 lg:pr-5 xl:pl-0 xl:pr-0 xl:mx-40 w-full my-0 mx-auto rounded-sm '>
             <div className='block lg:flex w-full justify-center'>
-              <img src={banner} className='lg:w-full' />
+              <a href="http://line.me/ti/p/%40richpostit"><img src={banner} className='lg:w-full' /></a>
             </div>
           </div>
         </div>
@@ -183,16 +183,20 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
           <div className='flex w-11/12 lg:w-full sm:w-11/12 mx-auto  pb-2.5 xl:pr-3 lg:pl-5 lg:pr-5 xl:px-40'>
             <DynamicCarousel />
             <div >
-              <iframe className='show-video'src='https://www.youtube.com/embed/OrICmAjKOvs'>
-              </iframe>
+              <iframe className='show-video' src='https://www.youtube.com/embed/OrICmAjKOvs?autoplay=1&rel=0'
+                frameBorder='0'
+                allow='autoplay; encrypted-media'
+                allowFullScreen
+                title='video' ></iframe>
             </div>
           </div>
         </div>
-        <DynamicAds />
+        <DynamicAds adsType='sponser' />
         <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:pl-5 lg:pr-5 xl:px-40 '>
-          <DynamicMarquee data={maxTopTen} title={'ยินดีต้องรับสมาชิกใหม่'} consstyle='lg:mr-5 mb-5 mx-5 lg:mx-0 lg:mb-0 bg-green-600' contentStyle='bg-green-400'/>
-          <DynamicMarquee data={dailyTopTen} title={'10 บริษัทที่เปิดรับสมัครพนักงาน'} consstyle='mx-5 lg:mx-0 bg-red-600'contentStyle='bg-red-400' />
+          <DynamicMarquee data={maxTopTen} title={'ยินดีต้องรับสมาชิกใหม่'} consstyle='lg:mr-5 mb-5 mx-5 lg:mx-0 lg:mb-0 bg-green-600' contentStyle='bg-green-400' />
+          <DynamicMarquee data={dailyTopTen} title={'10 บริษัทที่เปิดรับสมัครพนักงาน'} consstyle='mx-5 lg:mx-0 bg-red-600' contentStyle='bg-red-400' />
         </div>
+        <DynamicAds adsType='normal' />
         {/* <div className='flex w-full flex-wrap flex-col lg:flex-row mb-5 lg:px-40 '>
           <MarqueeComponent data={['test', 'test2', 'test3', 'test4', 'test5', 'test6', 'test7', 'test8', 'test9', 'test10']} title={'ประกาศรายชื่อผู้ได้รับรางวัลคนโพสดีเด่นประจำวันนี้'} consstyle=' mx-5 lg:mx-0' />
         </div> */}
@@ -213,17 +217,17 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
               <div className='box-info p-5 flex flex-wrap text-base '>
                 {workSelectedHeaderWithoutAll.map((data, index) => {
                   if (index % 2 === 0) {
-                    if(data.value === 'งานรับเงินรายวัน' || data.value === 'งานรับเงินรายสัปดาห์' || data.value === 'งานรับเงินรายเดือน'){
-                      const sliceData = data.value.slice(10,data.value.length)                      
+                    if (data.value === 'งานรับเงินรายวัน' || data.value === 'งานรับเงินรายสัปดาห์' || data.value === 'งานรับเงินรายเดือน') {
+                      const sliceData = data.value.slice(10, data.value.length)
                       return <Link href={`search/FindJobs/work-type/${sliceData}`} key={data.value} ><div className='mr-1 mb-1 w-6/12 '><a>{data.value}</a></div></Link>
-                    }else{
+                    } else {
                       return <Link href={`/search/FindJobs?place=ระยะเวลารับงานทั้งหมด&worksType=${data.value}`} key={data.value} ><div className='mr-1 mb-1 w-6/12 '><a>{data.value}</a></div></Link>
                     }
                   } else {
-                    if(data.value === 'งานรับเงินรายวัน' || data.value === 'งานรับเงินรายสัปดาห์' || data.value === 'งานรับเงินรายเดือน'){
-                      const sliceData = data.value.slice(10,data.value.length)                      
+                    if (data.value === 'งานรับเงินรายวัน' || data.value === 'งานรับเงินรายสัปดาห์' || data.value === 'งานรับเงินรายเดือน') {
+                      const sliceData = data.value.slice(10, data.value.length)
                       return <Link href={`search/FindJobs/work-type/${sliceData}`} key={data.value} ><div className='mr-1 mb-1 w-5/12 '><a>{data.value}</a></div></Link>
-                    }else{
+                    } else {
                       return <Link href={`/search/FindJobs?place=ระยะเวลารับงานทั้งหมด&worksType=${data.value}`} key={data.value} ><div className='mr-1 mb-1 w-5/12 '><a>{data.value}</a></div></Link>
                     }
                   }
@@ -237,7 +241,7 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
             <img src={ads} />
           </div>
         </a>
-        {displayWidth >= 1024 ? <LineAdsIndex />:<></>}
+        {displayWidth >= 1024 ? <LineAdsIndex /> : <></>}
       </main>
     </div>
   )

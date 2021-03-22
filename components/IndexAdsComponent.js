@@ -2,24 +2,34 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { Skeleton } from 'antd'
 import { BACKEND_API } from '../server.configs'
-export const IndexAdsComponent = () => {
+export const IndexAdsComponent = ({adsType}) => {
   const [dataSource, setDataSource] = useState([])
   
   useEffect(() => {
     const test = async () => {
-      const res = await fetch(BACKEND_API + '/jobspost/findAds', {
-        method: 'GET'
-      })
-      if (res.status !== 500) {
-        const data = await res.json()
-        const getDataLength = data.data.length
-        const cloneData = JSON.parse(JSON.stringify(data.data))
-        for (let i = getDataLength; i < 9; i++) {
-          cloneData.push('')
-        }
-        setDataSource(cloneData)
-      }
+      console.log(adsType)
 
+      if(adsType==='sponser'){
+        const res = await fetch(BACKEND_API + '/jobspost/findSponserAds', {
+          method: 'GET'
+        })
+        if (res.status !== 500) {
+          const data = await res.json()
+          const getDataLength = data.data.length
+          const cloneData = JSON.parse(JSON.stringify(data.data))          
+          setDataSource(cloneData)
+        }
+      }else{
+        const res = await fetch(BACKEND_API + '/jobspost/findAds', {
+          method: 'GET'
+        })
+        if (res.status !== 500) {
+          const data = await res.json()
+          const getDataLength = data.data.length
+          const cloneData = JSON.parse(JSON.stringify(data.data))          
+          setDataSource(data.data)
+        }
+      }      
     }
     test()
   }, [])
@@ -51,7 +61,7 @@ export const IndexAdsComponent = () => {
                     <span>
                       <strong>{d.work_type && d.work_type.join(', ')}</strong>
                     </span>
-                    {index === 0 || index === 1 || index === 2 ? <span className='blink-text'> ด่วนมาก !!!</span> : ''}
+                    {adsType === 'sponser' ? <span className='blink-text'> ด่วนมาก !!!</span> : ''}
                     <br></br>
                     <span><strong className='text-red-500'>{d.company_name}</strong></span>
                   </div>
