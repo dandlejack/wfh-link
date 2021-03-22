@@ -269,7 +269,7 @@ export default function JobPage({ queryData, paramsData }) {
                             return <div className='job-card' key={data._id + 'div'} ref={cardRef} tabIndex={-1} data-post-id={data._id} onFocus={event => handleCard(event)} >
                                 <article key={data._id + 'article'}>
                                     <div style={{ maxHeight: 200 }} className='mb-2'>
-                                        <img alt='หาคนโพส.com' className='findjob-title-image' src={'http://api.หาคนโพส.com/photos/default_header.jpg'} style={{ maxHeight: 200, width: '100%' }} />
+                                        <img alt='หาคนโพส.com' className='findjob-title-image' src={'https://api.หาคนโพส.com/photos/default_header.jpg'} style={{ maxHeight: 200, width: '100%' }} />
                                     </div>
                                     <div style={{ maxWidth: 112, maxHeight: 60 }} className='mb-2'>
                                         <img alt='หาคนโพส.com' src={data.logo_image} style={{ maxWidth: 112, maxHeight: 60 }}  />

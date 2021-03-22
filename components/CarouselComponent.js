@@ -10,10 +10,10 @@ const contentStyle = {
 const CarouselComponent = props => {
     return <Carousel className='carousel-set' autoplay>
         <div>
-            <img style={contentStyle} src='http://api.หาคนโพส.com/photos/slide_1.jpg' />
+            <img style={contentStyle} src='https://api.หาคนโพส.com/photos/slide_3.jpg' />
         </div>
         <div>
-            <h3><img style={contentStyle} src='http://api.หาคนโพส.com/photos/slide_2.jpg' /></h3>
+            <h3><img style={contentStyle} src='https://api.หาคนโพส.com/photos/slide_2.jpg' /></h3>
         </div>
     </Carousel>
 }

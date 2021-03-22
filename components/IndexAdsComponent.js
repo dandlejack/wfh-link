@@ -33,7 +33,7 @@ export const IndexAdsComponent = () => {
               <div key={d._id + index} className='cursor-pointer lg:flex lg:flex-nowrap border rounded-md lg:border-0 sm:p-5 lg:pt-3.5 lg:pl-3.5 sm:mb-3.5 lg:mb-0 '>
                 <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}>
                   <div style={{ maxHeight: 200 }} key={d.title_image + index} className='mb-2'>
-                    <img alt=' หาคนโพส.com' className='findjob-title-image' key={d.title_image + index + index} src={'http://api.หาคนโพส.com/photos/default_header.jpg'} style={{ maxHeight: 200, width: '100%' }} />
+                    <img alt=' หาคนโพส.com' className='findjob-title-image' key={d.title_image + index + index} src={'https://api.หาคนโพส.com/photos/default_header.jpg'} style={{ maxHeight: 200, width: '100%' }} />
                   </div>
                 </Link>
                 <Link href={'/job/[post_id]'} as={`/job/${d.post_id}`} key={d.post_id + 'img'}>

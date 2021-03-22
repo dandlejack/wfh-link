@@ -31,7 +31,7 @@ const PostComponent = ({ id }) => {
         <div >
             <div className=' mb-5'>
                 <div className='box'>
-                    <img alt='หาคนโพส.com' src={'http://api.หาคนโพส.com/photos/default_header.jpg'} className='w-full' style={{ maxHeight: 390 }} />
+                    <img alt='หาคนโพส.com' src={'https://api.หาคนโพส.com/photos/default_header.jpg'} className='w-full' style={{ maxHeight: 390 }} />
                     <div className=' p-2 flex flex-row mt-6 '>
                         <div className='left-content'>
                             <div className='px-5'>
