@@ -120,7 +120,7 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
         <div className='flex w-full'>
           <div className='block lg:pl-5 lg:pr-5 xl:pl-0 xl:pr-0 xl:mx-40 w-full my-0 mx-auto rounded-sm '>
             <div className='block lg:flex w-full justify-center'>
-              <a href="http://line.me/ti/p/%40richpostit"><img src={banner} className='lg:w-full' /></a>
+              <a href="http://line.me/ti/p/%40richpostit" className='w-full'><img src={banner} className='lg:w-full' /></a>
             </div>
           </div>
         </div>
