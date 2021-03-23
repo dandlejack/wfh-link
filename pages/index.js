@@ -109,10 +109,10 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
         <title>หาคนโพส.com</title>
         <meta name="keywords" content="หาคนโพส หาคนโพส.com โพสงาน"></meta>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content="หาคนโพส หาคนโพส.com โพสงาน "></meta>
-        <meta property="og:url" content="https://หาคนโพส.com/"></meta>
-        <meta property="og:title" content="หาคนโพส หาคนโพส.com โพสงาน"></meta>
-        <meta property="og:description" content="หาคนโพส หาคนโพส.com โพสงาน "></meta>
+        <meta name="description" content="หาคนโพส.com เป็นบริษัท Agency ในการช่วยหางาน โดยเน้นไปที่งานทำนอกเวลา หาโพส.com มีจุดมุ่งหมายในการสร้างช่องทางประชาสัมพันธ์ระหว่างบริษัทที่ต้องการคนทำงานนอกเวลากับประชาชน เพื่อกระจายรายได้และสร้างงานเสริมให้กับประชาชนทั่วไป เพิ่มโอกาสให้ประชาชนสามารถทำงานที่ไหนก็ได้ ลดการกระจุกตัวของการสร้างรายได้ที่กระจุกอยู่แค่เมืองใหญ่ กระจายรายได้สู่ท้องถิ่นต่างๆทั่วประเทศไทย"></meta>
+        <meta property="og:url" content="https://www.หาคนโพส.com/"></meta>
+        <meta property="og:title" content="หาคนโพส.com"></meta>
+        <meta property="og:description" content="หาคนโพส.com เป็นบริษัท Agency ในการช่วยหางาน โดยเน้นไปที่งานทำนอกเวลา หาโพส.com มีจุดมุ่งหมายในการสร้างช่องทางประชาสัมพันธ์ระหว่างบริษัทที่ต้องการคนทำงานนอกเวลากับประชาชน เพื่อกระจายรายได้และสร้างงานเสริมให้กับประชาชนทั่วไป เพิ่มโอกาสให้ประชาชนสามารถทำงานที่ไหนก็ได้ ลดการกระจุกตัวของการสร้างรายได้ที่กระจุกอยู่แค่เมืองใหญ่ กระจายรายได้สู่ท้องถิ่นต่างๆทั่วประเทศไทย"></meta>
         <meta property="og:site_name" content="หาคนโพส.com"></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -183,7 +183,7 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
           <div className='flex w-11/12 lg:w-full sm:w-11/12 mx-auto  pb-2.5 xl:pr-3 lg:pl-5 lg:pr-5 xl:px-40'>
             <DynamicCarousel />
             <div >
-              <iframe className='show-video' src='https://www.youtube.com/embed/OrICmAjKOvs?autoplay=1&rel=0'
+              <iframe className='show-video' src='https://www.youtube.com/embed/QvMJsCnmwEo?autoplay=1&amp;rel=0&amp;'
                 frameBorder='0'
                 allow='autoplay; encrypted-media'
                 allowFullScreen
