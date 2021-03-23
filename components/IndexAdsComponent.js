@@ -7,8 +7,6 @@ export const IndexAdsComponent = ({adsType}) => {
   
   useEffect(() => {
     const test = async () => {
-      console.log(adsType)
-
       if(adsType==='sponser'){
         const res = await fetch(BACKEND_API + '/jobspost/findSponserAds', {
           method: 'GET'

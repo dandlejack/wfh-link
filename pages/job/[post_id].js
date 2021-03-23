@@ -63,13 +63,28 @@ export default function JobPageID({ query }) {
                                                 <span className='leading-normal'>{dataSource.company_tel ? 'เบอร์โทรศัพท์ : ' + dataSource.company_tel : ''}</span>
                                             </div>
                                             <div className='mt-2'>
-                                                <span className='leading-normal'>{dataSource.line_id ? 'LINE ID : ' + dataSource.line_id : ''}</span>
+                                                {dataSource.line_id ?
+                                                    <>
+                                                        <span>LINE ID : </span>
+                                                        <a href={dataSource.line_id} target='_blank'>
+                                                            <span className='leading-normal'>{dataSource.line_id}</span>
+                                                        </a>
+                                                    </>
+                                                    : <span className='leading-normal'>{''}</span>}
+
                                             </div>
                                             <div className='mt-2'>
                                                 <span className='leading-normal'>{dataSource.company_email ? 'EMAIL : ' + dataSource.company_email : ''}</span>
                                             </div>
                                             <div className='mt-2'>
-                                                <span className='leading-normal'>{dataSource.company_facebook ? 'Facebook : ' + dataSource.company_facebook : ''}</span>
+                                            {dataSource.company_facebook ?
+                                                    <>
+                                                        <span>LINE ID : </span>
+                                                        <a href={dataSource.company_facebook} target='_blank'>
+                                                            <span className='leading-normal'>{dataSource.company_facebook}</span>
+                                                        </a>
+                                                    </>
+                                                    : <span className='leading-normal'>{''}</span>}
                                             </div>
                                             <div className='mt-2'>
                                                 <span>ลงประกาศเมื่อ {postDate}</span>

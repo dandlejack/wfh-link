@@ -219,7 +219,7 @@ export default function JobPage({ queryData, paramsData }) {
                         >
                             <Form.Item
                                 name='province'
-                                className='w-full mb-2 py-2 lg:w-3/12 rounded-sm mr-1 _mRs'
+                                className='w-full mb-2 lg:w-3/12 rounded-sm mr-1 _mRs'
                                 rules={[{ required: false }]}
                                 hidden={hideSearchItem}
                             >
@@ -238,7 +238,7 @@ export default function JobPage({ queryData, paramsData }) {
 
                             <Form.Item
                                 name='work_select'
-                                className='w-full mb-2 py-2 mr-1 lg:w-3/12 rounded-sm  treeselect-index _mRs'
+                                className='w-full mb-2 mr-1 lg:w-3/12 rounded-sm  treeselect-index _mRs'
                                 rules={[{ required: false }]}
                                 hidden={hideSearchItem}
                             >
