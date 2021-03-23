@@ -31,6 +31,18 @@ export default function JobPageID({ query }) {
         document.body.style.overflowY = 'scroll'
     }, [query])
 
+    const linkClick = (e) => {
+        const prefix = 'http://'
+        if (e) {
+            const splitData = e.split(':')
+            if (splitData.length === 1) {
+                window.location.href = prefix + e
+            } else {
+                window.location.href = e
+            }
+        }
+    }
+
     return (
         <>
             <Head>
@@ -67,9 +79,9 @@ export default function JobPageID({ query }) {
                                                 {dataSource.line_id ?
                                                     <>
                                                         <span>LINE ID : </span>
-                                                        <Link href={dataSource.line_id} passHref={true}>
+                                                        <button onClick={e=>linkClick(dataSource.line_id)}>
                                                             <span className='leading-normal'>{dataSource.line_id}</span>
-                                                        </Link>
+                                                        </button>
                                                     </>
                                                     : <span className='leading-normal'>{''}</span>}
 
@@ -78,12 +90,14 @@ export default function JobPageID({ query }) {
                                                 <span className='leading-normal'>{dataSource.company_email ? 'EMAIL : ' + dataSource.company_email : ''}</span>
                                             </div>
                                             <div className='mt-2'>
-                                            {dataSource.company_facebook ?
+                                                {dataSource.company_facebook ?
                                                     <>
-                                                        <span>LINE ID : </span>
-                                                        <Link href={dataSource.company_facebook} passHref={true}>
+                                                        <span>Facebook : </span>
+                                                        {/* <Link href={dataSource.company_facebook} passHref={true}> */}
+                                                        <button onClick={e=>linkClick(dataSource.company_facebook)}>
                                                             <span className='leading-normal'>{dataSource.company_facebook}</span>
-                                                        </Link>
+                                                        </button>
+                                                        {/* </Link> */}
                                                     </>
                                                     : <span className='leading-normal'>{''}</span>}
                                             </div>
