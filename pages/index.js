@@ -183,7 +183,7 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
           <div className='flex w-11/12 lg:w-full sm:w-11/12 mx-auto  pb-2.5 xl:pr-3 lg:pl-5 lg:pr-5 xl:px-40'>
             <DynamicCarousel />
             <div >
-              <iframe className='show-video' src='https://www.youtube.com/embed/QvMJsCnmwEo?autoplay=1&amp;rel=0&amp;'
+              <iframe className='show-video' src='https://www.youtube.com/embed/QvMJsCnmwEo?autoplay=1&amp;rel=0&amp;mute=1;showinfo=0'
                 frameBorder='0'
                 allow='autoplay; encrypted-media'
                 allowFullScreen
