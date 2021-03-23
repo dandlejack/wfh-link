@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { PostApi } from '../../api/PostApi'
 import { Divider } from 'antd'
 import Head from 'next/head'
+import Link from 'next/link'
 import { BACKEND_API } from '../../server.configs'
 const defaultBannerImage = `${BACKEND_API}/photos/default_header.jpg`
 export default function JobPageID({ query }) {
@@ -66,9 +67,9 @@ export default function JobPageID({ query }) {
                                                 {dataSource.line_id ?
                                                     <>
                                                         <span>LINE ID : </span>
-                                                        <a href={dataSource.line_id} target='_blank'>
+                                                        <Link href={dataSource.line_id} passHref={true}>
                                                             <span className='leading-normal'>{dataSource.line_id}</span>
-                                                        </a>
+                                                        </Link>
                                                     </>
                                                     : <span className='leading-normal'>{''}</span>}
 
@@ -80,9 +81,9 @@ export default function JobPageID({ query }) {
                                             {dataSource.company_facebook ?
                                                     <>
                                                         <span>LINE ID : </span>
-                                                        <a href={dataSource.company_facebook} target='_blank'>
+                                                        <Link href={dataSource.company_facebook} passHref={true}>
                                                             <span className='leading-normal'>{dataSource.company_facebook}</span>
-                                                        </a>
+                                                        </Link>
                                                     </>
                                                     : <span className='leading-normal'>{''}</span>}
                                             </div>
