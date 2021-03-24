@@ -199,11 +199,22 @@
     .show-video {
         display: none;
     }
+    .contentStyle {
+        height: 145px;
+        color: #fff;
+        text-align: center;
+        background: #364d79;
+        width: 100%;
+    }
 }
 @media (min-width:480px ) and (max-width:1023px ) {
     .flexSet {
         justify-content: center;
-    }    
+    }
+    .contentStyle{
+        height: 245px;
+        line-height: 245px;
+    }
    
 }
 
@@ -243,6 +254,10 @@
     .ant-carousel {
         width: 610px;
         margin-right: 10px !important;
+    }
+    .contentStyle{
+        height: 245px;
+        line-height: 245px;
     }
 }
 @media (min-width:1280px) {

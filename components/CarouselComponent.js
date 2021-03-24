@@ -10,10 +10,14 @@ const contentStyle = {
 const CarouselComponent = props => {
     return <Carousel className='carousel-set' autoplay>
         <div>
-            <a href='https://line.me/ti/p/%40Richpostit' target='_blank'><img style={contentStyle} src='https://api.หาคนโพส.com/photos/slide_3.jpg' /></a>
+            <a href='https://line.me/ti/p/%40Richpostit' target='_blank'>
+                <img className='contentStyle' src='https://api.หาคนโพส.com/photos/slide_3.jpg' />
+            </a>
         </div>
         <div>
-            <a href='https://line.me/ti/p/%40Richpostit' target='_blank'><h3><img style={contentStyle} src='https://api.หาคนโพส.com/photos/slide_2.jpg' /></h3></a>
+            <a href='https://line.me/ti/p/%40Richpostit' target='_blank'>
+                <h3><img className='contentStyle' src='https://api.หาคนโพส.com/photos/slide_2.jpg' /></h3>
+            </a>
         </div>
     </Carousel>
 }

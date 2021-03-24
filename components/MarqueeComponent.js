@@ -45,9 +45,9 @@ const MarqueeComponent = (props) => {
             <div className={`marquee-style ${props.contentStyle}`}>
                 {datas.list_data !== undefined ? datas.list_data.map((data, index) => {
                     return <><p className='w-full'>
-                        <span className='text-xl'>{data.company_name || data.firstname}</span>
-                        {props.title === 'ยินดีต้องรับสมาชิกใหม่' ? <span className='float-right text-xl '>{data.telNumber}</span>:
-                        <span className='float-right text-xl '>{data.required_worker} ตำแหน่ง</span>}
+                        <span className='md:text-xl'>{data.company_name || data.firstname}</span>
+                        {props.title === 'ยินดีต้องรับสมาชิกใหม่' ? <span className='float-right md:text-xl '>{data.telNumber}</span>:
+                        <span className='float-right md:text-xl '>{data.required_worker} ตำแหน่ง</span>}
                     </p></>
                 }) : <></>}
             </div>
