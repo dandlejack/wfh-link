@@ -13,7 +13,8 @@ export default function JobPageID({ query }) {
     })
     const [postDate, setPostDate] = useState('')
     useEffect(() => {
-        PostApi.getPostByPostID(query.post_id)
+        console.log(query)
+        PostApi.getPostByID(query.post_id)
             .then(res => {
                 setDataSource(res[0])
                 const splitDate = res[0].createdDate.split('T')[0].split('-')

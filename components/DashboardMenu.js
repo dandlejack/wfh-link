@@ -35,10 +35,10 @@ const DashboardMenu = ({ role }) => {
             </div>
           </div>
         </Link>
-        <Link href='/posts/TopTenToday'>
+        <Link href='/posts/admin-dashboard'>
           <div className='admin-menu  pl-4 py-2 bg-white border-b hover:bg-gray-200 cursor-pointer'>
             <div>
-              <span style={{ color: '#000' }}>จัดการ 10 อันดับรายได้สูงสุดของวัน</span>
+              <span style={{ color: '#000' }}>รายงานจำนวนเข้าชมเว็บทั้งหมด</span>
             </div>
           </div>
         </Link>

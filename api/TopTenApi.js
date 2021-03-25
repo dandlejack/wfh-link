@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export class TopTenApi {
     static TOPTEN_API_URL = `${BACKEND_API}/topten`
+    static COUNTER_API_URL = `${BACKEND_API}/webcounter`; 
 
     static async createNewPost(data) {
         const result = axios.post(`${this.TOPTEN_API_URL}`,data).then(res=>{
@@ -29,5 +30,12 @@ export class TopTenApi {
             return res.data
         })
         return result
+    }
+    static async findVisitor() {
+        const result = await axios.get(this.COUNTER_API_URL+'/getVisitor').then(res=>{
+          console.log(res)
+          return res
+        })
+        return result;   
     }
 }

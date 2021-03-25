@@ -6,6 +6,9 @@ import { mypostsTable } from '../../util/mockData'
 import { PostApi } from '../../api/PostApi'
 import Head from 'next/head'
 import { LineChartComponent } from '../../components/Charts/LineChartComponent/LineChartComponent'
+import { CounterApi } from '../../api/CounterApi'
+import {BACKEND_API} from '../../server.configs'
+import { TopTenApi } from '../../api/TopTenApi'
 export default function AdminManage() {
 
     const [fetchData, setFetchData] = useState({
@@ -17,19 +20,14 @@ export default function AdminManage() {
 
     useEffect(() => {
         const getCookieID = Cookie.get('hrme')
-        if (getCookieID !== undefined) {
-            const userId = JSON.parse(getCookieID)
-            PostApi.getAllPosts({
-                filterObject: {},
-            }).then(res => {
-                setFetchData({
-                    dataSource: res.data,
-                    pageNumber: res.pageNumber,
-                    totalDocument: res.totalDocument,
-                    totalPage: res.totalPage,
+        const getVisitor = async () => {
+            if (getCookieID !== undefined) {
+                TopTenApi.findVisitor().then(res=>{
+                    console.log(res)
                 })
-            })
+            }
         }
+        getVisitor()
     }, [])
 
     return <>
@@ -53,7 +51,7 @@ export default function AdminManage() {
                             <h2 className='text-xl'>Admin</h2>
                         </div>
                         <div>
-                            <Table bordered columns={mypostsTable} dataSource={fetchData.dataSource} />
+                            <LineChartComponent data={[{label:'2021-03-22',value:30},{label:'2021-03-23',value:70},{label:'2021-03-24',value:65},{label:'2021-03-25',value:50}]} title='จำนวนคนเข้าชม' colors={'#eb4034'} />
                         </div>
                     </div>
                 </div>

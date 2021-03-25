@@ -255,8 +255,10 @@ export async function getStaticProps(context) {
     const foundMax = await fetch(BACKEND_API + '/topten/findMaxValue', {
       method: 'GET'
     })
+    const incrementCounterApi = await fetch(BACKEND_API+'/webcounter/newUpdate')
     const data = await lastest.json()
     const data2 = await foundMax.json()
+    const incrementData = await incrementCounterApi.json()
     return {
       props: {
         latestMarquee: data,

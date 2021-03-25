@@ -17,6 +17,7 @@
     "antd": "^4.10.0",
     "autoprefixer": "^10.1.0",
     "axios": "^0.21.1",
+    "chart.js": "^2.9.4",
     "express": "^4.17.1",
     "fg-loadcss": "^3.1.0",
     "http": "0.0.1-security",

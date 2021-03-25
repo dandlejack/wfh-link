@@ -240,7 +240,7 @@ export default function JobPage({ queryData, paramsData }) {
                                 name='work_select'
                                 className='w-full mb-2 mr-1 lg:w-3/12 rounded-sm  treeselect-index _mRs'
                                 rules={[{ required: false }]}
-                                hidden={hideSearchItem}
+                                // hidden={hideSearchItem}
                             >
                                 <TreeSelect
                                     showArrow
