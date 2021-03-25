@@ -5,7 +5,6 @@ import DashboardMenu from '../../components/DashboardMenu'
 import { mypostsTable } from '../../util/mockData'
 import { PostApi } from '../../api/PostApi'
 import Head from 'next/head'
-import { LineChartComponent } from '../../components/Charts/LineChartComponent/LineChartComponent'
 export default function AdminManage() {
 
     const [fetchData, setFetchData] = useState({
