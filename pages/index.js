@@ -10,12 +10,13 @@ import { BACKEND_API } from '../server.configs'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 import { LineAdsIndex } from '../components/LineAdsIndex'
+import { CounterApi } from '../api/CounterApi'
 const banner = `${BACKEND_API}/photos/index_banner.jpg`
 const ads = `${BACKEND_API}/photos/advertiser_1.gif`
 const DynamicAds = dynamic(() => import('../components/IndexAdsComponent').then(mod => mod.IndexAdsComponent), {
   ssr: false
 })
-const Index = ({ queryData, latestMarquee, maxMarquee }) => {
+const Index = ({  latestMarquee, maxMarquee, incrementData }) => {
   const [dailyTopTen, setDailyTopTen] = useState([])
   const [maxTopTen, setMaxTopTen] = useState([])
   const [selectValue, setSelectValue] = useState([])
@@ -29,6 +30,9 @@ const Index = ({ queryData, latestMarquee, maxMarquee }) => {
   useEffect(() => {
     setDisplayWidth(window.screen.width)
     document.body.style.overflowY = 'scroll'
+    CounterApi.counterUpdate().then(res=>{
+      return res
+    })
   }, [])
 
   useEffect(() => {
@@ -255,14 +259,17 @@ export async function getStaticProps(context) {
     const foundMax = await fetch(BACKEND_API + '/topten/findMaxValue', {
       method: 'GET'
     })
-    const incrementCounterApi = await fetch(BACKEND_API+'/webcounter/newUpdate')
+    // const incrementCounterApi = await fetch(BACKEND_API+'/webcounter/newUpdate',{
+    //   method: 'Get'
+    // })
     const data = await lastest.json()
     const data2 = await foundMax.json()
-    const incrementData = await incrementCounterApi.json()
+    // const incrementData = await incrementCounterApi.json()
     return {
       props: {
         latestMarquee: data,
-        maxMarquee: data2
+        maxMarquee: data2,
+        // incrementData: incrementData
       }
     }
   } catch (error) {

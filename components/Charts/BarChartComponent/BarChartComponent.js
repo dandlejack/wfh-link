@@ -15,7 +15,6 @@ export const BarChartComponent = ({ title, colors }) => {
                 }).then(res => {
                     return res
                 })
-                console.log(data)
                 lineChart = new Chart(chartRef.current, {
                     type: 'bar',
                     options: {

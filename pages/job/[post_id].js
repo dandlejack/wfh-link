@@ -13,7 +13,6 @@ export default function JobPageID({ query }) {
     })
     const [postDate, setPostDate] = useState('')
     useEffect(() => {
-        console.log(query)
         PostApi.getPostByID(query.post_id)
             .then(res => {
                 setDataSource(res[0])

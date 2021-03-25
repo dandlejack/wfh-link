@@ -7,10 +7,10 @@ export class CounterApi {
 
   static async counterUpdate(params) {
     try {
-      const result = await axios.get(this.COUNTER_API_URL+'/newUpdate', {
+      const result = await axios.get(this.COUNTER_API_URL2+'/newUpdate', {
         params,
       });
-      return result.data;
+      return result;
     } catch {
       window.location.replace('/404')
       return [];
@@ -18,7 +18,6 @@ export class CounterApi {
   }
   static async getVisitor() {
       const result = await axios.get(this.COUNTER_API_URL+'/getVisitor').then(res=>{
-        console.log(res)
         return res
       })
       return result;   
