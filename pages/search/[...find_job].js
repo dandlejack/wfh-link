@@ -8,8 +8,8 @@ import Link from 'next/link'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
-const DynamicPostComponent = dynamic(()=>import('../../components/PostComponent'),{
-    ssr:false
+const DynamicPostComponent = dynamic(() => import('../../components/PostComponent'), {
+    ssr: false
 })
 
 export default function JobPage({ queryData, paramsData }) {
@@ -52,9 +52,11 @@ export default function JobPage({ queryData, paramsData }) {
             }
         })
         const searchClick = window.addEventListener("click", () => {
-            if (window.pageYOffset > stickyHeader) {
-                document.body.scrollTop = 0
-                document.documentElement.scrollTop = 0;
+            if (window.screen.width <= 1023) {
+                if (window.pageYOffset > stickyHeader) {
+                    document.body.scrollTop = 0
+                    document.documentElement.scrollTop = 0;
+                }
             }
         })
         return () => {
@@ -113,9 +115,9 @@ export default function JobPage({ queryData, paramsData }) {
                 totalDocument: res.totalDocument,
                 totalPage: res.totalPage
             })
-            if(res.data.length>2){
+            if (res.data.length > 2) {
                 document.body.style.overflowY = 'scroll'
-            }else{
+            } else {
                 document.body.style.overflowY = 'hidden'
             }
             setDataSource(res.data)
@@ -240,7 +242,7 @@ export default function JobPage({ queryData, paramsData }) {
                                 name='work_select'
                                 className='w-full mb-2 mr-1 lg:w-3/12 rounded-sm  treeselect-index _mRs'
                                 rules={[{ required: false }]}
-                                // hidden={hideSearchItem}
+                            // hidden={hideSearchItem}
                             >
                                 <TreeSelect
                                     showArrow
@@ -272,7 +274,7 @@ export default function JobPage({ queryData, paramsData }) {
                                         <img alt='หาคนโพส.com' className='findjob-title-image' src={'https://api.หาคนโพส.com/photos/default_header.jpg'} style={{ maxHeight: 200, width: '100%' }} />
                                     </div>
                                     <div style={{ maxWidth: 112, maxHeight: 60 }} className='mb-2'>
-                                        <img alt='หาคนโพส.com' src={data.logo_image} style={{ maxWidth: 112, maxHeight: 60 }}  />
+                                        <img alt='หาคนโพส.com' src={data.logo_image} style={{ maxWidth: 112, maxHeight: 60 }} />
                                     </div>
                                     <div className='mt-9'>
                                         <h1 className='text-base' style={{ marginBottom: 0 }}>
@@ -341,15 +343,16 @@ export default function JobPage({ queryData, paramsData }) {
     )
 }
 
-JobPage.getInitialProps = async ({query}) => {
+JobPage.getInitialProps = async ({ query }) => {
     const queryData = {
-        place:query.place,
-        worksType:query.worksType
+        place: query.place,
+        worksType: query.worksType
     }
-    const paramsData = query.find_job    
+    const paramsData = query.find_job
     return {
-        queryData,paramsData
-}}
+        queryData, paramsData
+    }
+}
 
 
 // export const getServerSideProps = async ({ query, params }) => {

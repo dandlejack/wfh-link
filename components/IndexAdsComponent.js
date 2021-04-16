@@ -33,7 +33,7 @@ export const IndexAdsComponent = ({adsType}) => {
   }, [])
 
   return <div className='flex w-full mb-5 lg:pl-5 lg:pr-5 xl:pl-0 xl:pr-0'>
-    <div className='w-11/12 lg:w-full sm:w-11/12  grid grid-cols-1 gap-1 lg:grid-cols-3 mx-auto xl:mx-40 shadow-sm lg:border lg:rounded-md lg:border-gray-300 pb-2.5 lg:pr-3' >
+    <div className='w-11/12 lg:w-full sm:w-11/12  grid grid-cols-1 gap-1 lg:grid-cols-3 mx-auto xl:mx-40 shadow-sm lg:border lg:rounded-md lg:border-gray-300 lg:pr-3' >
       {
         dataSource.map((d, index) => {
           if (d !== "") {
@@ -47,8 +47,8 @@ export const IndexAdsComponent = ({adsType}) => {
                 <Link href={'/job/[post_id]'} as={`/job/${d._id}`} key={d._id + 'img'}>
                   <span style={{ maxWidth: 110 }} className='xl:w-full lg:mr-3.5 findjob-logo-image'>
                     {d.logo_image !== undefined || d.logo_image !== '' ?
-                      <img alt='หาคนโพส.com' className='flex mx-auto max-h-12 lg:max-h-20' key={d.logo_image + index} src={d.logo_image} />
-                      : <img alt='หาคนโพส.com' className='flex mx-auto max-h-12 lg:max-h-20' key={d.logo_image + index} src={`${BACKEND_API}/photos/default_logo.png`} />
+                      <img alt='หาคนโพส.com' className='flex mx-auto max-h-12 lg:max-h-20' style={{width:72,height:72}} key={d.logo_image + index} src={d.logo_image} />
+                      : <img alt='หาคนโพส.com' className='flex mx-auto max-h-12 lg:max-h-20' style={{width:72,height:72}} key={d.logo_image + index} src={`${BACKEND_API}/photos/default_logo.png`} />
                     }
 
                   </span>

@@ -29,6 +29,8 @@ export default function FirstPost() {
     if (getCookieData !== undefined) {
       const jwtData = jwt_decode(getCookieData)
       setUserRole(jwtData.role)
+    } else {
+      window.location.replace('/login')
     }
   }, [])
 
@@ -374,7 +376,7 @@ export default function FirstPost() {
                     name="required_worker"
                     label="จำนวนคนงานที่ต้องการ"
                   >
-                    <InputNumber style={{width:'100%'}} />
+                    <InputNumber style={{ width: '100%' }} />
                   </Form.Item>
                   <Form.Item
                     name="company_email"

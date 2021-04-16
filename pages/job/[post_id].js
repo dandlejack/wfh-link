@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { PostApi } from '../../api/PostApi'
 import { Divider } from 'antd'
 import Head from 'next/head'
-import Link from 'next/link'
 import { BACKEND_API } from '../../server.configs'
 const defaultBannerImage = `${BACKEND_API}/photos/default_header.jpg`
 export default function JobPageID({ query }) {

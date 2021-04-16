@@ -28,6 +28,8 @@ export default function AdminManage() {
                     totalPage: res.totalPage,
                 })
             })
+        }else{
+            window.location.replace('/login')
         }
     }, [])
 

@@ -34,7 +34,7 @@ const Login = () => {
                         const parseJwtDecoded = JSON.parse(JSON.stringify(jwtDecoded));
                         const expDate = new Date(parseJwtDecoded.exp * 1000);
                         Cookie.set('token', response.token, { expires: expDate });
-                        Cookie.set('hrme', { _id: parseJwtDecoded._id, name: parseJwtDecoded.firstname }, { expires: expDate })            
+                        Cookie.set('hrme', { _id: parseJwtDecoded._id, name: parseJwtDecoded.firstname, referral:parseJwtDecoded.myReferral }, { expires: expDate })            
                         window.location.replace('/')
                         return response
                     }else{
@@ -59,7 +59,7 @@ const Login = () => {
                     const parseJwtDecoded = JSON.parse(JSON.stringify(jwtDecoded));
                     const expDate = new Date(parseJwtDecoded.exp * 1000);
                     Cookie.set('token', response.token, { expires: expDate });
-                    Cookie.set('hrme', { _id: parseJwtDecoded._id, name: parseJwtDecoded.firstname }, { expires: expDate })            
+                    Cookie.set('hrme', { _id: parseJwtDecoded._id, name: parseJwtDecoded.firstname, referral:parseJwtDecoded.myReferral }, { expires: expDate })            
                     window.location.replace('/')
                     return response
                 }else{

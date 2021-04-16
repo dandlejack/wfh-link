@@ -53,6 +53,8 @@ export default function myposts({result}) {
                     totalPage: res.totalPage,
                 })
             })
+        }else{
+            window.location.replace('/login')
         }
     }, [])
     

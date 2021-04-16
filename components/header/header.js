@@ -98,9 +98,14 @@ export const Header = () => {
                 <span className='text-white px-3 py-2 rounded-md text-lg font-medium'>{user}</span>
                 <ul className='dropdown-menu' >
                   <li className='sp text-base' >จัดการประกาศ</li>
+                  {/* <Link href="/posts/myposts"><li className='hover:bg-gray-200'><span>Referral</span></li></Link> */}
                   <Link href="/posts/myposts"><li className='hover:bg-gray-200'><span>ประกาศของฉัน</span></li></Link>
                   <Link href="/posts/newpost"><li className='hover:bg-gray-200'><span>ลงประกาศ</span></li></Link>
-                  {userRole === '4y0h9WnLw/TjWXpwK9EZ4D7WCZaB9s/2U/sPcnup1do=' ? <Link href="/posts/admin-manage"><li className='hover:bg-gray-200'><span>จัดการประกาศ Admin</span></li></Link> : <></>}
+                  {userRole === '4y0h9WnLw/TjWXpwK9EZ4D7WCZaB9s/2U/sPcnup1do=' ? <>
+                    <Link href="/posts/admin-manage"><li className='hover:bg-gray-200'><span>จัดการประกาศ Admin</span></li></Link>
+                    <Link href="/posts/admin-dashboard"><li className='hover:bg-gray-200'><span>รายงานจำนวนเข้าชมเว็บทั้งหมด</span></li></Link>
+                  </>
+                    : <></>}
                   <li className='sp text-base'>ข้อมูลสมาชิก</li>
                   {/* <li className='hover:bg-gray-200'><span>ข้อมูลส่วนตัว</span></li> */}
                   <li className='hover:bg-gray-200' onClick={handleLogout}><span >ออกจากระบบ</span></li>
@@ -110,41 +115,41 @@ export const Header = () => {
                 </a>
               </div>
             ) : (
-                  <>
-                    <div className='right-0 top-0 header-menu lg:absolute' id='div-header-main'>
-                      <div className='div-header-items' id='div-header'>
-                        <Link href='/posts/newpost'>
-                          <div className='freepost mr-2 header-menu-items'>
-                            <a className="text-white hover:text-black px-3 py-2 rounded-md text-lg font-medium" href='/newpost'>ลงประกาศฟรี</a>
-                          </div>
-                        </Link>
-                        <Link href='/posts/myposts'>
-                          <div className='rounded header-menu-items'>
-                            <a className=" text-white hover:underline hover:text-white px-3 py-2 rounded-md text-lg font-medium" href='myposts'>ประกาศของฉัน</a>
-                          </div>
-                        </Link>
-                        {userRole === '4y0h9WnLw/TjWXpwK9EZ4D7WCZaB9s/2U/sPcnup1do=' ?
-                          <Link href="/posts/admin-manage">
-                            <div className='rounded header-menu-items'>
-                              <a className=" text-white hover:underline hover:text-white px-3 py-2 rounded-md text-lg font-medium" href='admin'>จัดการประกาศ Admin</a>
-                            </div>
-                          </Link> : <></>}
-                        <div className='hidden lg:inline'>
-                          <span className='text-white' style={{ fontSize: 18 }}>|</span>
-                        </div>
-                        <div className='rounded header-menu-items' onClick={handleLogout}>
-                          <a className=" text-white hover:underline hover:text-white px-3 py-2 rounded-md text-lg font-medium" href='/register'>ออกจากระบบ</a>
-                        </div>
+              <>
+                <div className='right-0 top-0 header-menu lg:absolute' id='div-header-main'>
+                  <div className='div-header-items' id='div-header'>
+                    <Link href='/posts/newpost'>
+                      <div className='freepost mr-2 header-menu-items'>
+                        <a className="text-white hover:text-black px-3 py-2 rounded-md text-lg font-medium" href='/newpost'>ลงประกาศฟรี</a>
                       </div>
+                    </Link>
+                    <Link href='/posts/myposts'>
+                      <div className='rounded header-menu-items'>
+                        <a className=" text-white hover:underline hover:text-white px-3 py-2 rounded-md text-lg font-medium" href='myposts'>ประกาศของฉัน</a>
+                      </div>
+                    </Link>
+                    {userRole === '4y0h9WnLw/TjWXpwK9EZ4D7WCZaB9s/2U/sPcnup1do=' ?
+                      <Link href="/posts/admin-manage">
+                        <div className='rounded header-menu-items'>
+                          <a className=" text-white hover:underline hover:text-white px-3 py-2 rounded-md text-lg font-medium" href='admin'>จัดการประกาศ Admin</a>
+                        </div>
+                      </Link> : <></>}
+                    <div className='hidden lg:inline'>
+                      <span className='text-white' style={{ fontSize: 18 }}>|</span>
                     </div>
-                    <a className="bar-a" onClick={showMenu}>
-                      {!toggleMenu ? <FontAwesomeIcon className='bar-icon' icon={faBars} /> : <FontAwesomeIcon className='bar-icon' icon={faTimes} />}
-                    </a>
-                  </>
-                )
+                    <div className='rounded header-menu-items' onClick={handleLogout}>
+                      <a className=" text-white hover:underline hover:text-white px-3 py-2 rounded-md text-lg font-medium" href='/register'>ออกจากระบบ</a>
+                    </div>
+                  </div>
+                </div>
+                <a className="bar-a" onClick={showMenu}>
+                  {!toggleMenu ? <FontAwesomeIcon className='bar-icon' icon={faBars} /> : <FontAwesomeIcon className='bar-icon' icon={faTimes} />}
+                </a>
+              </>
+            )
           }
         </div>
       </div>
-    </nav>   
+    </nav>
   </>
 }
