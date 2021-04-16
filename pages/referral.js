@@ -21,7 +21,6 @@ export default function ReferralPage() {
         const getCookieID = Cookie.get('hrme')
         if (getCookieID !== undefined) {
             const userData = JSON.parse(getCookieID)
-            const referralText = 'http://localhost:3000/invite/' + userData.referral
             UserApi.findByReferralId(userData.referral).then(res => {
                 setClickRefCounter(res.clickRefCounter)
                 setMyReferral(userData.referral)
@@ -33,7 +32,7 @@ export default function ReferralPage() {
 
     const CopyFunc = (content) => {
         const el = document.createElement('textarea');
-        el.value = 'http://localhost:3000/invite/' + content;
+        el.value = 'https://www.หาคนโพส.com/invite/' + content;
         el.setAttribute('readonly', '');
         el.style.position = 'absolute';
         el.style.left = '-9999px';
