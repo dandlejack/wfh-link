@@ -60,7 +60,7 @@ export default function FirstPost() {
     if (e.company_tel === '') {
       e.company_tel = '-'
     }
-    e.user_id = parseJwtDecoded._id
+    e.user_id = parseJwtDecoded.user_id
     e.role = parseJwtDecoded.role
     e.all_works = 'ประเภทงานทั้งหมด'
     e.all_province = 'ระยะเวลารับงานทั้งหมด'

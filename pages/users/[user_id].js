@@ -14,6 +14,8 @@ export default function JobPageID({ query }) {
         firstname: '',
         lastname: '',
         email: '',
+        clickRefCounter:0,
+        totalClickRefCounter:0
     })
     const [tableData, setTableData] = useState([])
     const [borderTable, setBorderTable] = useState(
@@ -35,8 +37,8 @@ export default function JobPageID({ query }) {
                     setDataSource(res)
                     return res
                 })
-
-            PostApi.getPostByUserID({ filterObject: { user_id: parseJwtDecoded._id } })
+            
+            PostApi.getPostByUserID({ filterObject: { user_id: query.user_id } })
                 .then(res => {
                     setTableData(res.data)
                 })
@@ -69,7 +71,7 @@ export default function JobPageID({ query }) {
                         <div className='highlight'>
                             <div style={{ paddingTop: 1 }}>
                                 <div>
-                                    <h4 className='text-lg'>ชื่อ-สกุล :  {dataSource.firstname + ' ' + dataSource.lastname}</h4>
+                                    <h4 className='text-lg'>ชื่อ-สกุล :  {dataSource && dataSource.firstname + ' ' + dataSource.lastname}</h4>
                                 </div>
                             </div>
                             <div style={{ paddingTop: 1 }} className='text-base'>
@@ -81,7 +83,7 @@ export default function JobPageID({ query }) {
                         <div className='highlight'>
                             <div style={{ paddingTop: 1 }}>
                                 <div>
-                                    <h4 className='text-lg'>E-mail : {dataSource.email}</h4>
+                                    <h4 className='text-lg'>E-mail : {dataSource && dataSource.email}</h4>
                                 </div>
                             </div>
                             <div style={{ paddingTop: 1 }} className='text-base'>
@@ -93,7 +95,7 @@ export default function JobPageID({ query }) {
                         <div className='highlight'>
                             <div style={{ paddingTop: 1 }}>
                                 <div>
-                                    <h4 className='text-lg'> จำนวนคนเข้าผ่านลิ้งค์ทั้งหมด : {dataSource.clickRefCounter}</h4>
+                                    <h4 className='text-lg'> จำนวนคนเข้าผ่านลิ้งค์ทั้งหมด : {dataSource && dataSource.clickRefCounter}</h4>
                                 </div>
                             </div>
                             <div style={{ paddingTop: 1 }} className='text-base'>
@@ -105,7 +107,7 @@ export default function JobPageID({ query }) {
                         <div className='highlight'>
                             <div style={{ paddingTop: 1 }}>
                                 <div>
-                                    <h4 className='text-lg'>จำนวนคนเข้าผ่านลิ้งค์วันนี้ : {dataSource.totalClickRefCounter}</h4>
+                                    <h4 className='text-lg'>จำนวนคนเข้าผ่านลิ้งค์วันนี้ : {dataSource && dataSource.totalClickRefCounter}</h4>
                                 </div>
                             </div>
                         </div>

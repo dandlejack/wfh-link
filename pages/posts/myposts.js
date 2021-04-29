@@ -5,6 +5,7 @@ import DashboardMenu from '../../components/DashboardMenu'
 import { mypostsTable } from '../../util/mockData'
 import { PostApi } from '../../api/PostApi'
 import Head from 'next/head'
+import jwt_decode from 'jwt-decode';
 
 export default function myposts({result}) {
     const [borderTable, setBorderTable] = useState(
@@ -40,11 +41,12 @@ export default function myposts({result}) {
                 }
             })
         }
-        const getCookieID = Cookie.get('hrme')
+        const getCookieID = Cookie.get('token')
         if (getCookieID !== undefined) {
-            const userId = JSON.parse(getCookieID)
+            const jwtDecoded = jwt_decode(getCookieID);
+            const parseJwtDecoded = JSON.parse(JSON.stringify(jwtDecoded));
             PostApi.getPostByUserID({
-                filterObject: { 'user_id': userId._id },
+                filterObject: { 'user_id': parseJwtDecoded.user_id },
             }).then(res => {
                 setFetchData({
                     dataSource: res.data,
