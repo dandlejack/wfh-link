@@ -33,7 +33,61 @@ export const mypostsTable = [
         width:150,
         render: (text, record) => (
             <>
-                <Link href={'/job/' + record.post_id}>
+                <Link href={'/job/' + record._id}>
+                    <Button
+                        type='primary'
+                        onClick={e => localStorage.setItem('prevLocation', 'reports')}
+                        style={{ marginRight: 8 }}
+                    >
+                        ดูรายละเอียด
+                </Button>
+                </Link>
+                <Popconfirm
+                    title="คุณต้องการลบรายงานนี้?"
+                    onConfirm={() => {
+                        PostApi.deletePostById(record._id).then(res => {
+                            window.location.reload()
+                        })
+                    }}//(record._id)}
+                    okText="Yes"
+                    cancelText="No"
+                >
+                    <Button type="danger">Delete</Button>
+                </Popconfirm>
+            </>
+        ),
+    }
+]
+
+export const userDetailTable = [
+    {
+        title: 'ชื่อ-สกุล',
+        dataIndex: 'fullname',
+        key: 'fullname',
+        width:120
+    },
+    {
+        title: 'จำนวนคนเข้าผ่านลิ้งค์ทั้งหมด',
+        dataIndex: 'referralTotal',
+        key: 'referralTotal',
+        width:150
+    },
+    {
+        title: 'จำนวนคนเข้าผ่านลิ้งค์วันนี้',
+        dataIndex: 'referralToday',
+        key: 'referralToday',
+        width:150
+
+    },
+    {
+        title: 'Action',
+        dataIndex: 'action',
+        key: 'action',
+        width:150,
+        render: (text, record) => (
+            <>
+            {console.log(record)}
+                <Link href={'/users/' + record.user_id}>
                     <Button
                         type='primary'
                         onClick={e => localStorage.setItem('prevLocation', 'reports')}

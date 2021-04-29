@@ -9,7 +9,10 @@ import { CopyTwoTone } from '@ant-design/icons'
 import Router from 'next/router'
 export default function ReferralPage() {
     const [myReferral, setMyReferral] = useState('')
-    const [clickRefCounter, setClickRefCounter] = useState(0)
+    const [clickRefCounter, setClickRefCounter] = useState({
+        today: 0,
+        total: 0,
+    })
     const [fetchData, setFetchData] = useState({
         dataSource: [],
         pageNumber: 1,
@@ -22,10 +25,14 @@ export default function ReferralPage() {
         if (getCookieID !== undefined) {
             const userData = JSON.parse(getCookieID)
             UserApi.findByReferralId(userData.referral).then(res => {
-                setClickRefCounter(res.clickRefCounter)
+                setClickRefCounter({
+                    today: res.clickRefCounter,
+                    total: res.totalRefCounter
+                })
+                console.log(res)
                 setMyReferral(userData.referral)
             })
-        }else{
+        } else {
             Router.push('/login')
         }
     }, [])
@@ -61,11 +68,10 @@ export default function ReferralPage() {
                 <div className='work-manage-body xl:w-4/5'>
                     <div className='box border rounded p-2'>
                         <div>
-                            <h2 className='text-xl'>จำนวนคนเข้าชมผ่านลิ้งค์ : {clickRefCounter}</h2>
+                            <h2 className='text-xl'>จำนวนคนเข้าชมผ่านลิ้งค์ทั้งหมด : {clickRefCounter.total}</h2>
+                            <h2 className='text-xl'>จำนวนคนเข้าชมผ่านลิ้งค์ในวันนี้ : {clickRefCounter.today}</h2>
                         </div>
                         <div>
-
-                            {/* <Table bordered columns={TopTenColumn} dataSource={fetchData.dataSource} /> */}
                         </div>
                     </div>
                     <div className='text-center mx-auto w-4/5 bg-blue-600 p-8 mt-8 rounded-lg '>

@@ -35,6 +35,13 @@ export class UserApi {
     return result
   }
 
+  static async findUserDetail() {
+    const result = await axios.get(`${this.USER_API_URL}/findUserDetail`).then(res=>{
+      return res.data
+    })    
+    return result
+  }
+
   static async counterByReferralId(id) {
     const result = axios.get(`${this.USER_API_URL}/counter/${id}`).then(res=>{
       return res.data
@@ -44,6 +51,13 @@ export class UserApi {
 
   static async findByReferralId(id) {
     const result = axios.get(`${this.USER_API_URL}/referral/${id}`).then(res=>{
+      return res.data
+    })
+    return result
+  }
+
+  static async findUserByID(user_id) {
+    const result = axios.get(`${this.USER_API_URL}/${user_id}`).then(res=>{
       return res.data
     })
     return result
